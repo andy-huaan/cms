@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>${channel.title!channel.name} - ${site.name} - Powered by JEECMS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="keywords" content="${channel.keywords!}"/>
+<meta http-equiv="description" content="${channel.description!}"/>
+
+<link href="/${mobileRes!}/css/pic/public.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/share.css" rel="stylesheet" type="text/css"/>
+<script src="/${mobileRes!}/js/focus/TouchSlide.1.1.js"></script>
+
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/js/common.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	Cms.channelViewCount("${base}","${channel.id}");
+	Cms.siteFlow("${base}", location.href, document.referrer,"${site.config.flowSwitch?string}");
+});
+</script>
+<style>
+.i-title h2 a{display: block;float: right;font-size: 0.7em;color: #65BAF1;padding-right: 1.5em;}
+</style>
+</head>
+
+<body>
+<div id="wrap" class="clearfix overflow mg-auto"> 
+	[#include "../include/header_lanmu.html"/]  
+    
+    <div class="i-title clearfix area">
+    	<h2>网络游戏[@cms_channel id='38']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>          
+    </div>
+    <div class="clearfix sou-con mg-auto overflow">
+        <ul class="clearfix">        
+            [@cms_content_list count='5' orderBy='4' titLen='8' channelId='38' channelOption='1']
+            [#list tag_list as a]
+            <li>
+            <a href="${a.mobileUrl}" class="sou-con-href clearfix">
+            <div class="sou-img"><img src="${a.titleImg!site.defImg}"></div>
+            <h4>[@text_cut s=a.title len=titLen /]</h4>
+            <p><span>[@text_cut s=a.desc len=12 /]</span></p>                    
+            </a> 
+            <a href="${a.mobileUrl}" class="sou-con-download">下载</a>                      
+            </li>
+            [/#list]
+            [/@cms_content_list]      
+        </ul>
+    </div>   
+    <div class="i-title clearfix area">
+    	<h2>媒体工具[@cms_channel id='39']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>          
+    </div>
+    <div class="clearfix sou-con mg-auto overflow">
+        <ul class="clearfix">        
+            [@cms_content_list count='5' orderBy='4' titLen='8' channelId='39' channelOption='1']
+            [#list tag_list as a]
+            <li>
+            <a href="${a.mobileUrl}" class="sou-con-href clearfix">
+            <div class="sou-img"><img src="${a.titleImg!site.defImg}"></div>
+            <h4>[@text_cut s=a.title len=titLen /]</h4>
+            <p><span>[@text_cut s=a.desc len=12 /]</span></p>                    
+            </a> 
+            <a href="${a.mobileUrl}" class="sou-con-download">下载</a>                      
+            </li>
+            [/#list]
+            [/@cms_content_list]            
+        </ul>
+    </div>   
+    <div class="i-title clearfix area">
+    	<h2>实用助手[@cms_channel id='57']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>          
+    </div>
+    <div class="clearfix sou-con mg-auto overflow">
+        <ul class="clearfix">        
+            [@cms_content_list count='5' orderBy='4' titLen='8' channelId='57' channelOption='1']
+            [#list tag_list as a]
+            <li>
+            <a href="${a.mobileUrl}" class="sou-con-href clearfix">
+            <div class="sou-img"><img src="${a.titleImg!site.defImg}"></div>
+            <h4>[@text_cut s=a.title len=titLen /]</h4>
+            <p><span>[@text_cut s=a.desc len=12 /]</span></p>                    
+            </a> 
+            <a href="${a.mobileUrl}" class="sou-con-download">下载</a>                      
+            </li>
+            [/#list]
+            [/@cms_content_list]    
+        </ul>
+    </div>   
+    <div class="i-title clearfix area">
+    	<h2>系统软件[@cms_channel id='37']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>          
+    </div>
+    <div class="clearfix sou-con mg-auto overflow">
+        <ul class="clearfix">        
+            [@cms_content_list count='5' orderBy='4' titLen='8' channelId='37' channelOption='1']
+            [#list tag_list as a]
+            <li>
+            <a href="${a.mobileUrl}" class="sou-con-href clearfix">
+            <div class="sou-img"><img src="${a.titleImg!site.defImg}"></div>
+            <h4>[@text_cut s=a.title len=titLen /]</h4>
+            <p><span>[@text_cut s=a.desc len=12 /]</span></p>                    
+            </a> 
+            <a href="${a.mobileUrl}" class="sou-con-download">下载</a>                      
+            </li>
+            [/#list]
+            [/@cms_content_list]    
+        </ul>
+    </div> 
+    
+    [#include "../include/footer.html"/]
+</div>
+<script src="/${mobileRes!}/js/focus/foot.js"></script>
+</body> 
+</html>

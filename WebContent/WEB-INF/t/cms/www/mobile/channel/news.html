@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>${channel.title!channel.name} - ${site.name} - Powered by JEECMS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="keywords" content="${channel.keywords!}"/>
+<meta http-equiv="description" content="${channel.description!}"/>
+
+<link href="/${mobileRes!}/css/pic/public.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/share.css" rel="stylesheet" type="text/css"/>
+<script src="/${mobileRes!}/js/focus/TouchSlide.1.1.js"></script>
+
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/js/common.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	Cms.channelViewCount("${base}","${channel.id}");
+	Cms.siteFlow("${base}", location.href, document.referrer,"${site.config.flowSwitch?string}");
+});
+</script>
+<style>
+.i-title h2 a{display: block;float: right;font-size: 0.7em;color: #65BAF1;padding-right: 1.5em;}
+</style>
+</head>
+
+<body>
+<div id="wrap" class="clearfix overflow mg-auto"> 
+	[#include "../include/header_lanmu.html"/]
+    
+	<div class="i-title clearfix area border">
+        <h2>国内新闻</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='11' channelOption='1' dateFormat='yyyy-MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        [#if a.typeImg??]
+                        <div class="img3"><img src="${a.typeImg!site.typeImg}" /></div>
+                        <h4>[@text_cut s=a.title /]</h4>
+                        <p><i>(${a.date?string(dateFormat)})</i></p>
+                        [#else]
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;"><i>(${a.date?string(dateFormat)})</i></p>
+                        [/#if]
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div>       
+        <div class="i-more">
+        	[@cms_channel id='11']<a href="${tag_bean.url}">查看更多></a>[/@cms_channel]
+        </div>
+    </div>
+    
+    <div class="i-title clearfix area border">
+        <h2>国际新闻</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='12' channelOption='1' dateFormat='yyyy-MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        [#if a.typeImg??]
+                        <div class="img3"><img src="${a.typeImg!site.typeImg}" /></div>
+                        <h4>[@text_cut s=a.title /]</h4>
+                        <p><i>(${a.date?string(dateFormat)})</i></p>
+                        [#else]
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;"><i>(${a.date?string(dateFormat)})</i></p>
+                        [/#if]
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div>       
+        <div class="i-more">
+        	[@cms_channel id='12']<a href="${tag_bean.url}">查看更多></a>[/@cms_channel]
+        </div>
+    </div>
+    
+    <div class="i-title clearfix area border">
+        <h2>社会热点</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='13' channelOption='1' dateFormat='yyyy-MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        [#if a.typeImg??]
+                        <div class="img3"><img src="${a.typeImg!site.typeImg}" /></div>
+                        <h4>[@text_cut s=a.title /]</h4>
+                        <p><i>(${a.date?string(dateFormat)})</i></p>
+                        [#else]
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;"><i>(${a.date?string(dateFormat)})</i></p>
+                        [/#if]
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div>       
+        <div class="i-more">
+        	[@cms_channel id='13']<a href="${tag_bean.url}">查看更多></a>[/@cms_channel]
+        </div>
+    </div>
+    
+    <div class="i-title clearfix area border">
+        <h2>时事评论</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='14' channelOption='1' dateFormat='yyyy-MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        [#if a.typeImg??]
+                        <div class="img3"><img src="${a.typeImg!site.typeImg}" /></div>
+                        <h4>[@text_cut s=a.title /]</h4>
+                        <p><i>(${a.date?string(dateFormat)})</i></p>
+                        [#else]
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;"><i>(${a.date?string(dateFormat)})</i></p>
+                        [/#if]
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div>       
+        <div class="i-more">
+        	[@cms_channel id='14']<a href="${tag_bean.url}">查看更多></a>[/@cms_channel]
+        </div>
+    </div>
+    
+    <div class="i-title clearfix area border">
+        <h2>图片新闻</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='15' channelOption='1' dateFormat='yyyy-MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        [#if a.typeImg??]
+                        <div class="img3"><img src="${a.typeImg!site.typeImg}" /></div>
+                        <h4>[@text_cut s=a.title /]</h4>
+                        <p><i>(${a.date?string(dateFormat)})</i></p>
+                        [#else]
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;"><i>(${a.date?string(dateFormat)})</i></p>
+                        [/#if]
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div>       
+        <div class="i-more">
+        	[@cms_channel id='15']<a href="${tag_bean.url}">查看更多></a>[/@cms_channel]
+        </div>
+    </div>
+    
+    <div class="i-title clearfix area border">
+        <h2>基金视点</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='40' channelOption='1' dateFormat='yyyy-MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        [#if a.typeImg??]
+                        <div class="img3"><img src="${a.typeImg!site.typeImg}" /></div>
+                        <h4>[@text_cut s=a.title /]</h4>
+                        <p><i>(${a.date?string(dateFormat)})</i></p>
+                        [#else]
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;"><i>(${a.date?string(dateFormat)})</i></p>
+                        [/#if]
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div>       
+        <div class="i-more">
+        	[@cms_channel id='40']<a href="${tag_bean.url}">查看更多></a>[/@cms_channel]
+        </div>
+    </div>
+    
+    <div class="i-title clearfix area border">
+        <h2>财经报道</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='41' channelOption='1' dateFormat='yyyy-MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        [#if a.typeImg??]
+                        <div class="img3"><img src="${a.typeImg!site.typeImg}" /></div>
+                        <h4>[@text_cut s=a.title /]</h4>
+                        <p><i>(${a.date?string(dateFormat)})</i></p>
+                        [#else]
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;"><i>(${a.date?string(dateFormat)})</i></p>
+                        [/#if]
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div>       
+        <div class="i-more">
+        	[@cms_channel id='41']<a href="${tag_bean.url}">查看更多></a>[/@cms_channel]
+        </div>
+    </div>
+    
+    <div class="i-title clearfix area border">
+        <h2>反腐倡廉</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='69' channelOption='1' dateFormat='yyyy-MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        [#if a.typeImg??]
+                        <div class="img3"><img src="${a.typeImg!site.typeImg}" /></div>
+                        <h4>[@text_cut s=a.title /]</h4>
+                        <p><i>(${a.date?string(dateFormat)})</i></p>
+                        [#else]
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;"><i>(${a.date?string(dateFormat)})</i></p>
+                        [/#if]
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div>       
+        <div class="i-more">
+        	[@cms_channel id='69']<a href="${tag_bean.url}">查看更多></a>[/@cms_channel]
+        </div>
+    </div>
+    
+    <div class="i-title clearfix area border">
+        <h2>采集栏目</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='73' channelOption='1' dateFormat='yyyy-MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        [#if a.typeImg??]
+                        <div class="img3"><img src="${a.typeImg!site.typeImg}" /></div>
+                        <h4>[@text_cut s=a.title /]</h4>
+                        <p><i>(${a.date?string(dateFormat)})</i></p>
+                        [#else]
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;"><i>(${a.date?string(dateFormat)})</i></p>
+                        [/#if]
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div>       
+        <div class="i-more">
+        	[@cms_channel id='73']<a href="${tag_bean.url}">查看更多></a>[/@cms_channel]
+        </div>
+    </div>
+    
+	[#include "../include/footer.html"/]
+</div>
+<script src="/${mobileRes!}/js/focus/foot.js"></script>
+</body>
+</html>

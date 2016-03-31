@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+</script>
+<style type="text/css">
+h1{text-align:center;font-size:18px;}
+.info{text-align:center;}
+</style>
+</head>
+<body>
+<div class="box-positon">
+	<div class="rpos"><@s.m "global.position"/>:  <@s.m "content.function"/> - <@s.m "content.opt.view"/></div>
+	<form class="ropt">
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list_share.do';" class="return-button"/>
+		<input type="hidden" name="pageNo" value="${pageNo!}"/>
+		<input type="hidden" name="title" value="${title!}"/>
+		<input type="hidden" name="status" value="${status!}"/>
+		<input type="hidden" name="siteId" value="${siteId!}"/>
+		<input type="hidden" name="targetSiteId" value="${targetSiteId!}"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+<form id="jvForm" method="post" style="padding-top:5px">
+	<@p.hidden name="id" value=content.id/>
+	<@p.hidden name="ids" value=content.id/>
+	<input type="hidden" name="pageNo" value="${pageNo!}"/>
+	<input class="front-view" type="button" value="<@s.m "content.opt.viewInFront"/>" onclick="$('#viewInFront').submit();"/>
+</form>
+<form id="viewInFront" action="${content.urlDynamic}" target="_blank" method="get"></form>
+<div style="border:1px solid #ccc;">
+	<h1>${content.title?html}</h1>
+	<p class="info">
+		<@s.m "content.user"/>: ${content.user.username}
+		<#if content.author??>&nbsp; <@s.m "content.author"/>: ${content.author}</#if>
+		<#if content.origin??>&nbsp; <@s.m "content.origin"/>: ${content.origin}</#if>
+		&nbsp; <@s.m "content.views"/>: ${content.views}
+		&nbsp; <@s.m "content.releaseDate"/>: ${content.releaseDate}		
+	</p>
+	<div>
+	${content.txt!}
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>用户留言 - ${site.name} - Powered by JEECMS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="keywords" content="用户留言"/>
+<meta http-equiv="description" content="用户留言"/>
+
+<link href="/${mobileRes!}/css/pic/public.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/share.css" rel="stylesheet" type="text/css"/>
+
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<style type="text/css">
+/*留言板页样式*/
+.relpy{margin-top:10px;color:#006600; width:555px; padding-right:10px;}
+</style>
+</head>
+<body>
+<div id="wrap" class="clearfix overflow mg-auto"> 
+	<div class="apply-nav overflow mg-auto area">
+    <div class="overflow clearfix apply-top border-bom">
+        <a href="${base!}/" class="apply-return">返回</a>
+        <h2>留言板</h2>
+        <a href="${base}/search.jspx" class="apply-sou">搜索</a>
+        <a href="#" class="apply-pup">导航</a>
+    </div>
+    <div class="i-icon mg-auto overflow area clearfix" id="apply-pup-icon">
+        <nav id="menu2" class="nd-nav">
+            <ul class="first">
+                <li class="menu1"><a href="${base}/">首页</a></li>
+                <li class="menu2">[@cms_channel id='1']<a href="${tag_bean.url}">新闻</a>[/@cms_channel]</li>
+                <li class="menu3">[@cms_channel id='42']<a href="${tag_bean.url}">图库</a>[/@cms_channel]</li>
+                <li class="menu4">[@cms_channel id='46']<a href="${tag_bean.url}">视频</a>[/@cms_channel]</li>
+                <li class="menu5">[@cms_channel id='9']<a href="${tag_bean.url}">下载</a>[/@cms_channel]</li>
+            </ul>
+            
+            <ul>
+                <li class="menu1">[@cms_channel id='64']<a href="${tag_bean.url}">文库</a>[/@cms_channel]</li>
+                <li class="menu2">[@cms_channel id='60']<a href="${tag_bean.url}">调查</a>[/@cms_channel]</li>
+                <li class="menu3">[@cms_channel id='61']<a href="${tag_bean.url}">招聘</a>[/@cms_channel]</li>
+                <li class="menu4"><a href="${base}/guestbook.jspx" target="blank">留言板</a></li>
+                <li class="menu5"><a href="http://bbs.jeecms.com/" target="_blank">论坛</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script type="text/javascript" src="/${mobileRes!}/js/navi/com.js"></script> 
+
+	<div class="i-title clearfix area border">
+        <h2>留言列表</h2>
+    </div>
+    
+    <div class="lybCon">
+    [@cms_guestbook_page siteId=site.id count='5' checked='1']
+    [#list tag_pagination.list as m]
+    <dl>
+    <div class="lybTX">
+    [#if m.member?? && m.member.userImg??]
+    [#if m.member.userImg!=""]
+    <img src="${m.member.userImg!}"  height="50" width="50"/>
+    [#else]
+    <img src="/${res}/img/member/member-phtot.gif" height="50" width="50"/>
+    [/#if]
+    [#else]
+    <img src="/${res}/img/member/member-phtot.gif" height="50" width="50"/>
+    [/#if]
+    </div>
+    
+    <div class="lybMessage">
+    <h1>[${m.ctg.name!}]&nbsp;${m.contentHtml!}</h1>
+    <span style="color:#E66100; font-size:12px;">${(m.member.username)!'匿名网友'} 于${m.createTime}{评论}：</span>
+    <span style="color:#959595; font-size:12px; line-height:20px;">[@text_cut s=m.contentHtml len=60/]</span>
+    <div class="clear"></div>
+    <img src="../../${res}/img/guestbook/icon_message.gif" class="lybImg">
+    <h4>&nbsp;管理员回复：[@text_cut s=m.replyHtml len=30/]</h4>
+    </div>
+    </dl>
+    <div class="clear"></div>
+    [/#list]		   
+    <div class="pagesite">[@cms_pagination sysPage='1'/]</div>
+    [/@cms_guestbook_page]
+    </div>
+    
+    <div class="i-title clearfix area border">
+        <h2>发表留言</h2>
+    </div>
+    <div class="lybCon">
+    <form id="guestbookForm" action="${base}/guestbook.jspx" method="post">
+    <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+    <tr>
+      <td width="75" height="40" align="right">类别：</td>
+      <td colspan="3"><select name="ctgId" class="liuyanbaninput">
+    [@cms_guestbook_ctg_list siteId=site.id]
+    [#list tag_list as ctg]
+    <option value="${ctg.id}">${ctg.name}</option>
+    [/#list]
+    [/@cms_guestbook_ctg_list]
+    </select></td>
+    </tr>
+    <tr>
+      <td height="40" align="right">电子邮箱：</td>
+      <td colspan="3"><input type="text" name="email" class="liuyanbaninput" maxlength="100"/></td>
+    </tr>
+    <tr>
+      <td height="40" align="right">电话：</td>
+      <td colspan="3"><input type="text" name="phone" class="liuyanbaninput" maxlength="50"/></td>
+    </tr>
+    <tr>
+      <td height="40" align="right">QQ：</td>
+      <td colspan="3"><input type="text" name="qq" class="liuyanbaninput"/></td>
+    </tr>
+    <tr>
+    <td height="40" align="right">标题：</td>
+    <td colspan="3">
+    <input name="title" type="text" size="40" class="liuyanbaninput" maxlength="255"/></td>
+    </tr>
+    <tr>
+    <td align="right" valign="middle">
+    留言内容：
+    </td>
+    <td colspan="3">
+    <textarea name="content" class="cinput" cols="55" rows="4"></textarea></td>
+    </tr>
+    <tr>
+    <td height="40" align="right">验证码：</td>
+    <td colspan="3">
+    <div style="float:left;">
+    <input type="text" name="captcha" class="plcode" maxlength="20" vld="{required:true}"/> 
+    </div>
+    <div style="float:left;">
+    <img src="${base}/captcha.svl" width="66" height="30" id="guestbookCaptcha" onclick="this.src='${base}/captcha.svl?d='+new Date()"/>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td colspan="4" align="center">
+    <div class="clear-10"></div>
+    <input type="hidden" name="sessionId" id="sessionId" />
+    <input type="image" id="submit"  name="submit" value="留言"  src="/${res}/img/guestbook/gb-button.gif"/>
+    </td>
+    </tr>
+    </table>
+    </form>                                           
+    <script type="text/javascript">
+    $(function() {
+    $("#sessionId").val($.cookie("JSESSIONID"));
+    $("#submit").click(function () {
+    var options = {
+    url: 'guestbook.jspx',
+    type: 'post',
+    dataType: 'json',
+    data: $("#guestbookForm").serialize(),
+    success:  function (data) {
+    if(data.status==0) {
+    alert("留言成功");
+    location.href=location.href;
+    } else if(data.status==1) {	
+    alert("验证码错误");
+    $("#guestbookCaptcha").click();
+    }
+    }
+    };
+    $.ajax(options);
+    return false;
+    });
+    });
+    
+    </script> 
+    </div>
+        
+    
+	[#include "../include/footer.html"/]
+</div>
+</body>
+</html>

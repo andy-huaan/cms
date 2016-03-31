@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><@s.m "cms.visual.design"/></title>
+<script src="${base}/res/common/js/jquery.js" type="text/javascript"></script>
+<script src="${base}/res/common/js/jquery-ui.js" type="text/javascript"></script>
+<link href="${base}/res/common/css/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<link href="${base}/res/jeecms/css/visual.css" rel="stylesheet" type="text/css"/>
+<link href="${base}/res/common/css/theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" >
+var blockIndex=1;
+var editBlockId;
+$(function(){
+	$("#directiveDialog").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 500,
+		height: 400,
+		position: ["center",20],
+		buttons: {
+			"OK": function() {
+				editBlock();
+				$(this).dialog("close");
+			}
+		}
+	});
+	//编辑展示块
+	var html=window.dialogArguments;
+	$("#right").html(html);
+	$("#right .dragbox-content").each(function(){
+		$(this).before($("#h2Div").html());
+	});
+	loadBlocks();
+	dragbox();
+	openEditBlock();
+});
+function addLayOut(layoutId) {
+	layout=$.ajax({url:"layout"+layoutId+".do",async:false});
+	$("#right").append(layout.responseText);
+	dragbox();
+	openEditBlock();
+}
+function dragbox(){
+	$('.dragbox').each(function(){
+		$(this).hover(function(){
+			$(this).find('h2').addClass('collapse');
+		}, function(){
+			$(this).find('h2').removeClass('collapse');
+		})
+		.find('h2').hover(function(){
+			$(this).find('.configure').css('visibility', 'visible');
+		}, function(){
+			$(this).find('.configure').css('visibility', 'hidden');
+		})
+		.end()
+		.find('.configure').css('visibility', 'hidden');
+	});
+}
+function openEditBlock(){
+	$('.configure a').click(function(){
+		$('#directiveDialog').dialog('open');
+		editBlockId=$(this).parent().parent().parent().attr("id");
+		$("#directive").val($("#directiveTextArea"+editBlockId).val());
+		return false;
+	});	
+}
+function editBlock() {
+	var directive=$("#directive").val();
+	ajaxEditBlockPage(directive);
+	processEditBlockDirective(directive);
+    setTimeout("loadEditBlockPage()",500*1);   
+}
+
+var blockTempIndex=1;
+function loadBlock(editBlockId,directive){
+	ajaxCreatePage(blockTempIndex,directive);
+	processDirective(editBlockId,directive);
+    setTimeout("loadPage('"+editBlockId+"','"+blockTempIndex+"')",500*1);  
+    blockTempIndex++; 
+}
+
+function loadBlocks(){
+	$("div[id^='box_'] div").each(function(){
+		editBlockId=$(this).parent().attr("id");
+		loadBlock(editBlockId,$(this).html());
+		blockIndex++;
+	});
+}
+
+function deleteBlock(blockA){
+	$(blockA).parent().parent().parent().parent().remove();
+	dragbox();
+	blockIndex--;
+}
+
+function ajaxCreatePage(blockIndex,directive) {
+	$.post("createPage"+blockIndex+".do", {
+		"directive" : directive
+	}, function(data) {
+	}, "json");
+}
+
+function ajaxEditBlockPage(directive) {
+	if(blockIndex<1){
+		blockIndex=1;
+	}
+	$.post("createPage"+blockIndex+".do", {
+		"directive" : directive
+	}, function(data) {
+	}, "json");
+}
+
+function loadEditBlockPage(){
+	var params="";
+	<#if channel??>
+		params+="&channelId=${channel.id}";
+	</#if>
+	<#if content??>
+		params+="&contentId=${content.id}";
+	</#if>
+	<#if topic??>
+		params+="&topicId=${topic.id}";
+	</#if>
+	$("#"+editBlockId+" div").load("${base}/visual/getPage"+blockIndex+".jspx?"+params);
+	blockIndex++;
+}
+
+function loadPage(editBlockId,blockIndex){
+	var params="";
+	<#if channel??>
+		params+="&channelId=${channel.id}";
+	</#if>
+	<#if content??>
+		params+="&contentId=${content.id}";
+	</#if>
+	<#if topic??>
+		params+="&topicId=${topic.id}";
+	</#if>
+	$("#"+editBlockId+" div").load("${base}/visual/getPage"+blockIndex+".jspx?"+params);
+}
+
+function processEditBlockDirective(directive){
+	processDirective(editBlockId,directive);
+}
+function processDirective(editBlockId,directive){
+	if($("#boxIdHidden"+editBlockId).length>0){
+		$("#boxIdHidden"+editBlockId).remove();
+		$("#directiveTextArea"+editBlockId).remove();
+	}
+	$("#dataDiv").append("<input id='boxIdHidden"+editBlockId+"' name='boxIds' type='hidden' value='"+editBlockId+"'/>");
+	$("#dataDiv").append("<textarea id='directiveTextArea"+editBlockId+"' name='directives'>"+directive+"</textarea>");
+}
+function design(){
+	$("#right h2").replaceWith("");
+	$("#right .dragbox-content").each(function(){
+		$(this).parent().parent().removeAttr("style").removeAttr("unselectable");
+		$(this).html($("#directiveTextArea"+$(this).parent().attr("id")).val());
+	});
+	var css="<link href='/$"+"{res}/css/visual.css' type='text/css' rel='stylesheet' />";
+//	采用预设的模块 会丢失部分html元素
+	/*
+	var returnValue=$("#right").html().replace(/ ui-sortable/g,"");
+	if($("#right").html().indexOf("visual.css")==-1){
+		returnValue=css+returnValue;
+	}
+	*/
+	
+	//不采用预设的div 页面元素完整，则预设布局无效，一般会采取自己的布局结构
+	var returnValue="";
+	$("textarea[id^='directiveTextArea']").each(function(i){
+		returnValue+=$(this).val();
+	});
+	window.returnValue =returnValue;
+	window.close();
+}
+</script>
+</head>
+<body>
+	<div id="left" class="left" >
+		<ul>
+			<li>
+				<a  ondblclick="addLayOut(1)"><img src="${base}/res/jeecms/img/visual/layout_1.png"/><h1>1</h1></a>
+				<a  ondblclick="addLayOut(12)"><img src="${base}/res/jeecms/img/visual/layout_12.png"/><h1>1:2</h1></a>
+			</li>
+			<li>
+				<a  ondblclick="addLayOut(13)"><img src="${base}/res/jeecms/img/visual/layout_13.png"/><h1>1:3</h1></a>
+				<a  ondblclick="addLayOut(14)"><img src="${base}/res/jeecms/img/visual/layout_14.png"/><h1>1:4</h1></a>
+			</li>
+			<li>
+				<a  ondblclick="addLayOut(11)"><img src="${base}/res/jeecms/img/visual/layout_11.png"/><h1>1:1</h1></a>
+				<a  ondblclick="addLayOut(23)"><img src="${base}/res/jeecms/img/visual/layout_23.png"/><h1>2:3</h1></a>
+			</li>
+			<li>
+				<a  ondblclick="addLayOut(112)"><img src="${base}/res/jeecms/img/visual/layout_112.png"/><h1>1:1:2</h1></a>
+				<a  ondblclick="addLayOut(113)"><img src="${base}/res/jeecms/img/visual/layout_113.png"/><h1>1:1:3</h1></a>
+			</li>
+			<li>
+				<a  ondblclick="addLayOut(111)"><img src="${base}/res/jeecms/img/visual/layout_111.png"/><h1>1:1:1</h1></a>
+				<a  ondblclick="addLayOut(221)"><img src="${base}/res/jeecms/img/visual/layout_221.png"/><h1>2:2:1</h1></a>
+			</li>
+			<li>
+				<a  ondblclick="addLayOut(121)"><img src="${base}/res/jeecms/img/visual/layout_121.png"/><h1>1:2:1</h1></a>
+				<a  ondblclick="addLayOut(131)"><img src="${base}/res/jeecms/img/visual/layout_131.png"/><h1>1:3:1</h1></a>
+			</li>
+			<li>
+				<a  ondblclick="addLayOut(343)"><img src="${base}/res/jeecms/img/visual/layout_343.png"/><h1>3:4:3</h1></a>
+			</li>
+		</ul>
+		
+	</div>
+	<div id="right" class="right">
+	</div>
+	<div id="footer" class="footer" >
+		<input type="button" class="finish" onclick="design()" value="<@s.m 'cms.visual.finish'/>"/>
+	</div>
+	<div id="directiveDialog" title="<@s.m "cms.visual.editblock"/>" style="display:none;">
+		<textarea rows="10" cols="50" name="directive" id="directive"></textarea>
+	</div>
+	<div id="dataDiv" style="display: none;"></div>
+	<div id="h2Div"  style="display: none;">
+		<h2 class="collapse">
+			<span class="configure" ><a href="#" ><@s.m "cms.visual.editblock"/></a></span>
+			<span class="delete" ><a href="#" onclick="deleteBlock(this)"><@s.m "cms.visual.deleteblock"/></a></span>
+		</h2>
+	</div>
+</body>
+</html>

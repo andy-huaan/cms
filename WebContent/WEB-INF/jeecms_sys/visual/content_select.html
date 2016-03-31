@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title><@s.m "cms.visual.content.select"/></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function(){
+	var html=window.dialogArguments;
+	$("#source").val(html);
+});
+//获取内容ID 打开可视化编辑窗口
+function selectContent(contentId){
+	var html=$("#source").val();
+	var result=window.showModalDialog('../visual/content.do?contentId='+contentId,html,"dialogHeight:800px;dialogWidth:1000px;center:yes;resizable: yes;");
+	window.returnValue =result;
+	window.close();
+}
+</script>
+</head>
+<frameset cols="210,*" frameborder="0" border="0" framespacing="0">
+	<frame src="../visual/v_content_left.do" name="leftFrame" noresize="noresize" id="leftFrame" />
+	<frame src="../visual/v_content_list.do" name="rightFrame" id="rightFrame" />
+</frameset>
+<noframes>
+<body>
+<textarea style="display: none;" id="source"></textarea>
+</body>
+</noframes>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title><@s.m "cms.visual.topic.select"/></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function(){
+	var html=window.dialogArguments;
+	$("#source").val(html);
+});
+function selectTopic(topicId){
+	var html=$("#source").val();
+	var result=window.showModalDialog('../visual/topic.do?topicId='+topicId,html,"dialogHeight:800px;dialogWidth:1000px;center:yes;resizable: yes;");
+	window.returnValue =result;
+	window.close();
+}
+</script>
+</head>
+<body>
+<div class="body-box">
+<form id="tableForm" method="post">
+<input type="hidden" name="pageNo" value="${pageNo!}"/>
+<@p.table value=pagination;cmsTopic,i,has_next><#rt/>
+	<@p.column title="<input type='checkbox' onclick='Pn.checkbox(\"ids\",this.checked)'/>" width="20">
+		<input type='checkbox' name='ids' value='${cmsTopic.id}'/><#t/>
+	</@p.column><#t/>
+	<@p.column title="ID">${cmsTopic.id}</@p.column><#t/>
+	<@p.column code="cmsTopic.name">
+		${cmsTopic.name} <#if cmsTopic.shortName??>[${cmsTopic.shortName}]</#if>
+	</@p.column><#t/>
+	<@p.column code="cmsTopic.channel">
+		<#if cmsTopic.channel??>
+			<#list cmsTopic.channel.nodeList as c>${c.name}<#if c_has_next> > </#if></#list><#t/>
+		</#if>
+	</@p.column><#t/>
+	<@p.column code="cmsTopic.priority" align="center">
+		<input type="text" name="priority" value="${cmsTopic.priority}" style="width:40px"/>
+		<input type="hidden" name="wids" value="${cmsTopic.id}"/>
+	</@p.column><#t/>
+	<@p.column code="cmsTopic.recommend" align="center"><#if cmsTopic.recommend><@s.m "global.true"/><#else><@s.m "global.false"/></#if></@p.column><#t/>
+	<@p.column code="global.operate" align="center">
+		<a href="#" onclick="selectTopic(${cmsTopic.id})" class="pn-opt"><@s.m "cms.visual.select"/></a>
+	</@p.column><#t/>
+</@p.table>
+</form>
+<textarea style="display: none;" id="source"></textarea>
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+</html>

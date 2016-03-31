@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>${title} - ${site.name} - Powered by JEECMS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="${content.tagStr!}" http-equiv="keywords" />
+<meta content="${content.description!}" http-equiv="description" />
+
+<link href="/${mobileRes!}/css/pic/public.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/apply.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/share.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/slide.css" rel="stylesheet" type="text/css"/>
+<script src="/${mobileRes!}/js/focus/TouchSlide.1.1.js"></script>
+
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="${resSys}/ckplayer/ckplayer.js" type="text/javascript"></script>
+<script src="${resSys}/ckplayer/offlights.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+Cms.attachment("${base}","${content.id}","${content.attachments?size}","attach");
+Cms.collectCsi("${base}","collectCsiDiv","collect_csi","${content.id}");
+Cms.viewCount("${base}","${content.id}");
+Cms.siteFlow("${base}", location.href, document.referrer,"${site.config.flowSwitch?string}");
+});
+</script>
+</head>
+<body>
+<div id="wrap" class="clearfix overflow mg-auto"> 
+	[#include "../include/header_lanmu.html"/]
+    
+	<div class="slideTouchWrap clearfix area">
+        <div class="touch-top">
+          <a href="http://demo19.jeecms.com/picture/index.jhtml" class="zan-return eventStop">返回</a>
+          <span class="zan-imgnum"><i class="num_index">1</i>/<i class="nun_sum"></i></span>
+        </div> 
+         
+        <div class="swiper-container relativeTop">
+        	<div class="swiper-wrapper">
+            	[#if pic??]
+                [#list content.pictures as p]
+            	<div class="swiper-slide">
+                	<img src="${p.imgPath!}">
+            	</div>
+                [/#list]
+                [#else]
+                尚未添加图集图片！	
+                [/#if]            
+        	</div>
+        </div>   
+        
+    </div>
+    <div class="download-img">
+    	<a href="#" class="down eventStop">${content.title}</a>
+    </div>
+    
+</div>  
+<script src="/${mobileRes!}/js/focus/foot.js"></script>
+</body>
+</html>
+<script type="text/javascript" src="/${mobileRes!}/js/pic/com.js"></script> 
+<script type="text/javascript" src="/${mobileRes!}/js/download/swiper-2.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    var getHeight = function getWindowH(){
+	      var b = $(window).height();
+	      $(".swiper-container").height(b);
+	};   
+    getHeight();	
+	$(window).resize(function(){
+		getHeight();
+		imgMiddel();		
+    });
+	var y;
+    var downImg = $(".download-img");  //获取html
+	downImg.children("a:first").show().siblings("a").hide();//让第一个显示  其他的同辈元素隐藏
+	$(".nun_sum").text(parseInt($(".swiper-wrapper").find(".swiper-slide").length));
+	
+	var mySwiper = new Swiper('.swiper-container',{   
+		loop:false,			
+		paginationClickable: true,
+		onSlideChangeStart: function(){   //mySwiper.activeIndex  当前索引
+		   downImg.children("a").eq(mySwiper.activeIndex).show().siblings("a").hide(); ////让当前的显示  其他的同辈元素隐藏
+		   $(".num_index").text(mySwiper.activeIndex+1);  
+		}
+	});
+
+	window.onload = function (){	
+	   	imgMiddel();	
+	};
+//    var imgMiddel22 = function imgM(){
+//		var h = $(".swiper-slide").height();  
+//	    var m = $(".swiper-slide").eq(0).children("img").height();
+//	    var c = parseInt((h-m)/2);
+//	    $(".swiper-slide").children("img").css({"top":c+'px'});
+//	};
+	
+	$(window).click(function(){
+	    $(".touch-top,.download-img").slideToggle(200);
+	});	
+	
+});  
+</script>

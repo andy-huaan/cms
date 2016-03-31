@@ -1,0 +1,18 @@
+/**/cmpp_log
+/**/bin
+/**/log4j.log
+/**/SqlPool_err.sql
+/**/esms_log
+/**/update_log
+/**/yilixiongfeng_log
+/**/build
+/**/*.iml
+/**/.idea
+/**/src/main/resources/static
+/**/database_log
+/**/.gradle
+/**/__MACOSX
+/**/.DS_Store
+/**/logs
+/doc/pd16/Standard Physical Report_files
+/doc/pd16/Standard Physical Report.html

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+//获取内容ID 调用父窗口函数
+function selectContent(contentId){
+	//调用父窗口的js selectContent函数
+	window.parent.selectContent(contentId);
+	window.close();
+}
+</script>
+
+</head>
+<body>
+<div class="body-box">
+<form action="v_content_list.do" method="post" style="padding-top:5px;">
+<div>
+<@s.m "content.title"/>: <input type="text" name="queryTitle" value="${queryTitle!}" style="width:100px"/>
+<input type="hidden" name="cid" value="${cid!}"/>
+<input class="query" type="submit" value="<@s.m "global.query"/>"/>
+</div>
+</form>
+<form id="tableForm" method="post">
+<textarea style="display: none;" id="source"></textarea>
+<input type="hidden" name="pageNo" value="${pageNo!}"/>
+<input type="hidden" name="cid" value="${cid!}"/>
+<#list .data_model?keys as pkey>
+	<#if pkey?starts_with('query')><input type="hidden" name="${pkey}" value="${(.data_model[pkey])!?string}"/></#if><#t/>
+</#list>
+<input type="hidden" name="rejectStep"/>
+<input type="hidden" name="rejectOpinion"/>
+<@p.table value=pagination;content,i,has_next><#rt/>
+	<@p.column title="<input type='checkbox' onclick='Pn.checkbox(\"ids\",this.checked)'/>" width="20">
+		<input type='checkbox' name='ids' value='${content.id}'/><#t/>
+	</@p.column><#t/>
+	<@p.column title="ID">${content.id}</@p.column><#t/>
+	<@p.column code="content.title">
+		<#if content.model.id gt 0&&content.model.id lt 10><img src="${base}/res/common/img/theme/model-${content.model.id}.gif"/>
+		<#else><img src="${base}/res/common/img/theme/model-0.gif"/>
+		</#if>
+		<strong>[${content.channel.name}]</strong>
+		<a href="${content.url}" target="_blank"><@text_cut s=content.title?html len=25 append="..."/></a>
+	</@p.column><#t/>
+	<@p.column code="content.type" align="center">${content.type.name}</@p.column><#t/>
+	<@p.column code="content.releaseDate" align="center">${content.releaseDate?string('yyyy-MM-dd')}</@p.column><#t/>
+	<@p.column code="global.operate" align="center">
+		<#assign params>&cid=${cid!}&pageNo=${pageNo!}&queryTitle=${queryTitle!?url}&queryInputUsername=${queryInputUsername!?url}&queryTopLevel=${(queryTopLevel!false)?string}&queryRecommend=${(queryRecommend!false)?string}&queryTypeId=${queryTypeId!}&queryStatus=${queryStatus!}&queryOrderBy=${queryOrderBy!}</#assign>
+		<@cms_perm url="/content/v_view.do">
+		<a href="#" onclick="selectContent(${content.id})" class="pn-opt"><@s.m "cms.visual.select"/></a>
+		</@cms_perm>
+	</@p.column><#t/>
+</@p.table>
+</form>
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+</html>

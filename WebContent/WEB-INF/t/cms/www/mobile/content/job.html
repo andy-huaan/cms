@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>${title} - ${site.name} - Powered by JEECMS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="${content.tagStr!}" http-equiv="keywords" />
+<meta content="${content.description!}" http-equiv="description" />
+
+<link href="/${mobileRes!}/css/pic/public.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/share.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/apply.css" rel="stylesheet" type="text/css"/>
+<script src="/${mobileRes!}/js/focus/TouchSlide.1.1.js"></script>
+
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/js/common.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function() {
+Cms.collectCsi("${base}","collectCsiDiv","collect_csi","${content.id}");
+Cms.viewCount("${base}","${content.id}");
+Cms.siteFlow("${base}", location.href, document.referrer,"${site.config.flowSwitch?string}");
+});
+</script>
+<style>
+.swiper-container{ padding:1.8em 0 3em 0;}
+.swiper-container .pagination{ bottom:0.8em;}   
+.crumbs{height: 3em;line-height: 3em;width: 100%;padding-left: 1em;font-family: microsoft yahei;font-size: 1.5em;color: #696666;}
+.crumbs a{color:#65BAF1;}
+#bg{background:#000;position:absolute;left:0em;top:0em;filter:"Alpha(opacity=20)";opacity:0.5;display:none;width:100%;height:100%; z-index:6500;}
+#wxim{z-index:7000;width:100%;}
+#win{width:100%;height:120px;position:absolute;left:0%;top:0%;background:#666666;display:none; z-index:6510;}
+#win a{padding-right: 2em;margin-top:1em;color:#D5D6D8;font-size:1.5em;display:block;float:right;}
+</style>
+</head>
+<body>
+<div id="wrap" class="clearfix overflow mg-auto"> 
+   <div class="apply-nav overflow mg-auto area">
+      <div class="overflow clearfix apply-top border-bom">
+        <a href="${base}/" class="apply-return">首页</a>
+        <h2>招聘详情</h2>
+        <a href="${base}/search.jspx" class="apply-sou" id="apply-sou">搜索</a>
+      </div>    
+   </div>
+   
+    <div class="crumbs">
+    	<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a target="_blank" href="${n.mobileUrl}">${n.name}</a>[#if n_has_next] > [/#if][/#list] > 详情
+    </div>
+	
+    
+    
+    <div class="hot-down clearfix overflow">
+    	<div class="newsTex">
+    	<h1>[#if content.bold]${content.title}[#else]${content.title}[/#if]</h1>
+        <div class="msgbar">发布时间： ${content.releaseDate} &nbsp; 作者：${content.author!'本站编辑'} &nbsp; 来源： ${content.origin!'本站原创'} &nbsp; 浏览次数：<span id="views"></span>次</div>
+    </div>
+        <div class="hot-img clearfix" style="width:98%; margin:0 auto;">
+            <p style="font-size:14px;">工作经验：${content.attr.experience!}</p>
+            <p style="font-size:14px;">工作性质：${content.attr.nature!}</p>
+            <p style="font-size:14px;">最低学历：${content.attr.education!}</p>
+            <p style="font-size:14px;">管理经验：${content.attr.hasmanage!}</p>
+            <p style="font-size:14px;">职位月薪：${content.attr.salary!}</p>
+            <p style="font-size:14px;">招聘人数：${content.attr.nums!}</p>
+            <p style="font-size:14px;">工作地点：${content.attr.workplace!}</p>
+            <p style="font-size:14px;">职位类别：${content.attr.category!}</p>
+        </div>
+        
+        <a id="" class="hot-download downBtn" onclick="Cms.jobApply('${base}','${content.id}');">投递简历</a>
+        
+    </div>
+
+    
+    <div class="hot-detail clearfix overflow">
+        <h2>职位描述:</h2>
+        <div class="clearfix hot-detail-wrap" id="hot-detail">
+            <p id="short" style="display:block;">${txt!}</p>
+        </div>
+        <h2>公司介绍:</h2>
+        <div class="clearfix hot-detail-wrap" id="hot-detail">
+            <p id="short" style="display:block;">
+            	${content.companyName!}</h5>
+                公司地址：${content.companyAddr!}<br/>
+                公司规模：${content.companyScale!}<br/>
+                公司性质：${content.companyNature!}<br/>
+                公司行业：${content.companyIndustry!}<br/>
+            </p>
+        </div>
+        <h2>公司简介:</h2>
+        <div class="clearfix hot-detail-wrap" id="hot-detail">
+            <p id="short" style="display:block;">${content.companyDesc!}</p>
+        </div>
+        <h2>联系方式:</h2>
+        <div class="clearfix hot-detail-wrap" id="hot-detail">
+            <p id="short" style="display:block;">${content.companyContact!}</p>
+        </div>
+        <div class="pagebar">[#include "../style_page/content.html"/]</div>
+    </div> 
+	
+	[#include "../include/footer.html"/]
+</div>
+<script src="/${mobileRes!}/js/focus/foot.js"></script>
+</body>
+</html>

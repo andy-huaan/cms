@@ -1,0 +1,19 @@
+<@childSite sites=siteList/>
+<#macro childSite sites>
+<#list sites as s>
+<li >
+ <input class="channel-right"  onclick='channelOpen(${s.id})' value="${s.shortName}" type="button" />
+<#assign id=""/>
+<#list s.nodeList as n><#assign id=id+"${n.id}"/><#if n_has_next><#assign id=id+"_"/></#if></#list>
+
+<#if s.child?size lte 0>
+</li>
+</#if>
+<#if s.child?size gt 0>
+<ul>
+	<@childSite sites=s.child/>
+</ul>
+</li>
+</#if>
+</#list>
+</#macro>

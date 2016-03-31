@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>注册新帐号 - ${site.name} - Powered by JEECMS</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+
+<link href="/${mobileRes!}/css/pic/public.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/share.css" rel="stylesheet" type="text/css"/>
+
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#jvForm").validate();
+        $("#guestbookCaptcha").click();
+    });
+</script>
+</head>
+
+<body>
+<div id="wrap" class="clearfix overflow mg-auto" style="background:#fff;"> 
+	<!--导航栏开始-->
+	<div class="apply-nav overflow mg-auto area" style="background:#fff;">
+        <div class="overflow clearfix apply-top border-bom">
+            <a href="${base!}/" class="apply-return">返回</a>
+            <h2>会员注册</h2>
+            <a href="${base}/search.jspx" class="apply-sou">搜索</a>
+            <a href="#" class="apply-pup">导航</a>
+        </div>
+        <div class="i-icon mg-auto overflow area clearfix" id="apply-pup-icon">
+            <nav id="menu2" class="nd-nav">
+                <ul class="first">
+                    <li class="menu1"><a href="${base}/">首页</a></li>
+                    <li class="menu2">[@cms_channel id='1']<a href="${tag_bean.url}">新闻</a>[/@cms_channel]</li>
+                    <li class="menu3">[@cms_channel id='42']<a href="${tag_bean.url}">图库</a>[/@cms_channel]</li>
+                    <li class="menu4">[@cms_channel id='46']<a href="${tag_bean.url}">视频</a>[/@cms_channel]</li>
+                    <li class="menu5">[@cms_channel id='9']<a href="${tag_bean.url}">下载</a>[/@cms_channel]</li>
+                </ul>
+                
+                <ul>
+                    <li class="menu1">[@cms_channel id='64']<a href="${tag_bean.url}">文库</a>[/@cms_channel]</li>
+                    <li class="menu2">[@cms_channel id='60']<a href="${tag_bean.url}">调查</a>[/@cms_channel]</li>
+                    <li class="menu3">[@cms_channel id='61']<a href="${tag_bean.url}">招聘</a>[/@cms_channel]</li>
+                    <li class="menu4"><a href="${base}/guestbook.jspx" target="blank">留言板</a></li>
+                    <li class="menu5"><a href="http://bbs.jeecms.com/" target="_blank">论坛</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <script type="text/javascript" src="/${mobileRes!}/js/navi/com.js"></script>
+    <!--导航栏结束-->
+    <div class="page-title">
+        <a href="${base}/member/forgot_password.jspx" class="return">找回密码</a><a href="${base}/login.jspx?returnUrl=${location}" style="color:#fff;">登录<i></i></a>
+    </div>
+    <form id="jvForm" class="pxui-form-info" action="${base}/register.jspx" method="post">
+    	<p class="error-msg" id="js-error-msg"></p>
+        <div>
+        	<span>用户名：</span><p><span><input name="username" id="username" class="pxui-select required" vld="{required:true,rangelength:[${site.usernameMinLen},20],username:true,remote:'username_unique.jspx',messages:{remote:'用户名已存在！'}}" name="username" type="text" /></span>
+            </p>
+            <div style="clear:both; color:#b7b7b7;">用户名由3到14位的中文字符、英文字母、数字组成。</div>
+        </div>
+        <div>
+        	<span>电子邮箱：</span><p><span><input class="pxui-select required" id="email" maxlength="30" vld="{remote:'email_unique.jspx',messages:{remote:'email已经被使用！'}}" name="email" type="text" /></span>
+            </p>
+            <div style="clear:both; color:#b7b7b7;">忘记密码时或您使用邮件通知功能时，会发送邮件到该邮箱。</div>
+        </div>
+        <div>
+        	<span>密 码：</span><p><span><input class="pxui-select required" id="password" type="password" name="password" vld="{required:true,rangelength:[${site.passwordMinLen},20]}" /></span>
+            </p>
+            <div style="clear:both; color:#b7b7b7;">用户名由3到14位的中文字符、英文字母、数字组成。</div>
+        </div>
+        <div>
+        	<span>确认密码：</span><p><span><input class="pxui-select required" type="password" equalto="#password" vld="{required:true,rangelength:[${site.passwordMinLen},20]}" /></span>
+            </p>
+            <div style="clear:both; color:#b7b7b7;">再输入一次相同的密码</div>
+        </div>
+        <div>
+        	<span>验证码：</span><p><span><input class="pxui-select required" maxlength="20" name="captcha" type="text" /></span>
+            <img id="guestbookCaptcha" onclick="this.src='${base}/captcha.svl?d='+new Date()" alt="" src="${base}/captcha.svl" />
+            </p>
+        </div>
+        
+        
+        <div>
+        <span>&nbsp;</span>
+        <p>
+            <span><input value="   注  册   " class="pxui-light-button" type="submit" name="register" /></span>
+        </p>
+        </div>
+    </form>
+
+	[#include "../include/footer.html"/]
+</div>
+</body>
+</html>

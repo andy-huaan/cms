@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+	//部门对话框
+	$("#departDialog").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 280,
+		height: 420,
+		position: ["center",20],
+		buttons: {
+			"OK": function() {
+				$("#departId").val($("input[name='departId']:checked").val());
+				$("#departName").val($("input[name='departId']:checked+span").html());
+				$(this).dialog("close");
+			}
+		}
+	});
+	var deparet_opened = false;
+	$('#depart').click(function(){
+		//第一次打开，需要获取数据。
+		if(!deparet_opened) {
+			$("#departTree").treeview({
+				url: "v_depart_add.do"
+			});
+			deparet_opened = true;
+			$("#departDialog").show();
+		}
+		$('#departDialog').dialog('open');
+		return false;
+	});	
+	//站点对话框
+	$("#siteDialog").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 280,
+		height: 420,
+		position: ["center",20],
+		buttons: {
+			"OK": function() {
+				$(this).dialog("close");
+			}
+		}
+	});
+	var sites_opened = false;
+	$('#site').click(function(){
+		//第一次打开，需要获取数据。
+		if(!sites_opened) {
+			//获取数据
+			$.get("v_site_edit.do",{id:"${cmsAdmin.id}"},function(s) {
+				$(s).appendTo("#siteTree");
+				$("#siteTree").treeview({collapsed:true});
+				$(":checkbox[id^='siteId_']").click( function () { 
+					var siteId=$(this).prop("id").split("siteId_")[1];
+					siteSelect(siteId,$("#step"+siteId).val());
+				});
+				$(":checkbox[id^='allChannel_']").click( function () { 
+					allChannelSelect($(this).prop("id").split("allChannel_")[1]);
+				});
+				$(":checkbox[id^='allControlChannel_']").click( function () { 
+					allControlChannelSelect($(this).prop("id").split("allControlChannel_")[1]);
+				});
+			},"html");
+			sites_opened = true;
+		}
+		$('#siteDialog').dialog('open');
+		return false;
+	});	
+});
+function siteSelect(siteId,step){
+	var checked=$("#siteId_"+siteId).prop("checked");
+	$("#allChannel_"+siteId).prop("checked",checked);
+	$("#allControlChannel_"+siteId).prop("checked",checked);
+	var siteIdArray=siteId.split("_");
+	var sid=siteIdArray[siteIdArray.length-1];
+	if(checked){
+			$("#step"+siteId).prop("disabled","");
+			$("#allChannelHide_"+siteId).prop("disabled","");
+			$("#allChannel_"+siteId).prop("disabled","");
+			$("#allControlChannelHide_"+siteId).prop("disabled","");
+			$("#allControlChannel_"+siteId).prop("disabled","");
+			$("#siteSelectDiv").append("<div id='oneSiteDiv_"+siteId+"'><input  name='siteIds' type='hidden' value='"+sid+"'/><input  name='steps' type='hidden' value='"+step+"' /><input  name='allChannels' type='hidden' value='true' id='allChannelH_"+siteId+"'/><input  name='allControlChannels' type='hidden' value='true' id='allControlChannelH_"+siteId+"'/>");
+		}else{
+			$("#step"+siteId).prop("disabled","disabled");
+			$("#allChannelHide_"+siteId).prop("disabled","disabled");
+			$("#allChannel_"+siteId).prop("disabled","disabled");
+			$("#allControlChannelHide_"+siteId).prop("disabled","disabled");
+			$("#allControlChannel_"+siteId).prop("disabled","disabled");
+			$("#oneSiteDiv_"+siteId).remove();
+			$("#oneSiteDiv_"+sid).remove();
+		}
+	//触发子节点
+	$(":checkbox[id^='siteId_"+siteId+"_']").each(function(){
+		$(this).prop("checked",checked);
+		siteSelect($(this).prop("id").split("siteId_")[1],step);
+	});
+}
+function allChannelSelect(siteId){
+	var checked=$("#allChannel_"+siteId).prop("checked");
+	$("#allChannelHide_"+siteId).val(checked);
+	$("#siteSelectDiv input[id='allChannelH_"+siteId+"']").val(checked);
+}
+function allControlChannelSelect(siteId){
+	var checked=$("#allControlChannel_"+siteId).prop("checked");
+	$("#allControlChannelHide_"+siteId).val(checked);
+	$("#siteSelectDiv input[id='allControlChannelH_"+siteId+"']").val(checked);
+}
+</script>
+</head>
+<body>
+<div class="box-positon">
+	<div class="rpos"><@s.m "global.position"/>:  <@s.m "cmsAdminGlobal.function"/> - <@s.m "global.edit"/></div>
+	<form class="ropt">
+		<input type="button" value="<@s.m "global.backToList"/>" onclick="history.back();" class="return-button"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+<@p.form id="jvForm" action="o_update.do" labelWidth="12">
+<@p.td width="50" colspan="1" label="cmsUser.username">${cmsAdmin.username}</@p.td>
+<@p.text width="50" colspan="1" label="cmsUser.email" name="email" value=cmsAdmin.email rvalue=cmsAdmin.email size="30" maxlength="100" class="email"/><@p.tr/>
+<@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" maxlength="100" help="cmsUser.password.help"/>
+<@p.password width="50" colspan="1" label="cmsUser.pwdAgain" equalTo="#password" help="cmsUser.password.help"/><@p.tr/>
+<@p.select width="50" colspan="1" label="cmsUser.group" name="groupId" value=cmsAdmin.group.id list=groupList listKey="id" listValue="name" required="true"/>
+<@p.text width="50" colspan="1" label="cmsUser.rank" name="rank" value=cmsAdmin.rank style="width:70px" required="true" class="required digits" maxlength="5" max=currRank help="cmsUser.rank.help"/><@p.tr/>
+<@p.radio width="50" colspan="1" label="cmsUser.disabled" name="disabled" value=cmsAdmin.disabled list={"true":"global.true","false":"global.false"} required="true"/>
+<@p.td width="50" colspan="1" label="cmsUser.loginCount">${cmsAdmin.loginCount}</@p.td><@p.tr/>
+<@p.td width="50" colspan="1" label="cmsUser.register">${cmsAdmin.registerTime?string('yyyy-MM-dd HH:mm:ss')} &nbsp; ${cmsAdmin.registerIp}</@p.td>
+<@p.td width="50" colspan="1" label="cmsUser.lastLogin">${cmsAdmin.lastLoginTime?string('yyyy-MM-dd HH:mm:ss')} &nbsp; ${cmsAdmin.lastLoginIp}</@p.td><@p.tr/>
+<@p.text width="50" colspan="1" label="cmsUser.realname" name="realname" value=cmsAdmin.realname maxlength="100"/>
+<@p.radio width="50" colspan="1" label="cmsUser.gender" name="gender" value=cmsAdmin.gender list={"true":"cmsUser.male","false":"cmsUser.female","":"cmsUser.secrecy"}/><@p.tr/>
+<@p.radio width="50" colspan="2" label="cmsUser.selfAdmin" name="selfAdmin" value=cmsAdmin.selfAdmin list={"true":"global.true","false":"global.false"} required="true" help="cmsUser.selfAdmin.help"/>
+<@p.tr/>
+<@p.checkboxlist colspan="2" label="cmsUser.role" name="roleIds" valueList=roleIds list=roleList listKey="id" listValue="name"/><@p.tr/>
+<@p.td colspan="2" width="50" label="cms.department">
+<#if cmsAdmin.department??>
+<@p.text  id="departName" name="departName" value=cmsAdmin.department.name readonly="true" maxlength="25"/><input class="depart" type="button" id="depart" value="<@s.m "cms.department"/>"/>
+<input type="hidden" name="departmentId" id="departId" value="${cmsAdmin.department.id}"/>
+<#else>
+<@p.text  id="departName" name="departName"   readonly="true" maxlength="25"/><input class="depart" type="button" id="depart" value="<@s.m "cms.department"/>"/>
+<input type="hidden" name="departmentId" id="departId" />
+</#if>
+</@p.td>
+<@p.tr/>
+<@p.td colspan="2" label="cmsUser.site" >
+<input type="button" id="site" value="<@s.m 'cmsUser.sitepermission'/>"></input>
+<div id="siteSelectDiv">
+<#list sites as s>
+<#assign id=""/>
+<#list s.nodeList as n><#assign id=id+"${n.id}"/><#if n_has_next><#assign id=id+"_"/></#if></#list>
+<#assign us=cmsAdmin.getUserSite(s.id)!/>
+<div id="oneSiteDiv_${id}">
+	<input  name='siteIds' type='hidden' value='${s.id}'/>
+	<input  name='steps' type='hidden' value='${us.checkStep!}'/>
+	<input  name='allChannels' type='hidden' <#if us.allChannel??><#if us.allChannel>value="true"<#else>value="false"</#if><#else>value="false"</#if> id="allChannelH_${id!}"/>
+	<input  name='allControlChannels' type='hidden' <#if us.allChannelControl??><#if us.allChannelControl>value="true"<#else>value="false"</#if><#else>value="false"</#if> id="allControlChannelH_${id!}"/>
+</div>
+</#list>
+</div>
+
+</@p.td><@p.tr/>
+<@p.td colspan="2">
+	<@p.hidden name="id" value=cmsAdmin.id/>
+	<@p.submit code="global.submit"/> &nbsp; <@p.reset code="global.reset"/>
+</@p.td>
+</@p.form>
+</div>
+<div id="departDialog" title="<@s.m "cms.department"/>(${site.name})" style="display:none;">
+    <ul id="departTree" class="filetree"></ul>
+</div>
+<div id="siteDialog" title="<@s.m "cmsUser.sitepermission"/>(${site.name})" style="display:none;">
+    <ul id="siteTree" class="filetree">
+    	<li><@s.m "cmsUser.site"/>&nbsp;&nbsp;<@s.m "cmsUser.allChannel"/>&nbsp;&nbsp;<@s.m "cmsUser.allChannelControl"/></li>
+    </ul>
+</div>
+</body>
+</html>

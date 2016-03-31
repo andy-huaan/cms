@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function() {
+	//共享栏目对话框
+	$("#channelDialog").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 280,
+		height: 420,
+		position: ["center",20],
+		buttons: {
+			"OK": function() {
+				var contentIds=getContentIds();
+				var channelIds=getChannelIds();
+				if(contentIds.length<=0){
+					$.alert("<@s.m 'content.share.noselectcontent'/>");
+					$(this).dialog("close");
+				}else{
+					if(channelIds.length<=0){
+						$.alert("<@s.m 'content.share.noselectchannel'/>");
+					}else{
+						$.post('o_share.do', {
+							contentIds:contentIds,
+							channelIds:channelIds
+							}, function(data) {
+								if(data.pass){
+									$.alert("<@s.m 'content.share.success'/>");
+									}
+								},
+							"json");
+						$(this).dialog("close");
+						}
+					}
+			}
+		}
+	});
+	var channels_opened = false;
+	$('#channel').click(function(){
+		//第一次打开，需要获取数据。
+		if(!channels_opened) {
+			$("#browser").treeview({
+				url: "v_tree_share.do"
+			});
+			channels_opened = true;
+		}
+		$('#channelDialog').dialog('open');
+		return false;
+	});	
+});
+
+function getContentIds(){
+	var ids=new Array();
+	$("input[name='ids']").each(function() {
+		if($(this).prop("checked")){
+			ids.push($(this).val());
+			}
+	});
+	return ids;
+}
+function getChannelIds(){
+	var ids=new Array();
+	$("input[name='channels']").each(function() {
+		if($(this).prop("checked")){
+			ids.push($(this).val());
+			}
+	});
+	return ids;
+}
+function getTableForm() {
+	return document.getElementById('tableForm');
+}
+function optDelete() {
+	if(Pn.checkedCount('ids')<=0) {
+		$.alert("<@s.m 'global.prompt'/>","<@s.m 'error.checkRecord'/>");
+		return;
+	}
+	$.confirm(doDelete,"<@s.m 'global.confirm'/>","<@s.m 'global.confirm.delete'/>");
+}
+function doDelete(){
+	var f = getTableForm();
+	f.action="o_delete_share.do";
+	f.submit();
+}
+function optCheck() {
+	if(Pn.checkedCount('ids')<=0) {
+		$.alert("<@s.m 'global.prompt'/>","<@s.m 'error.checkRecord'/>");
+		return;
+	}
+	var f = getTableForm();
+	f.action="o_check_share.do";
+	f.submit();
+}
+</script>
+</head>
+<body>
+<div class="box-positon">
+	<div class="rpos"><@s.m "global.position"/>: <@s.m "cms.function.share"/> - <@s.m "global.list"/></div>
+	<div class="clear"></div>
+</div>
+
+
+<div class="body-box">
+<form action="v_list_share.do" method="post" style="padding-top:5px; padding-left:10px;">
+<div>
+<@s.m "content.title"/>: <input type="text" name="title" value="${title!}" style="width:100px"/>
+<input name="status" value="-1" type="radio"  <#if status??><#if status==-1> checked="checked" </#if><#else>checked="checked"</#if>/><@s.m "cms.share.status.all"/>
+<input name="status" value="0" type="radio"  <#if status??><#if status==0> checked="checked" </#if></#if>/><@s.m "cms.share.status.checking"/>
+<input name="status" value="1" type="radio"  <#if status??><#if status==1> checked="checked" </#if></#if>/><@s.m "cms.share.status.checked"/>
+<input name="status" value="2" type="radio"  <#if status??><#if status==2> checked="checked" </#if></#if>/><@s.m "cms.share.status.pushed"/>
+<@p.select name="siteId" value=siteId list=siteList listKey="id" listValue="name" headerKey="0" headerValue="cms.share.source.site"/>
+<@p.select name="targetSiteId" value=targetSiteId list=siteList listKey="id" listValue="name" headerKey="0" headerValue="cms.share.target.site"/>
+<input class="query" type="submit" value="<@s.m "global.query"/>"/>
+</div>
+</form>
+<form id="tableForm" method="post">
+<input type="hidden" name="pageNo" value="${pageNo!}"/>
+<input type="hidden" name="title" value="${title!}"/>
+<input type="hidden" name="status" value="${status!}"/>
+<input type="hidden" name="siteId" value="${siteId!}"/>
+<input type="hidden" name="targetSiteId" value="${targetSiteId!}"/>
+<@p.table value=pagination;share,i,has_next><#rt/>
+    <#assign content=share.content>
+	<@p.column title="<input type='checkbox' onclick='Pn.checkbox(\"ids\",this.checked)'/>" width="20">
+		<input type='checkbox' name='ids' value='${share.id}' onclick="Pn.selectCheckBox('${share.id}',this.checked)"/><#t/>
+	</@p.column><#t/>
+	<@p.column title="ID">${share.id}</@p.column><#t/>
+	<@p.column code="content.title">
+		<#if content.shared><span style="color:red"><#if content.siteId==site.id>[<@s.m "cms.share.source"/>]<#else>[<@s.m "cms.share.target"/>]</#if></span></#if>
+		<strong>[${content.channel.name}]</strong>
+		<a href="${content.url}" target="_blank"><@text_cut s=content.title?html len=25 append="..."/></a>
+		<#if content.checkOpinion??>
+		<br/><span style="color:red">${content.checkOpinion}</span>
+		</#if>
+	</@p.column><#t/>
+	<@p.column code="cms.share.source.channel" align="center">
+		${content.site.name}->${content.channel.name!}
+	</@p.column><#t/>
+	<@p.column code="cms.share.target.channel" align="center">
+		${share.channel.site.name}->${share.channel.name!}
+	</@p.column><#t/>
+	<@p.column code="content.user" align="center">${content.user.username}</@p.column><#t/>
+	<@p.column code="content.releaseDate" align="center">${content.releaseDate?string('yyyy-MM-dd')}</@p.column><#t/>
+	<@p.column code="content.status" align="center">
+		<#if share.checkStatus==0><@s.m "cms.share.status.checking"/> <#elseif share.checkStatus==1> <@s.m "cms.share.status.checked"/><#elseif share.checkStatus==2> <@s.m "cms.share.status.pushed"/></#if>
+	</@p.column><#t/>
+	<@p.column code="global.operate" align="center">
+		<#assign params>&pageNo=${pageNo!}&title=${title!}&status=${status!}&siteId=${siteId!}&targetSiteId=${targetSiteId!}</#assign>
+		<@cms_perm url="/content/v_view_share.do">
+		<a href="v_view_share.do?id=${content.id}${params}" class="pn-opt"><@s.m "content.opt.view"/></a> | <#rt/>
+		</@cms_perm>
+		<@cms_perm url="/content/o_delete_share.do">
+		<#if content.hasDeleteRight>
+				<a href="o_delete_share.do?ids=${share.id}${params}" onclick="if(!$.confirmToUrl(this.href)) {return false;}" class="pn-opt"><@s.m "cms.share.delete"/></a>
+		<#else><span class="disabled"><@s.m "global.delete"/></span>
+		</#if>
+		</@cms_perm><#t/>
+	</@p.column><#t/>
+</@p.table>
+<div style="background:url(${base}/res/common/img/theme/boxTitleBG.jpg) repeat-x; height:20px; overflow:hidden;">
+	<@cms_perm url="/content/o_delete_share.do">
+	<input type="button" class="delete-sharing" value="<@s.m "cms.share.delete"/>" onclick="optDelete();" / style="float:left; border-right:1px solid #ffffff;">
+	</@cms_perm>
+	<@cms_perm url="/content/o_check_share.do">
+	<input type="button" value="<@s.m "content.opt.check"/>" onclick="optCheck();" class="check"/ style="float:left; border-right:1px solid #ffffff;">
+	</@cms_perm>
+</div>
+</form>
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+</html>

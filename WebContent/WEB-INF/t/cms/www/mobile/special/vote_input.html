@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>${site.name} - Powered by JEECMS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="keywords" content="${vote.title?html}"/>
+<meta http-equiv="description" content="${vote.title?html}"/>
+
+<link href="/${mobileRes!}/css/pic/public.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/share.css" rel="stylesheet" type="text/css"/>
+
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/js/common.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	Cms.siteFlow("${base}", location.href, document.referrer);
+});
+</script>
+</head>
+
+<body>
+<div id="wrap" class="clearfix overflow mg-auto"> 
+	[#include "../include/header_diaocha.html"/]
+	<div class="i-title clearfix area border">
+        <h2>${vote.title?html}</h2>
+    </div>
+    		
+    <div class="survey">
+    <form action="${base}/vote.jspx" method="post">
+    <input type="hidden" name="voteId" value="${vote.id}"/>
+    <table>
+    [#list vote.subtopics as subTopic]
+    <tr>
+    <td height="30" colspan="2" align="left">${subTopic_index+1}、${subTopic.title?html}</td>
+    </tr>
+    [#if subTopic.isRadio]
+    <tr>
+    <td height="30" colspan="2" align="left">
+    [#list subTopic.voteItems as item]
+    <input type="radio" name="itemIds${subTopic.id}" value="${item.id}"/>${item.title?html}
+    [/#list]
+    </td>
+    </tr>
+    [/#if]
+    [#if subTopic.isMulti]
+    <tr>
+    <td height="30" colspan="2" align="left">
+    [#list subTopic.voteItems as item]
+    <input type="checkbox" name="itemIds${subTopic.id}" value="${item.id}"  id="${item.id}"/>${item.title?html}
+    [/#list]
+    </td>
+    </tr>
+    [/#if]
+    [#if subTopic.isText]
+    <tr>
+    <td height="30" colspan="2" align="left">
+    <input name="reply" type="text"/>
+    </td>
+    </tr>
+    [/#if]
+    <input name=subIds type="hidden" value="${subTopic.id}"/>
+    [/#list]
+    </table>
+    <input type="submit" value="提交"/>&nbsp; 
+    <a href="${base}/vote_result.jspx?voteId=${vote.id}" target="_blank">查看投票结果</a>
+    </form><br>
+    </div>
+  
+    [#include "../include/footer.html"/]
+</div>
+</body>
+</html>

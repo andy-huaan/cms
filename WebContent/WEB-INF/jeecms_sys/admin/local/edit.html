@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+	//部门对话框
+	$("#departDialog").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 280,
+		height: 420,
+		position: ["center",20],
+		buttons: {
+			"OK": function() {
+				$("#departId").val($("input[name='departId']:checked").val());
+				$("#departName").val($("input[name='departId']:checked+span").html());
+				$(this).dialog("close");
+			}
+		}
+	});
+	var parent_opened = false;
+	$('#depart').click(function(){
+		//第一次打开，需要获取数据。
+		if(!parent_opened) {
+			$("#departTree").treeview({
+				url: "v_depart_add.do"
+			});
+			parent_opened = true;
+			$("#departDialog").show();
+		}
+		$('#departDialog').dialog('open');
+		return false;
+	});	
+});
+function allChannelSelect(){
+	$("#allChannelHide").val($("#allChannel").prop("checked"));
+}
+function allControlChannelSelect(){
+	$("#allControlChannelHide").val($("#allControlChannel").prop("checked"));
+}
+</script>
+</head>
+<body>
+<div class="box-positon">
+	<div class="rpos"><@s.m "global.position"/>:  <@s.m "cmsAdminLocal.function"/> - <@s.m "global.edit"/></div>
+	<form class="ropt">
+		<input type="button" value="<@s.m "global.backToList"/>" onclick="history.back();" class="return-button"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+<@p.form id="jvForm" action="o_update.do" labelWidth="12">
+<@p.td width="50" colspan="1" label="cmsUser.username">${cmsAdmin.username}</@p.td>
+<@p.text width="50" colspan="1" label="cmsUser.email" name="email" value=cmsAdmin.email size="30" maxlength="100" class="email"/><@p.tr/>
+<@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" maxlength="100" help="cmsUser.password.help"/>
+<@p.password width="50" colspan="1" label="cmsUser.pwdAgain" equalTo="#password" help="cmsUser.password.help"/><@p.tr/>
+<@p.select width="50" colspan="1" label="cmsUser.group" name="groupId" value=cmsAdmin.group.id list=groupList listKey="id" listValue="name" required="true"/>
+<@p.text width="50" colspan="1" label="cmsUser.rank" name="rank" value=cmsAdmin.rank style="width:70px" required="true" class="required digits" maxlength="5" max=currRank help="cmsUser.rank.help"/><@p.tr/>
+<@p.radio width="50" colspan="1" label="cmsUser.disabled" name="disabled" value=cmsAdmin.disabled list={"true":"global.true","false":"global.false"} required="true"/>
+<@p.td width="50" colspan="1" label="cmsUser.loginCount">${cmsAdmin.loginCount}</@p.td><@p.tr/>
+<@p.td width="50" colspan="1" label="cmsUser.register">${cmsAdmin.registerTime?string('yyyy-MM-dd HH:mm:ss')} &nbsp; ${cmsAdmin.registerIp}</@p.td>
+<@p.td width="50" colspan="1" label="cmsUser.lastLogin">${cmsAdmin.lastLoginTime?string('yyyy-MM-dd HH:mm:ss')} &nbsp; ${cmsAdmin.lastLoginIp}</@p.td><@p.tr/>
+<@p.text width="50" colspan="1" label="cmsUser.realname" name="realname" value=cmsAdmin.realname maxlength="100"/>
+<@p.radio width="50" colspan="1" label="cmsUser.gender" name="gender" value=cmsAdmin.gender list={"true":"cmsUser.male","false":"cmsUser.female","":"cmsUser.secrecy"}/><@p.tr/>
+<@p.radio width="50" colspan="2" label="cmsUser.selfAdmin" name="selfAdmin" value=cmsAdmin.selfAdmin list={"true":"global.true","false":"global.false"} required="true" help="cmsUser.selfAdmin.help"/>
+<@p.tr/>
+<@p.checkboxlist colspan="2" label="cmsUser.role" name="roleIds" valueList=roleIds list=roleList listKey="id" listValue="name"/><@p.tr/>
+<@p.td colspan="2" width="50" label="cms.department">
+<#if cmsAdmin.department??>
+<@p.text  id="departName" name="departName" value=cmsAdmin.department.name readonly="true" maxlength="25"/><input class="depart" type="button" id="depart" value="<@s.m "cms.department"/>"/>
+<input type="hidden" name="departmentId" id="departId" value="${cmsAdmin.department.id}"/>
+<#else>
+<@p.text  id="departName" name="departName"  readonly="true" maxlength="25"/><input class="depart" type="button" id="depart" value="<@s.m "cms.department"/>"/>
+<input type="hidden" name="departmentId" id="departId" />
+</#if>
+</@p.td>
+<@p.tr/>
+<@p.td colspan="2" label="cmsUser.allDataControl" required="true">
+	<input type="hidden"  name="step" value="${site.finalStep!}"/>
+	<input type="hidden" id="allChannelHide" name="allChannel" value="${userSite.allChannel?string('true','false')}" />
+	<input type="hidden" id="allControlChannelHide" name="allControlChannel" value="${userSite.allChannelControl?string('true','false')}" />
+	<@s.m "cmsUser.allChannel"/><input type="checkbox" id="allChannel"  value="${userSite.allChannel?string('true','false')}" <#if userSite.allChannel>checked="checked"</#if> onclick="allChannelSelect()"/>
+	<@s.m "cmsUser.allChannelControl"/><input type="checkbox" id="allControlChannel"  value="${userSite.allChannelControl?string('true','false')}" <#if userSite.allChannelControl>checked="checked"</#if> onclick="allControlChannelSelect()"/>
+<div style="clear:both"></div>
+</@p.td><@p.tr/>
+<@p.td colspan="2">
+	<@p.hidden name="id" value=cmsAdmin.id/>
+	<@p.submit code="global.submit"/> &nbsp; <@p.reset code="global.reset"/>
+</@p.td>
+</@p.form>
+</div>
+<div id="departDialog" title="<@s.m "cms.department"/>(${site.name})" style="display:none;">
+    <ul id="departTree" class="filetree"></ul>
+</div>
+</body>
+</html>
