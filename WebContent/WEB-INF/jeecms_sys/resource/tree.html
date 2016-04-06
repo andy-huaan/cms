@@ -8,7 +8,7 @@
 	<#list resList as res>
 		{
 		"id": "${res.name}",
-		"text": "<a href='${res.directory?string("v_list.do?root=${res.name?url}'","v_edit.do?root=%2F${res.path?url}&name=${res.name?url}'")} target='resourceRightFrame'>${res.filename}</a>",
+		"text": "<a href='${res.directory?string("v_list.do?root=${res.name?url}'","v_edit.do?root=${res.path?url}&name=${res.name?url}'")} target='resourceRightFrame'>${res.filename}</a>",
 		"classes": "${res.directory?string('folder','file')}",
 		"hasChildren": ${res.directory?string('true','false')}
 		}<#if res_has_next>,</#if>
@@ -21,7 +21,7 @@
 	<#list resList as res>
 	{
 	"id": "${res.name}",
-	"text": "<a href='${res.directory?string("v_list.do?root=${res.name?url}'","v_edit.do?root=%2F${res.path?url}&name=${res.name?url}'")} target='resourceRightFrame'>${res.filename}</a>",
+	"text": "<a href='${res.directory?string("v_list.do?root=${res.name?url}'","v_edit.do?root=${res.path?url}&name=${res.name?url}'")} target='resourceRightFrame'>${res.filename}</a>",
 	"classes": "${res.directory?string('folder','file')}",
 	"hasChildren": ${res.directory?string('true','false')}
 	}<#if res_has_next>,</#if>

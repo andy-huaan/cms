@@ -65,9 +65,11 @@ public class ResourceAct {
 		} else {
 			model.addAttribute("isRoot", false);
 		}
-		WebErrors errors = validateHasValidPath(root,request);
+		WebErrors errors = validateTree(root, request);
 		if (errors.hasErrors()) {
-			return errors.showErrorPage(model);
+			log.error(errors.getErrors().get(0));
+			ResponseUtils.renderJson(response, "[]");
+			return null;
 		}
 		List<? extends FileWrap> resList = resourceMng.listFile(root, true);
 		model.addAttribute("resList", resList);
@@ -335,18 +337,6 @@ public class ResourceAct {
 		// return true;
 		// }
 		return false;
-	}
-	
-	private WebErrors validateHasValidPath(String name, 
-			HttpServletRequest request) {
-		WebErrors errors = WebErrors.create(request);
-		if (errors.ifNull(name, "name")) {
-			return errors;
-		}
-		if (name.contains("../")||name.contains("..\\")) {
-			errors.addErrorCode(INVALID_PARAM);
-		}
-		return errors;
 	}
 	
 	private boolean isUnValidName(String path,String name,String resPath, WebErrors errors) {

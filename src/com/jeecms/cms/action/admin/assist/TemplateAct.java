@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,9 +74,11 @@ public class TemplateAct {
 		} else {
 			model.addAttribute("isRoot", false);
 		}
-		WebErrors errors = validateHasValidPath(root,request);
+		WebErrors errors = validateTree(root, request);
 		if (errors.hasErrors()) {
-			return errors.showErrorPage(model);
+			log.error(errors.getErrors().get(0));
+			ResponseUtils.renderJson(response, "[]");
+			return null;
 		}
 		List<? extends Tpl> tplList = tplManager.getChild(root);
 		model.addAttribute("tplList", tplList);
@@ -310,38 +311,16 @@ public class TemplateAct {
 	public void defTempate(String solution,String mobileSol, HttpServletRequest request,
 			HttpServletResponse response) {
 		CmsSite site = CmsUtils.getSite(request);
-		WebErrors errors = validateHasValidPath(solution,request);
-		errors= validateHasValidPath(mobileSol,request);
-		if (errors.hasErrors()) {
-			 ResponseUtils.renderJson(response,errors.getMessage("template.invalidParams"));
-		}else{
-			cmsSiteMng.updateTplSolution(site.getId(), solution,mobileSol);
-			ResponseUtils.renderJson(response, "{\"success\":true}");
-		}
+		cmsSiteMng.updateTplSolution(site.getId(), solution,mobileSol);
+		ResponseUtils.renderJson(response, "{\"success\":true}");
 	}
 
 	@RequiresPermissions("template:o_export")
 	@RequestMapping(value = "/template/o_export.do")
 	public void exportSubmit(HttpServletRequest request,
-			HttpServletResponse response,Model model) throws UnsupportedEncodingException {
+			HttpServletResponse response) throws UnsupportedEncodingException {
 		String solution = RequestUtils.getQueryParam(request, "solution");
 		CmsSite site = CmsUtils.getSite(request);
-		WebErrors errors = validateHasValidPath(solution,request);
-		if (errors.hasErrors()) {
-			 ResponseUtils.renderJson(response,errors.getMessage("template.invalidParams"));
-		}else{
-			List<FileEntry> fileEntrys = resourceMng.export(site, solution);
-			response.setContentType("application/x-download;charset=UTF-8");
-			response.addHeader("Content-disposition", "filename=template-"
-					+ solution + ".zip");
-			try {
-				// 模板一般都在windows下编辑，所以默认编码为GBK
-				Zipper.zip(response.getOutputStream(), fileEntrys, "GBK");
-			} catch (IOException e) {
-				log.error("export template error!", e);
-			}
-		}
-		/*
 		List<FileEntry> fileEntrys = resourceMng.export(site, solution);
 		response.setContentType("application/x-download;charset=UTF-8");
 		response.addHeader("Content-disposition", "filename=template-"
@@ -352,7 +331,6 @@ public class TemplateAct {
 		} catch (IOException e) {
 			log.error("export template error!", e);
 		}
-		*/
 	}
 
 	@RequiresPermissions("template:o_import")
@@ -456,18 +434,6 @@ public class TemplateAct {
 			return true;
 		}
 		return false;
-	}
-	
-	private WebErrors validateHasValidPath(String name, 
-			HttpServletRequest request) {
-		WebErrors errors = WebErrors.create(request);
-		if (errors.ifNull(name, "name")) {
-			return errors;
-		}
-		if (name.contains("../")||name.contains("..\\")) {
-			errors.addErrorCode(INVALID_PARAM);
-		}
-		return errors;
 	}
 	
 	private boolean isUnValidName(String path,String name,String tplPath, WebErrors errors) {

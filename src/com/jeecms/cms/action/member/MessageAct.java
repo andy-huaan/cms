@@ -463,7 +463,7 @@ public class MessageAct {
 
 	// 清空信息到垃圾箱
 	@RequestMapping(value = "/member/message_trash.jspx")
-	public void message_trash(Integer ids[], HttpServletRequest request,
+	public void message_trash(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws JSONException {
 		CmsUser user = CmsUtils.getUser(request);
 		JSONObject object = new JSONObject();
@@ -473,44 +473,49 @@ public class MessageAct {
 			object.put("result", false);
 		} else {
 			Iterator<CmsReceiverMessage> it;
-			for (Integer i = 0; i < ids.length; i++) {
-				message = messageMng.findById(ids[i]);
-				receiverMessage = receiverMessageMng.findById(ids[i]);
-				if (message != null && message.getMsgSendUser().equals(user)) {
-					message.setMsgBox(3);
-					receiverMessage = new CmsReceiverMessage();
-					receiverMessage.setMsgBox(3);
-					receiverMessage.setMsgContent(message.getMsgContent());
-					receiverMessage.setMsgSendUser(message.getMsgSendUser());
-					receiverMessage.setMsgReceiverUser(user);
-					receiverMessage.setMsgStatus(message.getMsgStatus());
-					receiverMessage.setMsgTitle(message.getMsgTitle());
-					receiverMessage.setSendTime(message.getSendTime());
-					receiverMessage.setSite(message.getSite());
-					receiverMessage.setMessage(null);
-					// 接收端（有一定冗余）
-					receiverMessageMng.save(receiverMessage);
-					// 清空该发件对应的收件关联关系
-					Set<CmsReceiverMessage> receiverMessages = message
-							.getReceiverMsgs();
-					if (receiverMessages != null && receiverMessages.size() > 0) {
-						it = receiverMessages.iterator();
-						CmsReceiverMessage tempReceiverMessage;
-						while (it.hasNext()) {
-							tempReceiverMessage = it.next();
-							tempReceiverMessage.setMessage(null);
-							receiverMessageMng.update(tempReceiverMessage);
+			String[] ids=request.getParameterValues("ids[]");
+			Integer id;
+			if(ids!=null&&ids.length>0){
+				for (Integer i = 0; i < ids.length; i++) {
+					id=Integer.parseInt(ids[i]);
+					message = messageMng.findById(id);
+					receiverMessage = receiverMessageMng.findById(id);
+					if (message != null && message.getMsgSendUser().equals(user)) {
+						message.setMsgBox(3);
+						receiverMessage = new CmsReceiverMessage();
+						receiverMessage.setMsgBox(3);
+						receiverMessage.setMsgContent(message.getMsgContent());
+						receiverMessage.setMsgSendUser(message.getMsgSendUser());
+						receiverMessage.setMsgReceiverUser(user);
+						receiverMessage.setMsgStatus(message.getMsgStatus());
+						receiverMessage.setMsgTitle(message.getMsgTitle());
+						receiverMessage.setSendTime(message.getSendTime());
+						receiverMessage.setSite(message.getSite());
+						receiverMessage.setMessage(null);
+						// 接收端（有一定冗余）
+						receiverMessageMng.save(receiverMessage);
+						// 清空该发件对应的收件关联关系
+						Set<CmsReceiverMessage> receiverMessages = message
+								.getReceiverMsgs();
+						if (receiverMessages != null && receiverMessages.size() > 0) {
+							it = receiverMessages.iterator();
+							CmsReceiverMessage tempReceiverMessage;
+							while (it.hasNext()) {
+								tempReceiverMessage = it.next();
+								tempReceiverMessage.setMessage(null);
+								receiverMessageMng.update(tempReceiverMessage);
+							}
 						}
+						messageMng.deleteById(id);
 					}
-					messageMng.deleteById(ids[i]);
+					if (receiverMessage != null
+							&& receiverMessage.getMsgReceiverUser().equals(user)) {
+						receiverMessage.setMsgBox(3);
+						receiverMessageMng.update(receiverMessage);
+					}
+					log.info("member CmsMessage trash CmsMessage success. id={}",
+							ids[i]);
 				}
-				if (receiverMessage != null
-						&& receiverMessage.getMsgReceiverUser().equals(user)) {
-					receiverMessage.setMsgBox(3);
-					receiverMessageMng.update(receiverMessage);
-				}
-				log.info("member CmsMessage trash CmsMessage success. id={}",
-						ids[i]);
 			}
 			object.put("result", true);
 		}
@@ -519,7 +524,7 @@ public class MessageAct {
 
 	// 还原垃圾箱信息
 	@RequestMapping(value = "/member/message_revert.jspx")
-	public void message_revert(Integer ids[], HttpServletRequest request,
+	public void message_revert(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws JSONException {
 		CmsUser user = CmsUtils.getUser(request);
 		JSONObject object = new JSONObject();
@@ -527,8 +532,10 @@ public class MessageAct {
 		if (user == null) {
 			object.put("result", false);
 		} else {
+			String[] ids=request.getParameterValues("ids[]");
 			for (Integer i = 0; i < ids.length; i++) {
-				receiverMessage = receiverMessageMng.findById(ids[i]);
+				Integer id=Integer.parseInt(ids[i]);
+				receiverMessage = receiverMessageMng.findById(id);
 				// 收件箱
 				if (receiverMessage != null
 						&& receiverMessage.getMsgReceiverUser().equals(user)) {
@@ -545,7 +552,7 @@ public class MessageAct {
 
 	// 清空垃圾箱信息
 	@RequestMapping(value = "/member/message_empty.jspx")
-	public void message_empty(Integer ids[], HttpServletRequest request,
+	public void message_empty(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws JSONException {
 		CmsUser user = CmsUtils.getUser(request);
 		JSONObject object = new JSONObject();
@@ -554,12 +561,14 @@ public class MessageAct {
 		if (user == null) {
 			object.put("result", false);
 		} else {
+			String[] ids=request.getParameterValues("ids[]");
 			for (Integer i = 0; i < ids.length; i++) {
 				// 清空收到的站内信
-				receiverMessage = receiverMessageMng.findById(ids[i]);
+				Integer id=Integer.parseInt(ids[i]);
+				receiverMessage = receiverMessageMng.findById(id);
 				if (receiverMessage != null
 						&& receiverMessage.getMsgReceiverUser().equals(user)) {
-					receiverMessageMng.deleteById(ids[i]);
+					receiverMessageMng.deleteById(id);
 				} else {
 					// 清空发送的站内信
 					message = receiverMessage.getMessage();
@@ -629,7 +638,7 @@ public class MessageAct {
 
 	// 物理删除信件（暂时无用）
 	@RequestMapping(value = "/member/message_delete.jspx")
-	public String message_delete(Integer[] ids, String nextUrl,
+	public String message_delete( String nextUrl,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -645,9 +654,13 @@ public class MessageAct {
 		}
 		CmsMessage message;
 		Boolean permission = true;
+		String ids[]=request.getParameterValues("ids[]");
 		if (ids != null && ids.length > 0) {
+			Integer[]intIds=new Integer[ids.length];
 			for (Integer i = 0; i < ids.length; i++) {
-				message = messageMng.findById(ids[i]);
+				Integer id=Integer.parseInt(ids[i]);
+				intIds[i]=id;
+				message = messageMng.findById(id);
 				// 非收件人和发件人无权查看信件
 				if (!message.getMsgReceiverUser().equals(user)
 						&& !message.getMsgSendUser().equals(user)) {
@@ -655,7 +668,7 @@ public class MessageAct {
 				}
 			}
 			if (permission) {
-				messageMng.deleteByIds(ids);
+				messageMng.deleteByIds(intIds);
 				for (Integer i = 0; i < ids.length; i++) {
 					log
 							.info(

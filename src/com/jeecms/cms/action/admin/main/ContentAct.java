@@ -187,7 +187,7 @@ public class ContentAct{
 			queryRecommend = false;
 		}
 		if (queryOrderBy == null) {
-			queryOrderBy = 4;
+			queryOrderBy = 2;
 		}
 		ContentStatus status;
 		if (!StringUtils.isBlank(queryStatus)) {

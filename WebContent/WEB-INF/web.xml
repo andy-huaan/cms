@@ -43,7 +43,7 @@
     <filter-class>com.jeecms.common.web.XssFilter</filter-class>
     <init-param>
       <param-name>excludeUrls</param-name>
-      <param-value>/member@/jeeadmin/jeecms@/flow_statistic</param-value>
+      <param-value>/member/contribute@/jeeadmin/jeecms@/flow_statistic</param-value>
     </init-param>
     <init-param>
       <param-name>SplitChar</param-name>
@@ -51,11 +51,11 @@
     </init-param>
     <init-param>
       <param-name>FilterChar</param-name>
-      <param-value>'@"@#@:@%@></param-value>
+      <param-value>'@&quot;@\@#@:@%@></param-value>
     </init-param>
     <init-param>
       <param-name>ReplaceChar</param-name>
-      <param-value>‘@“@＃@：@％@＞</param-value>
+      <param-value>‘@“@＼@＃@：@％@＞</param-value>
     </init-param>
   </filter>
   <filter>
@@ -141,10 +141,6 @@
   <filter-mapping>
     <filter-name>XssFilter</filter-name>
     <url-pattern>*.jspx</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-    <filter-name>XssFilter</filter-name>
-    <url-pattern>*.jhtml</url-pattern>
   </filter-mapping>
   <servlet>
     <servlet-name>JeeCmsAdmin</servlet-name>

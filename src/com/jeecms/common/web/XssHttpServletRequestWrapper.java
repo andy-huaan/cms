@@ -8,8 +8,6 @@ import java.net.URLDecoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-import org.apache.commons.lang.StringEscapeUtils;
-
 
 /**
  * @author Tom
@@ -87,7 +85,6 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		s=StringEscapeUtils.escapeJavaScript(StringEscapeUtils.escapeHtml(s));
 		for (int i = 0; i < filterChars.length; i++) {
 			if(s.contains(filterChars[i])){
 				s=s.replace(filterChars[i], replaceChars[i]);

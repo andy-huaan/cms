@@ -17,7 +17,7 @@
 		<property name="mediaPath" column="media_path" type="string" not-null="false" length="255"/>
 		<property name="mediaType" column="media_type" type="string" not-null="false" length="20"/>
 		<property name="titleColor" column="title_color" type="string" not-null="false" length="10"/>
-		<property name="bold" column="is_bold" type="java.lang.Boolean" not-null="true"/>
+		<property name="isBold" column="is_bold" type="java.lang.Boolean" not-null="true"/>
 		<property name="titleImg" column="title_img" type="string" not-null="false" length="100"/>
 		<property name="contentImg" column="content_img" type="string" not-null="false" length="100"/>
 		<property name="typeImg" column="type_img" type="string" not-null="false" length="100"/>

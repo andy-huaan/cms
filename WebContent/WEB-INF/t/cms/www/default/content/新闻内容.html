@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>${title} - ${site.name}</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta http-equiv="keywords" content="${content.tagStr!}"/>
+		<meta http-equiv="description" content="${content.description!}"/>
+        <link rel="stylesheet" type="text/css" href="/${res}/css/list.css" />
+		<script src="${resSys}/js/jquery.js" type="text/javascript"></script>
+		<script src="${resSys}/js/front.js" type="text/javascript"></script>
+		<script src="${resSys}/js/jquery.tmpl.js" type="text/javascript"></script>
+		<script src="${resSys}/js/message.js" type="text/javascript"></script>
+		<script src="${resSys}/js/pony.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		$(function() {
+		  Cms.attachment("${base}","${content.id}","${content.attachments?size}","attach");
+		  Cms.viewCount("${base}","${content.id}");
+		  Cms.siteFlow("${base}", location.href, document.referrer);
+		});
+		</script>
+	</head>
+    <body>
+
+        <div id="topwarp">
+        <div id="topxx">[#include "../include/新闻内容菜单栏.html"/]</div>
+        </div>
+        <div id="warp">
+        <div class="advertise">
+        <div class="adlist">
+			<ul>
+			  [@cms_content_list count='5' titLen='14' channelId='136'  dateFormat='[MM-dd]' channelOption='1' append='' descLen='20']
+			  [#list tag_list as a]
+			  <li><a href="${a.url}" target="_blank">
+				[@text_cut s=a.stit len=titLen append=append/]
+				</a></li>
+			  [/#list]
+			  [/@cms_content_list]
+			</ul>
+        </div>
+        <div class="adimg"><img alt="手机报" src="/u/www/201504/22111613l7r2.jpg" border="0" /></div>
+        <div class="adlist">
+			<ul>
+			  [@cms_content_list count='5' titLen='14' channelId='13'  dateFormat='[MM-dd]' channelOption='1' append='' descLen='20']
+			  [#list tag_list as a]
+			  <li><a href="${a.url}" target="_blank">
+				[@text_cut s=a.stit len=titLen append=append/]
+				</a></li>
+			  [/#list]
+			  [/@cms_content_list]
+			</ul>
+        </div>
+        </div>
+        [#include "../include/新闻内容导航栏.html"/]
+        <div class="newsbox">
+        <div class="newslp">
+        <div class="newscontent">
+        <h3 class="title">${content.title}</h3>
+        <div class="author">发布时间： ${content.releaseDate?string("yyyy-MM-dd")} &nbsp; 作者： ${content.author!''} &nbsp; 来源：${content.origin!''} 编辑：${content.user.realname} <!--浏览<span id="views"></span>次--></div>
+                         <div class="fenxiang">
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+			</div>
+
+        <div class="content">${txt!}</div>
+		<div class="pagebar">[#include "../style_page/content.html"/]</div>
+        </div>
+        <div class="othernews">
+        <h1>相关报道:</h1>
+        <ul>[#if content.tagStr??] [@cms_content_list styleList='1-1' titLen='50' count='5' headMark='3' lineHeight='7' bottomLine='1' tagName=content.tagStr excludeId=content.id channelOption='1' emptyMsg='本文暂无相关资讯' emptyStyle='color:red;margin:5px;' tpl='2'/] [#else] 本文暂无TAG标签！ [/#if] </ul>
+            </div>
+
+
+			<div class="vote">
+				[@cms_vote id="3" contentId="${content.id}"]
+					[#if !tag_bean??]
+				<div>没有默认投票主题</div>
+				[#else]
+				  <table width="100%" border="0"><tr>
+						[#list tag_bean.items as item]
+						<td align="center" height="50" valign="bottom"><span id="count_${item.id}">${item.voteCount}</span><br/><img id="percent_${item.id}" src="/${res}/images/vote/vote_bar.gif" width="15px" height="${item.percent}%" border="0"/></td>
+						[/#list]</tr><tr>
+						[#list tag_bean.items as item]
+						<td align="center">${item.title}<br/><input type="radio" name="itemIds" value="${item.id}" onclick="Cms.vote('${base}',${tag_bean.id},${item.id},${content.id})" /></td>
+						[/#list]</tr>
+				  </table>
+				[/#if]
+				[/@cms_vote]
+			</div>
+
+            <div class="pingl">[#if channel.commentControl!=2] [#include "inc_comment_list.html"/] [#include "inc_comment_input.html"/] [/#if]</div>
+            </div>
+            <div class="newsrp">
+            <div class="adph" style="display:none;"></div>
+
+			<div class="tjpho">
+            <h1>新闻图片推荐</h1>
+            <ul>[@cms_content_list count='4' titLen='11' channelId='289' channelOption='1' recommend='1' descLen='55'] [#list tag_list as a]
+                <li><a href="${a.url}"><img alt="" src="${a.titleImg!site.defImg}" /><span> [@text_cut s=a.stit len=titLen append=append/] </span></a>[/#list] [/@cms_content_list]</li>
+            </ul>
+            </div>
+
+            <div class="interfix1">
+            <h1><a href="">本周点击</a></h1>
+            <div class="interfixc">
+
+            <div class="hotlist">
+            <ul>[@cms_content_list count='18' titLen='18' append='...' orderBy='7' channelOption='1'] [#list tag_list as a]
+                <li><a title="${a.title}" target="_blank" href="${a.url}">[@text_cut s=a.title len=titLen append=append/]</a> [/#list] [/@cms_content_list]</li>
+            </ul>
+            </div>
+            </div>
+	
+            <div class="interfixb"></div>
+            </div>
+
+            <div class="adph" style="display:none;"><script type="text/javascript">/*300*250，创建于2012-3-15*/ var cpro_id = 'u807813';</script><script src="http://cpro.baidu.com/cpro/ui/c.js" type="text/javascript"></script></div>
+            </div>
+            </div>
+            [#include "../include/页脚信息.html"/]</div>
+        </body>
+    </html>
