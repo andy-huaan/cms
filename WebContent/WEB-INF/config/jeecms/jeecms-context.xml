@@ -33,6 +33,9 @@
 	<bean id="cms_vote_list" class="com.jeecms.cms.action.directive.CmsVoteListDirective"/>
 	<bean id="cms_model" class="com.jeecms.cms.action.directive.CmsModelDirective"/>
 	<bean id="cms_score_group" class="com.jeecms.cms.action.directive.ScoreGroupDirective"/>
+	<!-- 自定义标签 -->
+	<!-- 新增按照广告版位获取所有广告标签 -->
+	<bean id="cms_advertising_space" class="com.jeecms.cms.action.directive.CmsAdvertisingSpaceDirective"/>
 	
 	<!--后台权限标签-->
 	<bean id="cms_perm" class="com.jeecms.cms.web.PermistionDirective"/>
