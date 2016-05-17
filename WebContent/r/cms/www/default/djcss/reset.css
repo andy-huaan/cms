@@ -1,0 +1,292 @@
+/* 重置&默认(reset&base)(tags) */
+*[hidefocus], input, textarea, a {
+    outline: 0 none;
+    zoom: 1;
+    background: none;
+    border: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    padding: 0;
+    margin: 0;
+}
+
+fieldset, img, html, body, iframe, input, textarea {
+    border: 0;
+}
+
+textarea {
+    resize: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+li {
+    list-style: none;
+}
+
+/*h1,h2,h3,h4,h5,h6{font-size:100%;}*/
+caption, th {
+    font-weight: normal;
+    font-style: normal;
+    text-align: left;
+}
+
+em, strong {
+    /*font-weight:bold;*/
+    font-style: normal;
+}
+
+body, textarea, select, input {
+    font-family: arial, "Microsoft Yahei", sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+body {
+    line-height: 1.5em;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+    overflow: auto;
+}
+
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    *word-wrap: break-word;
+    *white-space: normal;
+}
+
+/*div,p{letter-spacing: 2px;}*/
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+body {
+    position: relative;
+    text-align: left;
+}
+input[type=button]{
+    -webkit-appearance:none;
+    outline:none;
+}
+a{
+    text-decoration: none !important;
+    color:#333 !important;
+}
+.dropdown-menu{
+    padding: 0;!important;
+}
+::-webkit-input-placeholder{color:#999;}
+input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+
+@media (max-width: 767px) {
+    #nav_select li>ul{
+        margin-left: 0 !important;
+        color:#666;
+    }
+}
+.over_flow{
+    overflow: hidden;
+}
+.padding-top10px{
+    padding-top: 10px;
+}
+.margin-top10px{
+    margin-top: 10px;
+}
+.border-bottom{
+    border-bottom: 1px solid #ccc;
+}
+.border-top{
+    border-top: 1px solid #ccc;
+}
+.rankBgColor1{
+    background-color: #ff9933 !important;
+}
+.rankColor1{
+    color:#ff9933 !important;
+}
+.rankBgColor2{
+    background-color: #c7448e !important;
+}
+.rankColor2{
+    color:#c7448e !important;
+}
+.rankBgColor3{
+    background-color: #43c645 !important;
+}
+.rankColor3{
+    color:#43c645 !important;
+}
+.margin-left30px{
+    margin-left: 30px;
+}
+.margin-left10px{
+    margin-left: 10px;
+}
+.height34px{
+    height: 34px !important;
+}
+/*按钮特效*/
+/* Ripple Out */
+@-webkit-keyframes hvr-ripple-out {
+    100% {
+        top: -12px;
+        right: -12px;
+        bottom: -12px;
+        left: -12px;
+        opacity: 0;
+    }
+}
+
+@keyframes hvr-ripple-out {
+    100% {
+        top: -12px;
+        right: -12px;
+        bottom: -12px;
+        left: -12px;
+        opacity: 0;
+    }
+}
+
+a.hvr-ripple-out {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    background: #4b78cd;
+}
+a.hvr-ripple-out:before {
+    content: '';
+    position: absolute;
+    border: #4b78cd solid 6px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+a.hvr-ripple-out:hover:before,a.hvr-ripple-out:focus:before,a.hvr-ripple-out:active:before {
+    -webkit-animation-name: hvr-ripple-out;
+    animation-name: hvr-ripple-out;
+}
+/* Bounce To Bottom */
+a.hvr-bounce-to-bottom {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    background:#f75555;
+    color: #fff;
+}
+a.hvr-bounce-to-bottom:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #d02818;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+a.hvr-bounce-to-bottom:hover,a.hvr-bounce-to-bottom:focus,a.hvr-bounce-to-bottom:active {
+    color: white;
+}
+a.hvr-bounce-to-bottom:hover:before,a.hvr-bounce-to-bottom:focus:before,a.hvr-bounce-to-bottom:active:before {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+
+/*单选框样式调整*/
+/*Custom radio button*/
+.radio-btn input[type="radio"], .check-box input[type="checkbox"] {
+    visibility: hidden;
+}
+.radio-btn {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    float: left;
+    margin: 3px 7px 0 0;
+    cursor: pointer;
+    position: relative;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 1px #ccc;
+    background: rgb(255, 255, 255);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+}
+.checkedRadio {
+    -moz-box-shadow: inset 0 0 5px 1px #ccc;
+    -webkit-box-shadow: inset 0 0 5px 1px #ccc;
+    box-shadow: inset 0 0 5px 1px #ccc;
+}
+.fontweight{
+    font-weight: bold;
+}
+.margintop-10px{
+    margin-top: -10px;
+}
+.border-none{
+    border: none !important;
+}
+
+
