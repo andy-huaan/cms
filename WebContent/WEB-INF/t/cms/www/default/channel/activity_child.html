@@ -35,7 +35,7 @@
 <section>
     <div id="act_main_text" class="over_flow">
         <div id="act_right" class="pull-left">
-            <h2>文化娱乐</h2>
+            <h2><a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list]</h2>
             <div class="search">
                 [#include "../include/search_csi.html"/]
             </div>

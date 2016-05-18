@@ -326,7 +326,6 @@
     float: left;
     width:160px;
     height:130px;
-    background-color: #ccc;
 }
 #ser_list_text .leave_goods .goods_content{
     display: block;
@@ -348,9 +347,6 @@
 #ser_list_text .goods_content .price{
     color: #F75455;
     font-weight: 600;
-}
-#ser_list_text .goods_content .describe{
-     height:45px;
 }
 #ser_list_text .goods_content .message{
     float: right;

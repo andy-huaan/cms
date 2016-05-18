@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/${res}/djcss/bootstrap.css"/>
     <link rel="stylesheet" href="/${res}/djcss/reset.css"/>
     <link rel="stylesheet" href="/${res}/djcss/style.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/second.css"/>
     <link rel="shortcut icon" href="/${res}/djimages/favicon-ico.png"/>
     <script src="${resSys}/jquery.js" type="text/javascript"></script>
     <script type="text/javascript" src="/${res}/djjs/bootstrap.js"></script>
@@ -33,19 +34,37 @@
 <section>
     <div id="act_main_text" class="margin-top10px over_flow">
         <div id="ser_right">
-        		[@cms_content_page count='10' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
-                <div id="ser_list_text">
-                    <h3 class="tilte"><a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list]</h3>
-                    <ul>
-                    	[#list tag_pagination.list as a]
-                        <li><h4>${a_index+1}、<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=22 append='...' /]</a></h4><p>[@text_cut s=a.description len=60 append='...'/]</p></li>
-                        [/#list]
-                    </ul>
-                </div>
-                <div class="text-right">
-                    [@cms_pagination sysPage='1'/]
-                </div>
-                [/@cms_content_page]
+        	[@cms_content_page count='10' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+            <div id="ser_list_text">
+                <h3 class="tilte"><a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list]</h3>
+                <ul class="leave_goods">
+                	[#list tag_pagination.list as a]
+                    <li>
+                        [#if a.typeImg??]
+                        <div>
+                            <img class="goods_img" src="${a.typeImg!site.typeImg}"  />
+                        </div>
+                        [/#if]
+                        <a class="rent_room">
+                            <div class="div1">[@text_cut s=a.title len=22 append='...' /]</div>
+                            <div class="site"><span>${a.attr.quyu}</span></div>
+                            <div class="describe">
+                            	<span class="mark">户型:${a.attr.huxing}</span>
+                            	<span class="mark st">面积:${a.attr.mianji}</span>
+                            	<span class="pull-right">租金:<span class="price">${a.attr.zujin}</span>元/月</span>
+                            </div>
+                            <div>
+                            	<span class="intro">配套设施:${a.attr.peitao}</span>
+                            </div>
+                        </a>
+                    </li>
+                    [/#list]
+                </ul>
+            </div>
+            <div class="text-right">
+                [@cms_pagination sysPage='1'/]
+            </div>
+            [/@cms_content_page]
         </div>
         <div id="ser_left">
             <div class="public_ser">
