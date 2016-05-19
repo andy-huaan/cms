@@ -429,3 +429,246 @@
     margin-bottom: 10px;
     border-bottom: 1px solid #D9D9D9;
 }
+/*忘记密码*/
+#forget_password{
+    width: 1060px;
+    margin: 0 auto;
+    padding: 100px 0 300px;
+}
+#forget_table{
+    width:400px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    margin: auto;
+}
+#forget_table .td_left{
+    text-align: right;
+    font-size: 15px;
+    padding: 5px 20px 5px 0;
+}
+#forget_table .td_radio{
+    padding: 10px 0;
+    font-size: 16px;
+}
+#forget_table input[type="radio"]{
+    margin-left: 10px;
+}
+#forget_table a.submit{
+    display: inline-block;
+    font-size: 18px;
+    color: #F75455 !important;
+    margin-top: 20px;
+    font-weight: 600;
+}
+#forget_table .code_img{
+    margin: 10px 0;
+    padding: 3px 0;
+    width:100px;
+    height:30px;
+    border: 1px solid #ccc;
+}
+.forget_password{
+    margin-top: 10px;
+}
+.form-control{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-control:focus{
+    border-color: #66afe9;
+}
+.forget_img{
+    display: inline-block;
+    width:72px;
+    vertical-align: middle;
+    padding-top: 60px;
+    margin-right: 20px;
+    text-align: center;
+    font-size: 16px;
+    color:#e4393c;
+    background: url(../djimages/forget_03.png) no-repeat;
+}
+/*注册页面*/
+#register_user{
+    width:1060px;
+    padding: 30px 50px;
+    margin: 0 auto 50px;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+#register_user .head{
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+}
+#register_user .head div{
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    color: #CDCDCD;
+}
+#register_user .head div span{
+    display: inline-block;
+    font-size: 16px;
+    width: 20px;
+    height:20px;
+    background-color: #CDCDCD;
+    margin-right: 10px;
+    color:#fff;
+    text-align: center;
+}
+#register_user .head div.active{
+    color:#F75552;
+}
+#register_user .head .active span{
+    background: #F75552;
+}
+#register_user .register_table{
+    margin: 30px 10px;
+}
+#register_user .register_table input{
+    width:255px;
+}
+#register_user .register_table .td_checkbox{
+    color:#929292;
+    font-size: 15px;
+}
+#register_user .register_table input[type="checkbox"]{
+    width: 20px;
+    margin-right: 5px;
+}
+#register_user .register_table td{
+    padding: 5px 0;
+}
+#register_user .register_table select{
+    border-radius: 4px;
+    padding: 3px 5px;
+    border-color: #ccc;
+    color:#929292;
+}
+#register_user .register_table select.st{
+    margin-left: 20px;
+}
+#register_user .register_table td>div{
+    color:#929292;
+    margin-top: 5px;
+}
+#register_user .register_table pre{
+    padding: 10px;
+    width: 600px;
+    height:120px;
+    background: #fff;
+}
+#register_user a.submit{
+    font-size: 20px;
+    font-weight: bold;
+    color: #f75552 !important;
+}
+#register_user .register_table .td_left{
+    vertical-align: top;
+    text-align: right;
+    font-size: 16px;
+    color: #000;
+    padding-right: 10px;
+    padding-top: 6px;
+}
+#register_user .td_left span{
+    color: #f70811;
+    padding-right: 5px;
+}
+/*组织生活：流动党员找党组织*/
+.organize_table{
+    margin-top: 30px;
+}
+.organize_table tr td{
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+.organize_table {
+    margin-top: 30px;
+}
+.organize_table .td_left{
+    vertical-align: top;
+    text-align: right;
+    font-size: 15px;
+    padding-right: 15px;
+    color: #000;
+}
+.organize_table input{
+    width:200px;
+    float: left;
+}
+.organize_table td span{
+    float: left;
+    padding-top: 6px;
+    padding-left: 5px;
+    color: #E70013;
+}
+.organize_table textarea{
+    float: left;
+    border:1px solid #ccc;
+    width:400px;
+    height:100px;
+}
+.organize_table textarea+span{
+    margin-top: 35px;
+}
+.organize_table .btn{
+    margin-top: 20px;
+    padding: 3px 25px;
+    font-size: 16px;
+    margin-right: 20px;
+}
+/*组织生活：转党组织关系*/
+.transfer_party{
+    overflow: hidden;
+}
+.transfer_party li{
+    float: left;
+    width:50%;
+    margin-bottom: 30px;
+}
+.transfer_party .img{
+    border-top-left-radius: 10px;
+    width:200px;
+    height:150px;
+    background-color: #ddd;
+    margin: 20px auto;
+}
+.transfer_party h4{
+    text-align: center;
+}
+/*组织生活：在线学习三级页面*/
+.online_page{
+    position: relative;
+    top: -90px;
+    border-top: 1px solid #ddd;
+     padding-top: 10px;
+    margin: 0 100px;
+}
+.online_page a{
+    border: 1px solid #ddd!important;
+}
+#online_culture{
+    padding-bottom: 150px;
+}
+#online_culture h3{
+    color: #F75455;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    margin: 0 50px 15px;
+}
+#online_culture ul{
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+#online_culture ul li{
+    list-style: disc;
+    color:#999;
+    font-size: 15px;
+    padding: 5px 0 0;
+}
+#online_culture ul a,#online_culture ul span{
+    color:#323232 !important;
+}

@@ -1,4 +1,4 @@
-/* ÖØÖÃ&Ä¬ÈÏ(reset&base)(tags) */
+/* ï¿½ï¿½ï¿½ï¿½&Ä¬ï¿½ï¿½(reset&base)(tags) */
 *[hidefocus], input, textarea, a {
     outline: 0 none;
     zoom: 1;
@@ -100,7 +100,13 @@ a{
     padding: 0;!important;
 }
 ::-webkit-input-placeholder{color:#999;}
-input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+
+input[type="text"], input[type="password"] {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 
 @media (max-width: 767px) {
     #nav_select li>ul{
@@ -147,10 +153,13 @@ input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:non
 .margin-left10px{
     margin-left: 10px;
 }
+.margin-bottom10px{
+    margin-bottom: 10px;
+}
 .height34px{
     height: 34px !important;
 }
-/*°´Å¥ÌØÐ§*/
+/*ï¿½ï¿½Å¥ï¿½ï¿½Ð§*/
 /* Ripple Out */
 @-webkit-keyframes hvr-ripple-out {
     100% {
@@ -247,7 +256,7 @@ a.hvr-bounce-to-bottom:hover:before,a.hvr-bounce-to-bottom:focus:before,a.hvr-bo
     transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
 
-/*µ¥Ñ¡¿òÑùÊ½µ÷Õû*/
+/*ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½*/
 /*Custom radio button*/
 .radio-btn input[type="radio"], .check-box input[type="checkbox"] {
     visibility: hidden;

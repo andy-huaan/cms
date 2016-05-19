@@ -1,202 +1,186 @@
-<!DOCTYPE HTML>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<head>
-<title>${channel.title!channel.name} - ${site.name} - Powered by JEECMS</title>
-<meta http-equiv="keywords" content="${channel.keywords!}"/>
-<meta http-equiv="description" content="${channel.description!}"/>
-
-<!--[if lt IE 9]>
-<script src="${resSys}/html5.js" type="text/javascript"></script>
-<![endif]-->
-<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
-<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
-
-<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
-<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
-<script src="${resSys}/jquery.js" type="text/javascript"></script>
-<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
-<script src="${resSys}/front.js" type="text/javascript"></script>
-
-<script src="/${res}/js/common.js" type="text/javascript"></script>
-<script type="text/javascript">
-$(function() {
-	Cms.channelViewCount("${base}","${channel.id}");
-	Cms.siteFlow("${base}", location.href, document.referrer,"${site.config.flowSwitch?string}");
-});
-</script>
+<!DOCTYPE html>
+<html lang="zh-CH" >
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="keywords" content="${channel.keywords!}"/>
+	<meta http-equiv="description" content="${channel.description!}"/>
+    <title>${channel.title!channel.name} - ${site.name}</title>
+    <!--<script type="text/javascript" src="/${res}/js/headJs.js"></script>-->
+    <link rel="stylesheet" href="/${res}/djcss/bootstrap.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/style.css"/>
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="/${res}/djimages/favicon-ico.png"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/${res}/djjs/bootstrap.js"></script>
+    <script type="text/javascript" src="/${res}/djjs/index.js"></script>
+    <script type="text/javascript" src="/${res}/djjs/jqPaginator.js"></script>
+    <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+    
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script type="text/javascript">
+	$(function() {
+		Cms.siteFlow("${base}", location.href, document.referrer, "${site.config.flowSwitch?string}");
+		$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
+	});
+	</script>
 </head>
-
 <body>
-<div class="container">
-	[#include "../include/header.html"/]
-    [#include "../include/search_csi.html"/]
-    [#include "../include/navi.html"/]
-	<!-- 左栏_begin -->
-	<div class="w670 mt10">
-        <div class="website">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}" target="_blank">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
-        <div class="clear"></div>
-        [@cms_content_page count='10' orderBy='4' channelId=channel.id channelOption='2' dateFormat='yyyy-MM-dd']
-        [#list tag_pagination.list as a]
-        <div class="hdNews hasPic">
-            
-            [#if a.typeImg??]
-            <a href="${a.url}" target="_blank" class="pic" style="border:1px solid #ccc;">
-            <img src="${a.typeImg!site.typeImg}" />
-            </a>
-            [/#if]
-            <a href="${a.url}" title="${a.title}" target="_blank">
-            <h2>[@text_cut s=a.title len=22 /][#if a.new]<img src="${site.newPic!}"/>[/#if]</h2>
-            </a>
-            <p>
-            [@text_cut s=a.desc len=60 append='...'/]
-            <span style="color:#999">(${a.date?string(dateFormat)})</span>
-            </p>
-        </div>
-        [/#list]
-        <div style="clear:both;"></div>
-        <div class="pagesite">
-        [@cms_pagination sysPage='1'/]
-        </div>
-        [/@cms_content_page]
-    </div>
-    <!-- 左栏_end -->
-    <!-- 右栏_begin -->
-    <div class="w300 mt10">
-    	<!-- 今日话题_begin -->
-    	<div class="rim04">
-        	<div class="jrhtCon">
-            	<img src="../../${res}/img/news/jrht.gif"/>
-            	<div class="clear"></div>
-            	<div class="Q-tpList">
-                    [@cms_content_list count='1' orderBy='8' typeId='2' titLen='18' channelId=channel.id channelOption='1']
-                    [#list tag_list as a]
-                    <em><a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
-                    </em>
-                    <div class="Q-tpWrap">
-                    <a href="${a.url}" target="_blank">
-                    <img src="${a.typeImg!site.defImg}" alt="${a.title}" / class="tpListPic">
+<!--begin: 导航条-->
+[#include "../include/navi.html"/]
+<!--end: 导航条-->
+<!--begin: 主题内容-->
+<section id="organize">
+    <div id="organ_main_text" class="over_flow">
+        <div id="organ_left">
+            <div class="organ_nav">
+                <div class="tile-group over_flow">
+                	[@cms_channel id='112']
+                    <a class="tile num1" href="${tag_bean.url}" target="_self" data-id="1">
+                        <div class="wrap">
+                            <div class="title-cn">我要入党</div>
+                            <div class="title-icon"></div>
+                        </div>
                     </a>
-                    <p>[@text_cut s=a.desc len=30 append='...'/]<span class="cBlue"><a href="${a.url}" title="${a.title}" target="_blank">详细&gt;&gt;</a></span></p>
-                    </div>
-                    [/#list]
-                    [/@cms_content_list]
-                </div>
-                <div class="clear-10"></div>
-                <div class="jrhtList">
-                	<ul>
-                    [@cms_content_list count='6' orderBy='6' titLen='18' channelId='11,12'  channelOption='1']
-                    [#list tag_list as a]
-                    <li>
-                    <a href="${a.url}" title="${a.title}" target="_blank">
-                    [@text_cut s=a.title len=titLen /]
+                    [/@cms_channel]
+                    [@cms_channel id='113']
+                    <a class="tile num2"  href="${tag_bean.url}" target="_self" data-id="2">
+                        <div class="wrap">
+                            <div class="title-cn">流动党员<br/>找党组织</div>
+                            <div class="title-icon"></div>
+                        </div>
                     </a>
-                    </li>
-                    [/#list]
-                    [/@cms_content_list]
-                    </ul>
+                    [/@cms_channel]
+                    [#if user??]
+                    <a class="tile num3" data-id="3" href="javascript:void(0);" onclick="javascript:alert('签到成功')">
+                        <div class="wrap">
+                            <div class="title-cn">在线党员报到</div>
+                            <div class="title-icon"></div>
+                        </div>
+                    </a>
+                    [#else]
+                    <a class="tile num3" data-id="3" href="${base}/login.jspx?returnUrl=/">
+                        <div class="wrap">
+                            <div class="title-cn">在线党员报到</div>
+                            <div class="title-icon"></div>
+                        </div>
+                    </a>
+                    [/#if]
+                    [@cms_channel id='114']
+                    <a class="tile wide num4"  href="${tag_bean.url}" target="_self" data-id="4">
+                        <div class="wrap">
+                            <div class="title-cn">思想汇报</div>
+                            <div class="title-icon"></div>
+                        </div>
+                    </a>
+                    [/@cms_channel]
+                    [@cms_channel id='115']
+                    <a class="tile wide num5"  href="${tag_bean.url}" target="_self" data-id="5">
+                        <div class="wrap">
+                            <div class="title-cn">转党组织关系</div>
+                            <div class="title-icon"></div>
+                        </div>
+                    </a>
+                    [/@cms_channel]
+                    [@cms_channel id='116']
+                    <a class="tile wide num6"  href="${tag_bean.url}" target="_self" data-id="6">
+                        <div class="wrap">
+                            <div class="title-cn">党费代缴</div>
+                            <div class="title-icon"></div>
+                        </div>
+                    </a>
+                    [/@cms_channel]
+                    [@cms_channel id='117']
+                    <a class="tile wide num7"  href="${tag_bean.url}" target="_self" data-id="7">
+                        <div class="wrap">
+                            <div class="title-cn">在线学习</div>
+                            <div class="title-icon"></div>
+                        </div>
+                    </a>
+                    [/@cms_channel]
+                    [@cms_channel id='118']
+                    <a class="tile wide num8"  href="${tag_bean.url}" target="_self" data-id="8">
+                        <div class="wrap">
+                            <div class="title-cn">党务百宝箱</div>
+                            <div class="title-icon"></div>
+                        </div>
+                    </a>
+                    [/@cms_channel]
+                    [@cms_channel id='119']
+                    <a class="tile wide num9"  href="${tag_bean.url}" target="_self" data-id="9">
+                        <div class="wrap">
+                            <div class="title-cn">预约参观<br/>党建阵地</div>
+                            <div class="title-icon"></div>
+                        </div>
+                    </a>
+                    [/@cms_channel]
+                    [@cms_channel id='120']
+                    <a class="tile wide num10"  href="${tag_bean.url}" target="_self" data-id="10">
+                        <div class="wrap">
+                            <div class="title-cn">组织通讯录</div>
+                            <div class="title-icon"></div>
+                        </div>
+                    </a>
+                    [/@cms_channel]
                 </div>
             </div>
-        </div>
-    	<!-- 今日话题_end -->
-        <div class="clear-10"></div>
-        <!-- 时事评论_begin -->
-    	<div class="rim04">
-        	<div class="cjbdCon">
-            	<div class="titleBg1">
-               	    <h1>时事</h1><h2>评论</h2>
-                	<em>
-                    [@cms_channel id='14']<a href="${tag_bean.url}" target="_blank">
-                更多>></a>[/@cms_channel]
-                    </em>
-                </div>
-            	<div class="clear"></div>
-            	<div class="cjbdPic">
-                </div>
-                <div class="jrhtList">
-                	<ul>
-                    [@cms_content_list count='8' orderBy='4' titLen='18' channelId='14'  channelOption='1']
-                    [#list tag_list as a]
-                      <li>
-                    <a href="${a.url}" title="${a.title}" target="_blank">
-                    [@text_cut s=a.title len=titLen /]
-                    </a>
-                    </li>
-                    [/#list]
-                    [/@cms_content_list]
-                    </ul>
-                </div>
-            </div>
-        </div>
-    	<!-- 时事评论_end -->
-        <div class="clear-10"></div>
-        <!-- 图片新闻_begin -->
-    	<div class="rim04">
-        	<div class="cjbdCon">
-            	<div class="titleBg1">
-               	    <h1>图片</h1><h2>新闻</h2>
-                	<em>
-                    [@cms_channel id='15']<a href="${tag_bean.url}" target="_blank">
-                更多>></a>[/@cms_channel]
-                    </em>
-                </div>
-            	<div class="clear"></div>
-            	<div class="cjbdPic">
-                    <ul>
-                        [@cms_content_list count='4' orderBy='4' typeId='2' titLen='10' channelId='15' channelOption='1']
-                        [#list tag_list as a]
-                        <li>
-                        	<a href="${a.url}" target="_blank">
-                        	<img src="${a.typeImg!site.defImg}" alt="${a.title}" />
-                        	</a>
-                            <p>
-                            <a href="${a.url}" target="_blank">
-                            [@text_cut s=a.title len=titLen /]
-                            </a>
-                            </p>
-                        </li>
+            <div class="organ_text">
+                <div class="service_1">
+                    <h3 class="title"><a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list]</h3>
+                    [@cms_content_page count='10' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+                    <ul class="apply">
+                    	[#list tag_pagination.list as a]
+                        <li><a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=22 append='...' /]</a></li>
                         [/#list]
-                        [/@cms_content_list]
                     </ul>
+                    <div class="">
+                        [@cms_pagination sysPage='1'/]
+                    </div>
+                    [/@cms_content_page]
                 </div>
             </div>
         </div>
-    	<!-- 图片新闻_end -->
-        <div class="clear-10"></div>
-        <!-- 娱乐新闻_begin -->
-    	<div class="rim04">
-        	<div class="cjbdCon">
-            	<div class="titleBg1">
-               	    <h1>娱乐</h1><h2>新闻</h2>
-                	<em>
-                    [@cms_channel id='44'][#if tag_bean??]<a href="${tag_bean.url}" target="_blank">
-                更多>></a>[/#if][/@cms_channel]
-                    </em>
-                </div>
-            	<div class="clear"></div>
-                <div class="cjbdPic">
-                </div>
-                <div class="jrhtList">
-                	<ul>
-                    [@cms_content_list count='8' orderBy='4' titLen='18' channelId='44'  channelOption='1']
-                    [#list tag_list as a]
-                      <li>
-                    <a href="${a.url}" title="${a.title}" target="_blank">
-                    [@text_cut s=a.title len=titLen /]
-                    </a>
-                    </li>
-                    [/#list]
-                    [/@cms_content_list]
-                    </ul>
-                </div>
-            </div>
+        <div id="organ_right">
+            <ul>
+                <li class="organ_img"></li>
+                <li>
+                    <div class="organ_view">
+                        <h3>先锋模范</h3>
+                        <a class="organ_intro">
+                            <div class="model over_flow">
+                                <div class="model_img pull-left"></div>
+                                <div class="model_name pull-left"><span class="organ_view_name">梁志辉</span><br/><span class="organ_view_site">朝阳区酒仙桥街道</span><br/><span class="organ_view_duty">党工委副书记</span></div>
+                            </div>
+                            <div class="model_text">针对街道当前项目拆迁任务频繁的情况，他创造性的提出“一个专业的指挥部外加各办线突击作战”的方式，白天着重街道中心工作</div>
+                        </a>
+                        <a class="organ_intro">
+                            <div class="model over_flow">
+                                <div class="model_img pull-left"></div>
+                                <div class="model_name pull-left"><span class="organ_view_name">梁志辉</span><br/><span class="organ_view_site">朝阳区酒仙桥街道</span><br/><span class="organ_view_duty">党工委副书记</span></div>
+                            </div>
+                            <div class="model_text">针对街道当前项目拆迁任务频繁的情况，他创造性的提出“一个专业的指挥部外加各办线突击作战”的方式，白天着重街道中心工作</div>
+                        </a>
+                        <a class="organ_intro">
+                            <div class="model over_flow">
+                                <div class="model_img pull-left"></div>
+                                <div class="model_name pull-left"><span class="organ_view_name">梁志辉</span><br/><span class="organ_view_site">朝阳区酒仙桥街道</span><br/><span class="organ_view_duty">党工委副书记</span></div>
+                            </div>
+                            <div class="model_text">针对街道当前项目拆迁任务频繁的情况，他创造性的提出“一个专业的指挥部外加各办线突击作战”的方式，白天着重街道中心工作</div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
         </div>
-    	<!-- 娱乐新闻_end -->
+        <div id="organ_footer">
+            <a href="">办事指南</a><a href="">投诉举报</a><a href="">办理机构</a>
+        </div>
     </div>
-    <!-- 右栏_end -->
-    [#include "../include/friend_link.html"/]
-    [#include "../include/footer.html"/]
-</div>
+</section>
+<!--end: 主题内容-->
+<!--begin: 尾部内容-->
+<div id="footer"><script class="" type="text/javascript" src="/${res}/djjs/footer.js"></script></div>
+<!--end: 尾部内容-->
 </body>
 </html>

@@ -701,7 +701,6 @@ section{/*背景渐变色*/
     width:100px;
     border-radius: 10px;
     margin: 10px 15px 0 0;
-    background-color: #ccc;
 }
 #act_list_text .news_text{
     display: inline-block;
@@ -1744,4 +1743,11 @@ section{/*背景渐变色*/
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 
+}
+.regist-submit {
+    background: url(../img/member/regist-sumbit.gif) no-repeat;
+    width: 202px;
+    height: 43px;
+    border: 0 none;
+    cursor: pointer;
 }
