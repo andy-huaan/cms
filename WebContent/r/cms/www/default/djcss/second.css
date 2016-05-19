@@ -672,3 +672,31 @@
 #online_culture ul a,#online_culture ul span{
     color:#323232 !important;
 }
+.log_enter{
+    border: 1px solid #ccc;
+}
+.log_enter td{
+    padding: 5px;
+}
+.log_enter .enter{
+    margin-left: 90px;
+    margin-top: 10px;
+}
+.log_enter .enter button{
+    padding: 5px 20px;
+    margin-right: 20px;
+}
+.log_enter .enter a:hover{
+    color: #f85556 !important;
+    text-decoration: underline !important;
+}
+.log_enter .register{
+    text-align: center;
+    margin-top: 10px;
+}
+.log_enter .register a{
+    color: #1647a6 !important;
+}
+.log_enter .register a:hover{
+    text-decoration: underline !important;
+}

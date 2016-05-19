@@ -35,7 +35,7 @@
         	<form id="jvForm" action="${base}/register.jspx" method="post" style="padding-top: 20px">
             <table class="register_table">
                 <tr>
-                    <td class="td_left"><span>*</span>姓名：</td>
+                    <td class="td_left"><span>*</span>用户名：</td>
                     <td>
                         <input class="form-control" id="username"  vld="{required:true,rangelength:[${site.usernameMinLen},20],username:true,remote:'username_unique.jspx',messages:{remote:'用户名已存在！'}}" name="username" type="text" />
                         <div>用户名由3到14位的中文字符、英文字母、数字组成。</div>

@@ -22,6 +22,9 @@
 	$(function() {
 		Cms.siteFlow("${base}", location.href, document.referrer, "${site.config.flowSwitch?string}");
 		$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
+		
+		$("#jvForm").validate();
+        $("#guestbookCaptcha").click();
 	});
 	</script>
 </head>
@@ -85,15 +88,15 @@
                     <!--登录错误提示信息-->
                     <div class="hint"></div>
                     <div class="username">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="请输入帐号"/>
+                        <input type="text" class="input required form-control" id="username" name="username" placeholder="请输入帐号"/>
                     </div>
                     <div class="password">
-                        <input type="text" class="form-control" id="password" name="password" placeholder="请输入密码"/>
+                        <input type="text" class="input required form-control" id="password" name="password" placeholder="请输入密码"/>
                     </div>
                     <div class="inspect">
-                        <input type="text" class="form-control" id="captcha" name="captcha" placeholder="验证码" />
+                        <input type="text" class="input required form-control" id="captcha" name="captcha" placeholder="验证码" />
                         <div class="code">
-                        	<img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1" width="115" height="25"/>
+                        	<img src="${base}/captcha.svl" id="guestbookCaptcha" onclick="this.src='${base}/captcha.svl?d='+new Date()*1" width="115" height="25"/>
                         </div>
                     </div>
                     <div class="checkbox">
