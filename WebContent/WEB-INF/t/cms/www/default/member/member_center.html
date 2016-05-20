@@ -1,86 +1,183 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>会员中心 - ${site.name} - Powered by JEECMS</title>
-<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
-<script src="${resSys}/jquery.js" type="text/javascript"></script>
-<script src="${resSys}/front.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="../../${res}/css/member.css" />
+<!DOCTYPE html>
+<html lang="zh-CH" >
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+    <title>会员登录 - ${site.name}</title>
+    <link rel="stylesheet" href="/${res}/djcss/bootstrap.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/style.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/second.css"/>
+    <link rel="shortcut icon" href="/${res}/djimages/favicon-ico.png"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/${res}/djjs/bootstrap.js"></script>
+    <script type="text/javascript" src="/${res}/djjs/index.js"></script>
+    
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <style type="text/css">
+        form div {
+            width: 300px;
+            position: relative;
+            margin: 10px 0;
+            padding: 5px 10px;
+        }
+        form{
+            padding-left: 30px;
+        }
+        form table{
+            margin-top: 15px;
+        }
+        form table tr td:first-child{
+            text-align: right;
+        }
+        form table tr td:first-child span{
+            color:#e4393c;
+            padding-right: 5px;
+        }
+        form>div button{
+            background-color: #f85556!important;
+            padding:5px 40px!important;
+            color:#fff;
+            margin: 40px 0 30px 150px !important;
+        }
+        form>div button:hover,form>div button:active{
+            color:#fff!important;
+            background-color: #e4393c !important;
+        }
+        form label{
+            font-weight: normal;
+            font-size: 16px;
+        }
+        form label:nth-child(1){
+            margin-right: 20px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            border: none;
+            width: 100%;
+        }
+        .form_control.active {
+            border: 1px #32BC61 solid;
+            background-color: #fff;
+        }
+        .form_control.error {
+            border: 1px #f00 solid;
+            background-color: #FBF9BB;
+        }
+        .form_control.error input[type="text"],
+        .form_control.error input[type="password"] {
+            background-color: #FBF9BB;
+            color: #f00;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border: none;
+            outline: none;
+        }
+        .form_control .valid_message {
+            color: #32BC61;
+            position: absolute;
+            left: 325px;
+            top: 5px;
+            width: 200px;
+        }
+        .form_control.error .valid_message {
+            color: #f00;
+        }
+        .form_control.success .valid_message {
+            background: url(../../djimages/sucess.png) no-repeat;
+            left: auto;
+            right: 5px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+        }
+        .none {
+            display: none;
+        }
+    </style>
 </head>
-
 <body>
-[#include "member_header.html"/]
-<div class="container">
-	 [#include "member_navi.html"/]
-    <div class="mc_right">
-        [#include "member_top.html"/]
-        <div class="mr-top-position">
-		     <div class="mr-top-tit fl">个人资料</div>
-		    <div class="modify fr"><a href="${base}/member/portrait.jspx">更换头像</a>&nbsp;&nbsp;&nbsp;<a href="${base}/member/profile.jspx">修改个人资料</a></div>
-		</div>
-        <div class="mc_content">   
-             <table width="100%" cellspacing="1" cellpadding="5" border="0" bgcolor="#C8DCF0" align="center">
-               <tbody><tr>
-                 <td width="150" height="25" bgcolor="#f6fbff" align="right">用户名： </td>
-                 <td bgcolor="#FFFFFF">${user.username}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">会员组：</td>
-                 <td bgcolor="#FFFFFF">${user.group.name}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">邮箱：</td>
-                 <td bgcolor="#FFFFFF">${user.email!}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">真实姓名：</td>
-                 <td bgcolor="#FFFFFF">${user.realname!}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">性别：</td>
-                 <td bgcolor="#FFFFFF">[#if user.gender??]${user.gender?string('男','女')}[#else]保密[/#if]</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">出生日期：</td>
-                 <td bgcolor="#FFFFFF">${(user.birthday?string('yyyy-MM-dd'))!}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">自我介绍：</td>
-                 <td bgcolor="#FFFFFF">${user.intro!}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">来自：</td>
-                 <td bgcolor="#FFFFFF">${user.comefrom!}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">QQ：</td>
-                 <td bgcolor="#FFFFFF">${user.qq!}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">MSN：</td>
-                 <td bgcolor="#FFFFFF">${user.msn!}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">电话：</td>
-                 <td bgcolor="#FFFFFF">${user.phone!}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">手机：</td>
-                 <td bgcolor="#FFFFFF">${user.mobile!?html}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">财富收益：</td>
-                 <td bgcolor="#FFFFFF">${user.grain!}</td>
-               </tr>
-               <tr>
-                 <td height="25" bgcolor="#FFFFFF" align="center" colspan="2">
-                 <input type="button" value="修 改" onclick="window.location.href='profile.jspx'" class="member_button"></td>
-                </tr>
-             </tbody></table>     
+<!--begin: 导航条-->
+[#include "../include/navi.html"/]
+<!--end: 导航条-->
+<!--begin: 主题内容-->
+<section>
+    <div id="meet_main_text" class="over_flow">
+        <div id="meet_left">
+            [#include "../include/member_left.html"/]
+            <div class="meet_text">
+                <div class="service_1 margin-top10px">
+                    <h3>个人资料</h3>
+                    <form>
+                    <table>
+                        <tr>
+                            <td><span>*</span>用户名：</td>
+                            <td><div class="form_control">${user.username}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>会员组：</td>
+                            <td><div class="form_control">${user.group.name}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>邮箱：</td>
+                            <td><div class="form_control">${user.email!}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>真实姓名：</td>
+                            <td><div class="form_control">${user.realname!}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>性别：</td>
+                            <td><div class="form_control">[#if user.gender??]${user.gender?string('男','女')}[#else]保密[/#if]</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>出生日期：</td>
+                            <td><div class="form_control">${(user.birthday?string('yyyy-MM-dd'))!}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>自我介绍：</td>
+                            <td><div class="form_control">${user.intro!}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>来自：</td>
+                            <td><div class="form_control">${user.comefrom!}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>QQ：</td>
+                            <td><div class="form_control">${user.qq!}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>MSN：</td>
+                            <td><div class="form_control">${user.msn!}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>电话：</td>
+                            <td><div class="form_control">${user.phone!}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>手机：</td>
+                            <td><div class="form_control">${user.mobile!?html}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span>*</span>财务收益：</td>
+                            <td><div class="form_control">${user.grain!}</div></td>
+                        </tr>
+                        <tr>
+                        	<td colspan="2"><input type="button" value="信 息 修 改" onclick="window.location.href='profile.jspx'" class="btn btn-danger"/></td>
+                        </tr>
+                    </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+        [#include "../include/member_right.html"/]
     </div>
-  </div>
-     <div style="clear:both"></div>
-</div>
+</section>
+<!--end: 主题内容-->
+<!--begin: 尾部内容-->
+<div id="footer"><script class="" type="text/javascript" src="/${res}/djjs/footer.js"></script></div>
+<!--end: 尾部内容-->
 </body>
 </html>

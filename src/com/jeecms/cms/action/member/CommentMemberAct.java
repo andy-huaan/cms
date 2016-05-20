@@ -67,7 +67,7 @@ public class CommentMemberAct {
 		}
 		Pagination pagination = commentMng.getPageForMember(site.getId(), null,
 				user.getId(), null, null, null, null, true, cpn(pageNo),
-				CookieUtils.getPageSize(request));
+				4);//CookieUtils.getPageSize(request)
 		model.addAttribute("pagination", pagination);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_COMMENT, COMMENT_LIST);

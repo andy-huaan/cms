@@ -60,11 +60,11 @@
 /*图标HOVER变大效果：end*/
 section{/*背景渐变色*/
     background:linear-gradient(top,#FFFEE9,#fff);
-    background:-webkit-linear-gradient(top,#FFFEE9,#fff);
-    background:-moz-linear-gradient(top,#FFFEE9,#fff);
-    background:-ms-linear-gradient(top,#FFFEE9,#fff);
-    background:-o-linear-gradient(top,#FFFEE9,#fff);
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColorstr = #FFFEE9, endColorstr = #ffffff);
+background:-webkit-linear-gradient(top,#FFFEE9,#fff);
+background:-moz-linear-gradient(top,#FFFEE9,#fff);
+background:-ms-linear-gradient(top,#FFFEE9,#fff);
+background:-o-linear-gradient(top,#FFFEE9,#fff);
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColorstr = #FFFEE9, endColorstr = #ffffff);
 }
 /*首页背景图*/
 #index-bg{
@@ -1210,7 +1210,7 @@ section{/*背景渐变色*/
 }
 #meet_right .meet_img{
     margin: 30px auto 10px;
-    height:330px;
+    height:295px;
     width:220px;
     border: 1px solid #ccc;
 }
@@ -1743,11 +1743,4 @@ section{/*背景渐变色*/
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 
-}
-.regist-submit {
-    background: url(../img/member/regist-sumbit.gif) no-repeat;
-    width: 202px;
-    height: 43px;
-    border: 0 none;
-    cursor: pointer;
 }

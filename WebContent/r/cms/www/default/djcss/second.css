@@ -672,6 +672,8 @@
 #online_culture ul a,#online_culture ul span{
     color:#323232 !important;
 }
+
+/*通用登录页面*/
 .log_enter{
     border: 1px solid #ccc;
 }
@@ -700,3 +702,259 @@
 .log_enter .register a:hover{
     text-decoration: underline !important;
 }
+
+/*首页常见问题页面*/
+#common_ques{
+    border: none;
+    overflow: hidden;
+    background-color: #fff;
+}
+#common_ques .common_left{
+    float: left;
+    width:300px;
+}
+#common_ques .common_left .check{
+    border: 1px solid #ccc;
+    margin-left: 10px;
+    margin-top: 5px;
+    padding: 5px 5px 10px 5px;
+}
+#common_ques .common_left .title.td_1{
+    padding-top: 0;
+}
+#common_ques .common_left .title{
+    color: #f85556;
+    font-size: 16px;
+    padding: 10px 0;
+}
+#common_ques .common_left .td_2{
+    width:150px;
+}
+#common_ques .common_left .check button{
+    padding: 1px 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background:linear-gradient(top,#fff,#bbb,#fff);
+    background:-webkit-linear-gradient(top,#fff,#bbb,#fff);
+    background:-moz-linear-gradient(top,#fff,#bbb,#fff);
+    background:-o-linear-gradient(top,#fff,#bbb,#fff);
+}
+#common_ques .common_left .check input{
+    border:1px solid #ccc;
+    width:130px;
+}
+#common_ques .common_left .check.st td{
+    width:140px;
+    text-align: center;
+}
+#common_ques .common_left .check select{
+    width:130px;
+    margin-bottom: 10px;
+}
+#common_ques .common_left .consult{
+    padding: 0 20px;
+}
+#common_ques .common_left .consult button{
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 2px 10px;
+    background-color: #F4F4F4;
+    margin: 0 6px;
+}
+#common_ques .common_left .check{
+    border: 1px solid #ccc;
+    margin: 5px 0 30px 10px;
+}
+#common_ques .common_right{
+    float: left;
+    margin: 5px 0 30px 20px;
+}
+#common_ques .common_right>div{
+    border:1px solid #c0c0c0;
+    margin-bottom: 30px;
+}
+#common_ques .common_right h4{
+    width: 730px;
+    color:#F75455;
+    padding: 15px 10px;
+    border-bottom: 1px solid #c0c0c0;
+}
+#common_ques .common_right p{
+    margin: 2px 10px;
+}
+#common_ques .common_right .more{
+    margin: 30px 0 10px;
+    text-align: right;
+}
+#common_ques .common_right .more>a{
+    padding-right: 20px;
+    color: #f75455 !important;
+}
+#common_ques .common_right .more>a:hover{
+    text-decoration: underline !important;
+}
+/*首页服务热线链接*/
+#hotline{
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+#hotline .title{
+    font-size: 18px;
+    color:#f75455;
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+}
+#hotline table.st{
+    width:800px;
+    margin: 30px auto;
+}
+#hotline table.st td{
+    border: 1px solid #000;
+    padding: 8px;
+    color:#000;
+    font-size: 16px;
+}
+/*首页留言咨询链接*/
+.leave_table td{
+    padding: 10px 5px;
+}
+.leave_table .input{
+    width:200px;
+    border:1px solid #ccc;
+}
+.leave_table input[type="radio"]{
+    margin-left: 20px;
+}
+.leave_table input[type="file"]{
+    display: inline-block;
+}
+.leave_table input[type="radio"]:first-child{
+    margin-left: 0;
+}
+.leave_table textarea{
+    border: 1px solid #ccc;
+    width:500px;
+    height: 150px;
+}
+.leave_table .mark_color{
+    color: red;
+    padding: 0 10px;
+    font-size: 18px;
+}
+.leave_table .valid_code img{
+    width:80px;
+    height:30px;
+}
+.leave_table button{
+    border-radius: 5px;
+    padding: 3px 10px;
+    margin-right: 10px;
+    border:1px solid #888;
+}
+#hotline .head{
+    padding: 20px 10px;
+    border: 2px solid #ADCBED;
+}
+#hotline .head .color{
+    font-size: 18px;
+    color:#FE6858;
+    display: inline-block;
+    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(251,128,60, 1)), to(rgba(255,39,8, 1)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#hotline .head div{
+    padding: 2px 0;
+}
+/*首页党务百宝箱三级页面*/
+.party_chest{
+    width:1060px;
+    margin:0 auto;
+    padding-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+.party_chest>h3{
+    padding: 10px 20px;
+    color: #F75455;
+    border-bottom: 1px solid #ccc;
+}
+.party_chest>ul{
+    margin: 10px 20px;
+}
+.party_chest>ul li{
+    padding: 10px 0;
+    margin-left: 20px;
+    list-style: square;
+    font-size: 12px;
+    border-bottom: 1px dashed #ccc;
+    color:#F75455
+}
+.party_chest>ul li:last-child{
+    border-bottom: none;
+}
+.party_chest>ul li>a{
+    font-size: 16px;
+}
+.party_chest>ul .date{
+    float: right;
+    margin-right: 20px;
+    color:#888;
+}
+.party_chest .page_st{
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+}
+/*首页中滚动新闻：热门活动*/
+.index-act{
+    width: 1060px !important;
+}
+.index-act button{
+    margin-right: 400px !important;
+}
+.index-act>h2{
+    font-size: 22px;
+}
+.index-act .news_list ul{
+    margin-bottom: 20px;
+}
+.index-act .news_list li{
+    float: left;
+    width:49%;
+    margin:10px .5% 0 ;
+    border: 1px solid #c0c0c0;
+}
+.index-act .news_list li .title{
+    color:#000;
+    padding: 5px 0;
+    margin-left: 20px;
+    border-bottom: 1px solid #ccc;
+}
+.index-act .news_list .title .date{
+    float: right;
+    margin-right: 15px;
+    color: #888;
+}
+.index-act .news_list .news_main{
+    padding: 10px;
+    overflow: hidden;
+}
+.index-act .news_list .news_img{
+    width:30%;
+    float: left;
+    text-align: center;
+}
+.index-act .news_list .news_img img{
+    width:100px;
+    height:100px;
+}
+.index-act .news_list .news_text{
+    float: left;
+    width:70%;
+    height:105px;
+    overflow: hidden;
+    color: #666;
+    font-size: 13px;
+}
+
