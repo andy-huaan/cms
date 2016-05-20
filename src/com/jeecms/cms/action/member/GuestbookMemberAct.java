@@ -61,8 +61,7 @@ public class GuestbookMemberAct {
 			return FrontUtils.showLogin(request, model, site);
 		}
 		Pagination pagination = guestbookMng.getPage(site.getId(), ctgId, user
-				.getId(), null, null, true, false, cpn(pageNo), CookieUtils
-				.getPageSize(request));
+				.getId(), null, null, true, false, cpn(pageNo), 4);//CookieUtils.getPageSize(request)
 		model.addAttribute("pagination", pagination);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_GUESTBOOK, GUESTBOOK_LIST);

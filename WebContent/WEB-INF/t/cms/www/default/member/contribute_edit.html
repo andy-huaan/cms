@@ -1,22 +1,69 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>修改 稿件- ${site.name} - Powered by JEECMS</title>
-<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
-<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
-<script src="${resSys}/jquery.js" type="text/javascript"></script>
-<script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
-<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
-<script src="${resSys}/front.js" type="text/javascript"></script>
-<script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
-<script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
-<script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
-<script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
-<script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
-<link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" type="text/css" href="../../${res}/css/member.css" />
-<script type="text/javascript">
+<!DOCTYPE html>
+<html lang="zh-CH" >
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+    <title>编辑动态 - ${site.name}</title>
+    <link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+	<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+	<script src="${resSys}/jquery.js" type="text/javascript"></script>
+	<script src="${base}/res/common/js/jquery.ext.js" type="text/javascript"></script>
+	<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+	<script src="${resSys}/front.js" type="text/javascript"></script>
+	<script src="${base}/thirdparty/ckeditor/ckeditor.js" type="text/javascript"></script>
+	<script src="${base}/thirdparty/swfupload/swfupload.js" type="text/javascript"></script>
+	<script src="${base}/thirdparty/swfupload/swfupload.queue.js" type="text/javascript"></script>
+	<script src="${base}/thirdparty/swfupload/fileprogress.js" type="text/javascript"></script>
+	<script src="${base}/thirdparty/swfupload/handlers.js" type="text/javascript"></script>
+	<link href="${base}/thirdparty/swfupload/process.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" href="/${res}/djcss/bootstrap.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/style.css"/>
+    <link rel="shortcut icon" href="/${res}/djimages/favicon-ico.png"/>
+    <script type="text/javascript" src="/${res}/djjs/bootstrap.js"></script>
+    <script type="text/javascript" src="/${res}/djjs/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../${res}/css/member.css" />
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <style type="text/css">
+        form div {
+            width: 300px;
+            position: relative;
+            margin: 10px 0;
+            padding: 5px 10px;
+        }
+        form{
+            padding-left: 30px;
+        }
+        form table{
+            margin-top: 15px;
+        }
+        form table tr td:first-child{
+            text-align: right;
+        }
+        form table tr td:first-child span{
+            color:#e4393c;
+            padding-right: 5px;
+        }
+        form label{
+            font-weight: normal;
+            font-size: 16px;
+        }
+        form label:nth-child(1){
+            margin-right: 20px;
+        }
+        .form_control {
+            border: 1px #32BC61 solid;
+            background-color: #fff;
+        }
+        input[type="text"],
+        input[type="password"] {
+            border: none;
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript">
 $.validator.methods.leafChannel = function(value, element, param) {
 	var i = element.selectedIndex;
 	return $(element.options[i]).attr("class")!="sel-disabled";
@@ -74,37 +121,6 @@ $(function() {
 		upload_complete_handler : uploadComplete,
 		queue_complete_handler : queueComplete
 	});
-	swfau=new SWFUpload({
-		upload_url : uploadAttachsUrl,
-		flash_url : "${base}/thirdparty/swfupload/swfupload.swf",
-		file_size_limit : "2000 MB",
-		file_types : "*.*",
-		file_types_description : "All Types",
-		file_queue_limit : 0,
-		custom_settings : {
-			progressTarget : "afsUploadProgress",
-			cancelButtonId : "abtnCancel"
-		},
-		debug: false,
-		
-		button_image_url : "${base}/thirdparty/swfupload/button_notext.png",
-		button_placeholder_id : "aspanButtonPlaceHolder",
-		button_text: "<span class='btnText'>上传</span>",
-		button_width: 84,
-		button_height: 24,
-		button_text_top_padding: 2,
-		button_text_left_padding: 20,
-		button_text_style: '.btnText{color:#666666;}',
-		
-		file_queued_handler : fileQueued,
-		file_queue_error_handler : fileQueueError,
-		file_dialog_complete_handler : fileDialogComplete,
-		upload_progress_handler : uploadProgress,
-		upload_error_handler : uploadError,
-		upload_success_handler : uploadAttachSuccess,
-		upload_complete_handler : uploadComplete,
-		queue_complete_handler : queueComplete
-	});
 });
 function uploadPicsSuccess(file,data) {
 	var jsonData=eval("("+data+")");//转换为json对象 
@@ -137,156 +153,95 @@ function uploadAttachSuccess(file,data) {
 	}
 }
 </script>
-<style type="text/css">
-.sel-disabled{background-color:#ccc}
-</style>
 </head>
 <body>
-[#include "member_header.html"/]
-<div class="container">
-	 [#include "member_navi.html"/]
-    <div class="mc_right">
-        [#include "member_top.html"/]
-        <div class="mr-top-position">
-		     <div class="mr-top-tit fl">修改稿件</div>
-		    <div class="modify fr"><a href="${base}/member/contribute_list.jspx">稿件列表</a></div>
-		 </div>
-        <div class="mc_content">   
-            [#if channelList?size gt 0]
-             [#include "media_upload.html"/]
-             [#include "image_upload.html"/]
-             [#include "attachment_upload.html"/]
-            <form id="jvForm" action="contribute_update.jspx" method="post">
-             <table width="98%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#C8DCF0" style="margin:5px;">
-               <tr>
-                 <td width="86" height="25" align="right" bgcolor="#f6fbff">标题：</td>
-                 <td width="626" bgcolor="#FFFFFF">
-                 <input type="text" name="title" value="${content.title!?html}" maxlength="150" class="required"/> <span class="STYLE1">*</span></td>
-               </tr>
-               <tr>
-                 <td height="25" align="right" bgcolor="#f6fbff">TAGS：</td>
-                 <td bgcolor="#FFFFFF">
-                 <input type="text" name="tagStr" value="${content.tagStr!?html}" maxlength="255"/> 用,分割</td>
-               </tr>
-               <tr>
-                 <td height="25" align="right" bgcolor="#f6fbff">作者：</td>
-                 <td bgcolor="#FFFFFF"><input type="text" name="author" value="${content.author!?html}" maxlength="100"/></td>
-               </tr>
-               <tr>
-                 <td height="25" align="right" bgcolor="#f6fbff">栏目：</td>
-                 <td bgcolor="#FFFFFF">
-                 <select name="channelId">
-                    [#if channelList?size gt 0]
-                    [#assign origDeep=channelList[0].deep+1/]
-                    [#list channelList as c]
-                        <option value="${c.id}"[#if c.child?size gt 0] class="sel-disabled"[/#if][#if content.channel.id==c.id] selected="selected"[/#if]>[#if c.deep gte origDeep][#list origDeep..c.deep as i]&nbsp;&nbsp;[/#list]>[/#if]${c.name}</option>
-                    [/#list]
-                    [/#if]
-                  </select>
-                 </td>
-               </tr>
-               <tr>
-                 <td height="25" align="right" bgcolor="#f6fbff">摘要：</td>
-                 <td bgcolor="#FFFFFF"><textarea name="description" rows="3" cols="70" maxlength="255"/>${content.description!?html}</textarea></td>
-               </tr> 
-               <tr>
-                 <td  height="25" align="right" bgcolor="#f6fbff">多媒体：</td>
-                 <td bgcolor="#FFFFFF">
-                 	<div>
-						<input type="text" id="mediaPath" name="mediaPath" value="${content.mediaPath!}" style="width:265px"/>
-					</div>
-					<div>
-						<span id="mfc" style="position:relative;display:block;width:520px;*width:300px;">
-						<input type='text' id='mediaFileText'/>  
-						<input class="member_button" type='button' value='浏览'/>
-						<input onchange="$('#mediaFileText').val(this.value)" size="19" type="file" name="mediaFile" id="mediaFile" style="height:24px;opacity:0;filter:alpha(opacity=0);position:absolute;left:0px;top:2px;"/>
-						<input type="button" value="上传" onclick="uploadMedia();" class="member_button"/>
-						</span> 
-					</div>
-                 </td>
-               </tr> 
-               <tr>
-                 <td height="25" align="right" bgcolor="#f6fbff">播放器：</td>
-                 <td bgcolor="#FFFFFF">
-						[@p.radio name="mediaType" list=["WM","REAL","FLV","FLASH","CK"] value="${content.mediaType!}"/]
-                 </td>
-               </tr>
-               <tr>
-                 <td height="25" align="right" bgcolor="#f6fbff">内容：</td>
-                 <td bgcolor="#FFFFFF">
-				  <textarea id="txt" name="txt">${content.txt}</textarea>  
-				<script type="text/javascript">
-					$(function() {
-					   	CKEDITOR.replace( 'txt' ,
-					   			{
-							   		filebrowserUploadUrl : '${base}/fck/upload.jspx',  
-							   		filebrowserImageUploadUrl : '${base}/fck/upload.jspx?Type=Image',  
-							   		filebrowserFlashUploadUrl : '${base}/fck/upload.jspx?Type=Flash',
-							   		filebrowserMediaUploadURL : '${base}/fck/upload.jspx?Type=Media'
-					   		     }
-					   	);  
-					 });
-				</script>
-                 </td>
-               </tr> 
-               <tr>
-                 <td height="25" align="right" bgcolor="#f6fbff">附件：</td>
-                 <td bgcolor="#FFFFFF">
-						<div>
-						<span id="aspanButtonPlaceHolder"></span>
-						<span style="display: none;"><input class="cancel" id="abtnCancel" type="button" value="取消" onclick="swfu.cancelQueue();" disabled="disabled" /></span>
-						<div id="afsUploadProgress" style="display: none;"></div>
-						</div>
-						<table id="attachTable" border="0">
-						<tr>
-							<td align="center"></td>
-							<td align="center">附件名称</td>
-							<td align="center">路径</td>
-							<td align="center">上传</td>
-							[#list content.attachments as attach]
-							<tr id="attachTr${attach_index}">
-								<td align="center"><a onclick="$('#attachTr${attach_index}').remove();" href="javascript:void(0);" class="pn-opt">删除</a></td>
-								<td align="center"><input type="text" id="attachmentNames${attach_index}" name="attachmentNames" value="${attach.name!}"/></td>
-								<td align="center"><input type="text" id="attachmentPaths${attach_index}" name="attachmentPaths" value="${attach.path!}"/></td>
-								<td align="center">
-									<span id="afc${attach_index}" style="position:relative;display:block;width:300px;*width:300px;">
-									<input type='text' id='attachmentText${attach_index}'/>  
-									<input onchange="$('#attachmentText${attach_index}').val(this.value)" size="19" type="file" name="attachmentFile" id="attachmentFile${attach_index}" style="height:24px;opacity:0;filter:alpha(opacity=0);position:absolute;right:69px;top:2px;"/>
-									<input type="button" value="上传" onclick="uploadAttachment(${attach_index});" class="upload-button"/>
-									</span>
-									<input type="hidden" id="attachmentFilenames${attach_index}" name="attachmentFilenames" value="${attach.filename!}"/>
-								</td>
-							</tr>
-							[/#list]
-							</table>
-							<textarea id="attachTr" style="display:none">
-							<tr id="attachTr{0}">
-								<td align="center"><a onclick="$('#attachTr{0}').remove();" href="javascript:void(0);" class="pn-opt">删除</a></td>
-								<td align="center"><input type="text" id="attachmentNames{0}" name="attachmentNames"/></td>
-								<td align="center"><input type="text" id="attachmentPaths{0}" name="attachmentPaths"/></td>
-								<td align="center">
-									<span id="afc{0}" style="position:relative;display:block;width:300px;*width:300px;">
-									<input type='text' id='attachmentText{0}'/>  
-									<input onchange="$('#attachmentText{0}').val(this.value)" size="19" type="file" name="attachmentFile" id="attachmentFile{0}" style="height:24px;opacity:0;filter:alpha(opacity=0);position:absolute;right:69px;top:2px;"/>
-									<input type="button" value="上传" onclick="uploadAttachment({0});"/ class="upload-button">
-									</span>
-									<input type="hidden" id="attachmentFilenames{0}" name="attachmentFilenames"/>
-								</td>
-							</tr>
-							</textarea>
-							<script type="text/javascript">
-							var attachIndex = ${content.attachments?size};
-							var attachTpl = $.format($("#attachTr").val());
-							function addAttachLine() {
-								$('#attachTable').append(attachTpl(attachIndex++));
-							}
-							</script>
-                 </td>
-               </tr>
-               <tr>
-                 <td height="25" align="right" bgcolor="#f6fbff">图片集：</td>
-                 <td bgcolor="#FFFFFF">
-						<div>
+<!--begin: 导航条-->
+[#include "../include/navi.html"/]
+<!--end: 导航条-->
+<!--begin: 主题内容-->
+<section>
+    <div id="meet_main_text" class="over_flow" style="padding: 30px 0 30px">
+        <div id="meet_left" style="width: 1060px;">
+            <div class="meet_text">
+                <div class="service_1 margin-top10px">
+                    <h3>修改个人动态<a href="${base}/member/contribute_list.jspx" style="float: right;font-size: 18px;">返回列表</a></h3>
+                     [#if channelList?size gt 0]
+		             [#include "media_upload.html"/]
+		             [#include "image_upload.html"/]
+		             [#include "attachment_upload.html"/]
+                    <form id="jvForm" action="contribute_update.jspx" method="post">
+                        <table>
+                            <tr>
+                                <td style="width: 80px;">标题：</td>
+                                <td>
+                                    <div class="form_control" style="width:100%">
+                                        <input type="text" name="title" value="${content.title!?html}" maxlength="150" class="required"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>标签：</td>
+                                <td>
+                                    <div class="form_control" style="width:100%">
+                                          <input type="text" name="tagStr" value="${content.tagStr!?html}" maxlength="255"/>
+                                    </div>用,分割
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>作者：</td>
+                                <td>
+                                    <div class="form_control" style="width:100%">
+                                        <input type="text" name="author" value="${content.author!?html}" maxlength="100"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>栏目：</td>
+                                <td>
+                                    <div class="form_control" style="width:100%;border:none;height:37px;">
+                                        <select name="channelId">
+					                    [#if channelList?size gt 0]
+					                    [#assign origDeep=channelList[0].deep+1/]
+					                    [#list channelList as c]
+					                        <option value="${c.id}"[#if c.child?size gt 0] class="sel-disabled"[/#if][#if content.channel.id==c.id] selected="selected"[/#if]>[#if c.deep gte origDeep][#list origDeep..c.deep as i]&nbsp;&nbsp;[/#list]>[/#if]${c.name}</option>
+					                    [/#list]
+					                    [/#if]
+					                  </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>摘要：</td>
+                                <td>
+                                    <div class="form_control" style="width:100%">
+                                        <textarea name="description" rows="3" cols="70" maxlength="255"/>${content.description!?html}</textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>内容：</td>
+                                <td>
+                                    <div class="form_control" style="width:100%">
+                                        <textarea id="txt" name="txt">${content.txt}</textarea>  
+										<script type="text/javascript">
+											$(function() {
+											   	CKEDITOR.replace( 'txt' ,
+											   			{
+													   		filebrowserUploadUrl : '${base}/fck/upload.jspx',  
+													   		filebrowserImageUploadUrl : '${base}/fck/upload.jspx?Type=Image',  
+													   		filebrowserFlashUploadUrl : '${base}/fck/upload.jspx?Type=Flash',
+													   		filebrowserMediaUploadURL : '${base}/fck/upload.jspx?Type=Media'
+											   		     }
+											   	);  
+											 });
+										</script>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>图片集：</td>
+                                <td>
+                                    <div>
 						<span id="spanButtonPlaceHolder"></span>
 						<span style="display: none;"><input class="cancel" id="btnCancel" type="button" value=取消" onclick="swfu.cancelQueue();" disabled="disabled" /></span>
 						<div id="fsUploadProgress" style="display: none;"></div>
@@ -336,23 +291,30 @@ function uploadAttachSuccess(file,data) {
 							$('#picBefore').before(picTpl(picIndex++));
 						}
 						</script>
-                 </td>
-               </tr>
-               <tr>
-                 <td height="25" colspan="2" align="center" bgcolor="#FFFFFF">
-                    <input type="hidden" name="nextUrl" value="contribute_list.jspx"/>
-                    <input type="hidden" name="id" value="${content.id}"/>
-                    <input type="submit" value="提交" class="member_button"/> <input type="reset" value="重置" class="member_button"/>
-                 </td>
-                 </tr>
-             </table>
-             </form>
-            [#else]
-            <div>系统不允许投稿，请联系管理员！</div>
-            [/#if]
-    	</div>
-  </div>
-     <div style="clear:both"></div>
-</div>
+                                </td>
+                            </tr>
+                           
+					       <tr style="height: 50px;">
+					       		<td>&nbsp;</td>
+					       		<td>
+					       			<input type="hidden" name="nextUrl" value="contribute_list.jspx"/>
+				                    <input type="hidden" name="id" value="${content.id}"/>
+				                    <input type="submit" value="提交" class="member_button"/> <input type="reset" value="重置" class="member_button"/>
+					       		</td>
+					       </tr>
+                        </table>
+                    </form>
+                    [#else]
+		            <div>系统不允许投稿，请联系管理员！</div>
+		            [/#if]
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--end: 主题内容-->
+<!--begin: 尾部内容-->
+<div id="footer"><script class="" type="text/javascript" src="/${res}/djjs/footer.js"></script></div>
+<!--end: 尾部内容-->
 </body>
 </html>

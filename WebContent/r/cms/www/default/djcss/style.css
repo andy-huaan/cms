@@ -1150,8 +1150,8 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
     padding: 0 10px;
 }
 #act_content .act_content .link{
-    float: right;
-    margin-right: 50px;
+    float: left;
+    margin-right: 10px;
     padding: 1px 15px;
     border-radius: 10px;
     background: #F6BB43;
