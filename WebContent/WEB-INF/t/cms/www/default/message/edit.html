@@ -14,35 +14,36 @@ function toSend(){
 	$("#jvForm").submit();
 }
 </script>
+<style>
+input[type="text"]{
+	height: 30px;
+	width: 200px;
+}
+</style>
    <div class="mc_content">  
     <form id="jvForm" action="message_update.jspx" method="post" target="parent">
      <table width="98%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#C8DCF0" style="margin:5px;">
      	<tr>
-         <td width="86" height="25" align="right" bgcolor="#FAF9FE">·¢¼şÈË</td>
+         <td width="86" height="25" align="right" bgcolor="#FAF9FE">æ”¶ä»¶äºº</td>
          <td width="626" bgcolor="#FFFFFF">
          <input type="text" id="username" name="username" maxlength="150" class="required" onchange="find_user()" value="${message.msgReceiverUser.username!}"/>
           <span class="STYLE1">*</span><span style="color: red;" id="usernameMsg"></span></td>
        </tr>
        <tr>
-         <td width="86" height="25" align="right" bgcolor="#FAF9FE">Ö÷Ìâ</td>
+         <td width="86" height="25" align="right" bgcolor="#FAF9FE">ä¸»é¢˜</td>
          <td width="626" bgcolor="#FFFFFF"><input type="text" name="msgTitle" maxlength="150" class="required" [#if message??]value="${message.msgTitle!}"[/#if]/> <span class="STYLE1">*</span></td>
        </tr> 
        <tr>
-         <td height="25" align="right" bgcolor="#FAF9FE">ÄÚÈİ</td>
+         <td height="25" align="right" bgcolor="#FAF9FE">å†…å®¹</td>
          <td bgcolor="#FFFFFF">
 			<textarea style="width:100%;height:350px" name="msgContent">${message.msgContent?html}</textarea>
 		 </td>
        </tr> 
        <tr>
-			  <td width="13%" height="30" align="right" bgcolor="#fafafa">ÑéÖ¤Âë</td>
+			  <td width="13%" height="30" align="right" bgcolor="#fafafa">éªŒè¯ç </td>
 			  <td bgcolor="#FFFFFF">
 			 <input type="text" name="captcha" maxlength="20" class="required"/> 
-			   </td>
-       </tr>
-       <tr>
-			  <td width="13%" align="right" bgcolor="#fafafa"></td>
-			  <td bgcolor="#FFFFFF">
-			 <img id="messageCaptcha" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()"/>
+			  <img style="position: absolute;margin-top: -2px;margin-left: 15px;height: 35px;" id="messageCaptcha" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()"/>
 			   </td>
        </tr>
        <tr>
@@ -50,7 +51,7 @@ function toSend(){
 		 <input type="hidden" name="nextUrl" value="message_mng.jspx?box=2" id="nextUrl"/>
 		 <input type="hidden" name="box" value="1" id="box"/>
 		 <input type="hidden" name="id" value="${message.id}"/>
-	     <input type="submit" value="ĞŞ¸Ä" class="member_button"/> <input type="button" value="·¢ËÍ" onclick="toSend()" class="member_button"/><input type="reset" value="ÖØÖÃ" class="member_button"/>
+	     <input type="submit" value="ä¿å­˜" class="member_button"/> <input type="button" value="å‘é€" onclick="toSend()" class="member_button"/><input type="reset" value="é‡ç½®" class="member_button"/>
 		 </td>
          </tr>
      </table>

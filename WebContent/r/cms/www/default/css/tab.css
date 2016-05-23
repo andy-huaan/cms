@@ -35,7 +35,7 @@ border:solid #ccc 1px;border-bottom:none;color:#333;}
 
 .tab{ width:540px; margin-left:10px; border-left:1px solid #ccc;}
 .tab li{float:left;}
-.normaltab{background:url(../img/member/member-titbg2.gif) repeat-x; height:37px; width:82px; line-height:36px; text-align:center; cursor:pointer; color:#666; border-right:1px solid #ccc;}
+.normaltab{height:37px; width:82px; line-height:36px; text-align:center; cursor:pointer; color:#666; border-right:1px solid #ccc;}
 .curr{background:url(../img/member/member-titbg1.gif) no-repeat; width:75px; height:38px; line-height:36px; text-align:center;}
 .undis{display:none;}
 .mc_content iframe {border:none;width:100%;height:660px; font-size:12px; margin-top:-10px;}

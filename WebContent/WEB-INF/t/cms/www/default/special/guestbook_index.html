@@ -1,42 +1,41 @@
-<!DOCTYPE HTML>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>用户留言 - ${site.name} - Powered by JEECMS</title>
-<meta http-equiv="keywords" content="用户留言"/>
-<meta http-equiv="description" content="用户留言"/>
-
-<!--[if lt IE 9]>
-<script src="${resSys}/html5.js" type="text/javascript"></script>
-<![endif]-->
-<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
-
-<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<!DOCTYPE html>
+<html lang="zh-CH" >
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+    <title>用户留言 - ${site.name}</title>
+    <link rel="stylesheet" href="/${res}/djcss/bootstrap.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/style.css"/>
+    <link rel="stylesheet" href="/${res}/djcss/second.css"/>
+    <link rel="shortcut icon" href="/${res}/djimages/favicon-ico.png"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/${res}/djjs/bootstrap.js"></script>
+    <script type="text/javascript" src="/${res}/djjs/index.js"></script>
+    <link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
 <script src="${resSys}/jquery.js" type="text/javascript"></script>
 <script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
-<script src="${resSys}/front.js" type="text/javascript"></script>
-<style type="text/css">
-/*留言板页样式*/
-.relpy{margin-top:10px;color:#006600; width:555px; padding-right:10px;}
-</style>
+    
+    <script src="${resSys}/front.js" type="text/javascript"></script>
 </head>
 <body>
-<div class="container">
-	[#include "../include/header.html"/]
-    [#include "../include/search_csi.html"/]
-    [#include "../include/navi.html"/]
-    <div class="w670">
-        <div class="hundred100 mt10">
-        	<div class="AreaTitle">留言列表</div>
-        	<div class="lybCon">
-                [@cms_guestbook_page siteId=site.id count='5' checked='1']
-                [#list tag_pagination.list as m]
-                <dl>
-                    <div class="lybTX">
-                        [#if m.member?? && m.member.userImg??]
+<!--begin: 导航条-->
+[#include "../include/navi.html"/]
+<!--end: 导航条-->
+<!--begin: 主题内容-->
+<section>
+    <div id="act_main_text" class="margin-top10px over_flow">
+        <div id="leave_list">
+            <h5>留言列表</h5>
+            [@cms_guestbook_page siteId=site.id count='5' checked='1']
+            <ul class="leave_list">
+            	[#list tag_pagination.list as m]
+                <li>
+                    <div class="photo">
+                    	[#if m.member?? && m.member.userImg??]
                         [#if m.member.userImg!=""]
-                        <img src="${m.member.userImg!}"  height="50" width="50"/>
+                        <img class="img-rounded" src="${m.member.userImg!}"/>
                         [#else]
                         <img src="/${res}/img/member/member-phtot.gif" height="50" width="50"/>
                         [/#if]
@@ -44,84 +43,88 @@
                         <img src="/${res}/img/member/member-phtot.gif" height="50" width="50"/>
                         [/#if]
                     </div>
-        
-                    <div class="lybMessage">
-                        <h1>[${m.ctg.name!}]&nbsp;${m.contentHtml!}</h1>
-                        <span style="color:#E66100; font-size:12px;">${(m.member.username)!'匿名网友'} 于${m.createTime}{评论}：</span>
-                        <span style="color:#959595; font-size:12px; line-height:20px;">[@text_cut s=m.contentHtml len=60/]</span>
-                        <div class="clear"></div>
-                        <img src="../../${res}/img/guestbook/icon_message.gif" class="lybImg">
-                        <h4>&nbsp;管理员回复：[@text_cut s=m.replyHtml len=30/]</h4>
+                    <div class="leave_text">
+                        <div class="head">[<span>${m.ctg.name!}</span>] <span>${m.contentHtml!}</span></div>
+                        <div class="font-yellow"><span>${(m.member.username)!'匿名网友'}</span>于<span>${m.createTime}</span>{评论}: <span class="font-default" title=${m.contentHtml}>[@text_cut s=m.contentHtml len=60/]</span></div>
+                        <div class="font-blue">管理员回复： <span title=${m.replyHtml!}>[@text_cut s=m.replyHtml len=30/]</span></div>
                     </div>
-                </dl>
-                <div class="clear"></div>
-                <div style="border-bottom:1px dashed #d6d6d6;"></div>
-                [/#list]		   
-                <div class="pagesite">[@cms_pagination sysPage='1'/]</div>
-                [/@cms_guestbook_page]
+                </li>
+                [/#list]
+            </ul>
+            <div style="height: 40px;line-height: 60px;text-align: center;">
+            [@cms_pagination sysPage='1'/]
             </div>
+            [/@cms_guestbook_page]
         </div>
-    	<div class="clear-10"></div>
-        <div class="hundred100">
-        	<div class="AreaTitle">发表留言</div>
-            <div class="lybCon">
+        <div class="common_details" id="hotline">
+            <div class="title fontweight">发表留言</div>
             <form id="guestbookForm" action="${base}/guestbook.jspx" method="post">
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px;">
-            <tr>
-            <td width="15%" height="35" align="right" bgcolor="#fafafa">类别：</td>
-            <td bgcolor="#FFFFFF">
-            <select name="ctgId" class="contactTex1">
-            [@cms_guestbook_ctg_list siteId=site.id]
-            [#list tag_list as ctg]
-            <option value="${ctg.id}">${ctg.name}</option>
-            [/#list]
-            [/@cms_guestbook_ctg_list]
-            </select>	          </td>
-            <td width="15%" align="right" bgcolor="#FAFAFA">电子邮箱：</td>
-            <td bgcolor="#FFFFFF">
-            <input type="text" name="email" class="contactTex1" maxlength="100"/>
-            </td>
-            </tr>
-            <tr>
-            <td width="15%" height="35" align="right" bgcolor="#fafafa">电话：</td>
-            <td bgcolor="#FFFFFF">
-            <input type="text" name="phone" class="contactTex1" maxlength="50"/></td>
-            <td width="15%" align="right" bgcolor="#FAFAFA">QQ：</td>
-            <td bgcolor="#FFFFFF">
-            <input type="text" name="qq" class="contactTex1"/></td>
-            </tr>
-            <tr>
-            <td width="15%" height="35" align="right" bgcolor="#fafafa">标题：</td>
-            <td colspan="3" bgcolor="#FFFFFF">
-            <input name="title" type="text" size="40" class="contactTex1" maxlength="255"/></td>
-            </tr>
-            <tr>
-            <td width="15%" align="right" valign="middle" bgcolor="#fafafa">
-            留言内容：
-            </td>
-            <td colspan="3" bgcolor="#FFFFFF">
-            <textarea name="content" class="cinput" cols="55" rows="4"></textarea></td>
-            </tr>
-            <tr>
-            <td width="15%" align="right" bgcolor="#fafafa">验证码：</td>
-            <td colspan="3" bgcolor="#FFFFFF">
-            <div style="float:left; margin-top:10px;">
-            <input type="text" name="captcha" class="plcode" maxlength="20" vld="{required:true}"/> 
-            </div>
-            <div style="float:left;">
-            <img id="guestbookCaptcha" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()"/>
-            </div>
-            </td>
-            </tr>
-            <tr>
-            <td colspan="4" align="center" bgcolor="#FFFFFF">
-            <div class="clear-10"></div>
-            <input type="hidden" name="sessionId" id="sessionId" />
-            <input type="image" id="submit"  name="submit" value="留言"  src="/${res}/img/guestbook/gb-button.gif"/>
-            </td>
-            </tr>
+            <table class="leave_table">
+                <tr>
+                    <td>留言须知</td>
+                    <td>
+                        <div class="head">
+                            <div>欢迎您向酒仙桥政府留言。<span class="color">在本平台留言的范围仅限于所有关于酒仙桥的业务</span></div>
+                            <div>您在写留言时，请遵从法规条例，并按照要求准确填写相关信息，我们将在规定期限给与答复。</div>
+                            <div>为方便留言的查看与反馈，一封邮件只能放映一个问题或者同类问题，请勿在留言期间反复投递。</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>类别：</td>
+                    <td>
+                        <select name="ctgId" style="width: 200px;height: 25px;">
+			            [@cms_guestbook_ctg_list siteId=site.id]
+			            [#list tag_list as ctg]
+			            <option value="${ctg.id}">${ctg.name}</option>
+			            [/#list]
+			            [/@cms_guestbook_ctg_list]
+			            </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>电子邮箱：</td>
+                    <td>
+                        <input type="text" name="email" class="input" maxlength="100"/><span>（不对外公开）</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>电话：</td>
+                    <td>
+                        <input type="text" name="phone" class="input" maxlength="50"/><span>（不对外公开）</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>留言主题：</td>
+                    <td>
+                        <input name="title" type="text" size="40" class="input" maxlength="255"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>留言内容：</td>
+                    <td>
+                         <textarea name="content" class="cinput" cols="55" rows="4"></textarea>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td>验证码：</td>
+                    <td>
+                        <input type="text" name="captcha" class="input" maxlength="20" vld="{required:true}"/>
+                        <span class="valid_code">
+                            <img id="guestbookCaptcha" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()"/>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="hidden" name="sessionId" id="sessionId" />
+            			<input type="image" id="submit"  name="submit" value="留言"  src="/${res}/img/guestbook/gb-button.gif"/>
+                    </td>
+                </tr>
             </table>
-            </form>                                           
+            </form>
             <script type="text/javascript">
             $(function() {
             	$("#sessionId").val($.cookie("JSESSIONID"));
@@ -145,15 +148,13 @@
 	                return false;
 	            });
             });
-            
             </script> 
-            </div>
         </div>
-	</div>
-    
-    [#include "../include/right4.html"/]
-    [#include "../include/friend_link.html"/]
-	[#include "../include/footer.html"/]
-</div>
+    </div>
+</section>
+<!--end: 主题内容-->
+<!--begin: 尾部内容-->
+<div id="footer"><script class="" type="text/javascript" src="/${res}/djjs/footer.js"></script></div>
+<!--end: 尾部内容-->
 </body>
 </html>

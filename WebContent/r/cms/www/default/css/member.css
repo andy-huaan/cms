@@ -63,6 +63,7 @@ img{border:none; float:none;}
 /*member_center_center_end*/
 
 .mc_right{width:810px;float:left;height:auto;}
+.mc_right2{width:100%;float:left;height:auto;}
 .mc_top_bj{background:url(../img/member/web_top_bj1.jpg) left 7px no-repeat;height:85px;}
 .mc_top_bj .page_tit{float:left;width:130px;height:35px;line-height:35px;overflow:hidden;font-size:14px;font-weight:bold;padding-left:70px;margin-top:40px;margin-left:5px;}
 .mc_top_bj .user_info_cs{float:left;width:500px;padding-right:15px;text-align:right;line-height:35px;height:35px;margin-top:40px;}
@@ -78,9 +79,9 @@ img{border:none; float:none;}
 
 /*member_center_right_end*/
 
-.tblist{margin:10px auto; width:98%; text-align:center;}
-.tblist th{height:29px; line-height:29px; color:#3c3c3c; background:url(../img/member/th_bg.jpg) repeat-x; font-size:12px;}
-.tblist td{height:25px; line-height:25px;font-size:12px;}
+.tblist{margin:10px auto; width:100%; text-align:center;}
+.tblist th{height:40px; line-height:40px; color:#3c3c3c; font-size:12px;}
+.tblist td{height:40px; line-height:40px;font-size:12px;}
 .bg_over td{border-bottom:1px solid  #EAEAEA;}
 .bg_out{border-bottom:1px solid #EAEAEA;}
 .bg_out td{border-bottom:1px solid #EAEAEA;}

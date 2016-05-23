@@ -418,8 +418,8 @@ function optUnPigeonhole() {
 	<form class="ropt">
 		<@cms_perm url="/content/v_add.do">
 		 <ul id="jsddm">
-	        <li style="background-image:url(${base}/res/common/img/theme/top_menu_butten.png); width:80px; height:21px; line-height:21px;"><a href="#" style=" text-align:center;"><@s.m "content.opt.publish"/></a>
-	        <ul>
+	        <li style="background-image:url(${base}/res/common/img/theme/top_menu_butten.png); width:150px; height:21px; line-height:21px;"><a href="#" style=" text-align:center;width:150px;"><@s.m "content.opt.publish"/></a>
+	        <ul style="width: 150px;">
 	            <#list models as m>
 			 	<li value="1">
 	            <a href="v_add.do?modelId=${m.id}&cid=${cid!}"">
