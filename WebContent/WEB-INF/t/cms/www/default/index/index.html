@@ -138,14 +138,10 @@
                 </div>
                 <div class="col-xs-4">
                     <ul class="qus_link">
-                        <li class="ques"><span></span><a href="javascript:void(0);" data-id="1">常见问题&nbsp;&nbsp;&nbsp;&gt;</a></li>
-                        [#if user??]
+                        <li class="ques"><span></span><a href="${base}/question/index.jhtml" data-id="1">常见问题&nbsp;&nbsp;&nbsp;&gt;</a></li>
                         <li class="msg"><span></span><a href="${base}/guestbook.jspx" data-id="2">留言咨询&nbsp;&nbsp;&nbsp;&gt;</a></li>
-                        [#else]
-                        <li class="msg"><span></span><a href="${base}/login.jspx?returnUrl=/" data-id="2">留言咨询&nbsp;&nbsp;&nbsp;&gt;</a></li>
-                        [/#if]
                         <li class="online"><span></span><a href="http://wpa.qq.com/msgrd?v=3&uin=1036661027&site=qq&menu=yes" data-id="3">在线咨询&nbsp;&nbsp;&nbsp;&gt;</a></li>
-                        <li class="service"><span></span><a href="javascript:void(0);" data-id="4">服务热线&nbsp;&nbsp;&nbsp;&gt;</a></li>
+                        <li class="service"><span></span><a href="${base}/hotline/index.jhtml" data-id="4">服务热线&nbsp;&nbsp;&nbsp;&gt;</a></li>
                     </ul>
                 </div>
             </div>
@@ -191,11 +187,11 @@
         <div class="icon">
             <div class="tile-group over_flow">
                 <a class="tile wide num1" href="${base}/activity/index.jhtml"><div class="wrap"><div><span class="icon_img wide1"></span>热门活动</div></div></a>
-                <a class="tile num2" href="#"><div class="wrap"><div><span class="icon_img"></span>缴纳党费<br/><span class="charge">￥12345</span></div></div></a>
-                <a class="tile num3" href="#"><div class="wrap"><div><span class="icon_img"></span>入住党员<br/><span class="number_1">23235人</span></div></div></a>
-                <a class="tile wide num4" href="#"><div class="wrap"><div><span class="icon_img wide2"></span>通知公告</div></div></a>
-                <a class="tile num5" href="#"><div class="wrap"><div><span class="icon_img"></span>开展活动<br/><span class="number_2">&nbsp;&nbsp;930次</span></div></div></a>
-                <a class="tile num6" href="#"><div class="wrap"><div><span class="icon_img"></span>入住支部<br/><span class="number_3">&nbsp;&nbsp;126个</span></div></div></a>
+                <a class="tile num2" href="javascript:void(0);"><div class="wrap"><div><span class="icon_img"></span>缴纳党费<br/><span class="charge">￥12345</span></div></div></a>
+                <a class="tile num3" href="javascript:void(0);"><div class="wrap"><div><span class="icon_img"></span>入住党员<br/><span class="number_1">23235人</span></div></div></a>
+                <a class="tile wide num4" href="${base}/notify/index.jhtml"><div class="wrap"><div><span class="icon_img wide2"></span>通知公告</div></div></a>
+                <a class="tile num5" href="javascript:void(0);"><div class="wrap"><div><span class="icon_img"></span>开展活动<br/><span class="number_2">&nbsp;&nbsp;930次</span></div></div></a>
+                <a class="tile num6" href="javascript:void(0);"><div class="wrap"><div><span class="icon_img"></span>入住支部<br/><span class="number_3">&nbsp;&nbsp;126个</span></div></div></a>
             </div>
         </div>
     </div>
