@@ -45,7 +45,7 @@
                             <img class="goods_img" src="${a.typeImg!site.typeImg}"  />
                         </div>
                         [/#if]
-                        <a class="rent_room">
+                        <a class="rent_room" href="${a.url}" title="${a.title}" target="_blank">
                             <div class="div1">[@text_cut s=a.title len=22 append='...' /]</div>
                             <div class="site"><span>${a.attr.quyu}</span></div>
                             <div class="describe">
@@ -61,7 +61,7 @@
                     [/#list]
                 </ul>
             </div>
-            <div class="text-right">
+            <div class="text-right" style="height: 40px;line-height: 40px;text-align: center;">
                 [@cms_pagination sysPage='1'/]
             </div>
             [/@cms_content_page]

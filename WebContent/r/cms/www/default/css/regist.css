@@ -25,9 +25,7 @@ Copyright: JEECMS
 .input2/*width:200px; */{height:20px; line-height:20px; border:1px solid #ccc; width:230px;}
 
 .login-button{background:url(../img/member/denglu.gif) no-repeat; width:94px; height:32px; border:0 none; color:#fff; font-size:14px; font-weight:bold; cursor:pointer;}
- .footer{width:980px;margin:0 auto;padding:20px 0;line-height:1.8;text-align:center;color:#999;background:url(../img/member/foot_bg.png) no-repeat 50% 0;}
-.footer a:link,.footer a:visited{color:#999;}
- 
+
  .login-bg{background:url(../img/member/login-bg.gif) no-repeat; width:527px; height:308px;}
 .button001{height:50px; width:63px; background:url(../img/denglu.jpg); background-repeat:repeat-x}
 label.error{font-size:12px;}
