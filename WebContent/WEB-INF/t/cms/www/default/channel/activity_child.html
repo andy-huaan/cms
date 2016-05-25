@@ -46,7 +46,7 @@
                     <ul id="act_list_text">
                     [#list tag_pagination.list as a]
                         <li>
-                            <a href="${a.url}" title="${a.title}" target="_blank" data-id="1" class="title">[@text_cut s=a.title len=22 append='...' /]</a>
+                            <a href="${a.url}" title="${a.title}" target="_blank" data-id="1" class="title">[@text_cut s=a.title len=35 append='...' /]</a>
                             <span class="date">${a.date?string(dateFormat)}</span>
                             <div class="news_detail">
                                 [#if a.typeImg??]

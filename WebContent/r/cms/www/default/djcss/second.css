@@ -40,7 +40,6 @@
 }
 #act_details .detail_man>div:nth-child(2){
     float: left;
-    padding-top: 10px;
     color:#000;
     font-size: 15px;
 }
@@ -426,6 +425,9 @@
 .party_details p{
     color:#6F6F6F;
     padding: 0 0 10px;
+    line-height：17pt;
+}
+.party_details p.text-center{
     margin-bottom: 10px;
     border-bottom: 1px solid #D9D9D9;
 }
@@ -813,7 +815,7 @@
     margin: 30px auto;
 }
 #hotline table.st td{
-    border: 1px solid #000;
+    border: 1px dashed #ccc;
     padding: 8px;
     color:#000;
     font-size: 16px;

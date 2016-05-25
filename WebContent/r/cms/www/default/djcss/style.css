@@ -1741,6 +1741,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
     padding: 5px 15px;
     width:199px;
     border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px dashed #ccc;
 
 }

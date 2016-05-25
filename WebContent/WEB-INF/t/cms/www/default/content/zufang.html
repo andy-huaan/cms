@@ -36,76 +36,105 @@
 	</script>
 </head>
 <body>
+<!--begin: 导航条-->
 [#include "../include/navi.html"/]
 <!--end: 导航条-->
 <!--begin: 主题内容-->
-<section>
-    <div id="act_main_text" class="margin-top10px over_flow">
-    	<div class="website">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a target="_blank" href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list] > 正文</div>
-        <div class="party_details" id="detail1">
-            <h3 class="text-center">${content.title}</h3>
-            <p class="text-center"><span>发布时间：<span>${content.releaseDate}&nbsp;&nbsp;</span>来源： ${content.origin!'本站原创'} &nbsp; 浏览次数：<span id="views"></span></span></p>
-            [#if pagination.firstPage]
-            [#if content.description??]
-            <div class="summary"><span style="color:#ff0000; font-weight:bold;">摘要:</span> [@text_cut s=content.description append='...'/]</div>
-            [/#if]
-            [/#if]
-            <div>
-            	[#if preview??]
-	             [@text_cut s=txt! len=100  append="..."/]<br/>
-	                                 您需要更高的权限浏览全部内容!<br/>以下会员组可浏览全部内容:
-	             [#list groups as g]
-	                ${g.name!}[#if g_has_next],[/#if]
-	             [/#list]              
-	            [#else]
-	              ${txt!}
-	            [/#if]
-            </div>
-        </div>
-
-        <div class="user_comment">
-            <div class="comment_ico">
-                [#if channel.allowScore]
-	             <!-- 评分开始 -->
-	             <div class="score" style="clear:both;">
-	               [#include "inc_score.html"/]
-	             </div>
-	             <!-- 评分结束 -->
-	            [/#if]
-            </div>
-            <div class="share margin-top10px">
-                [#if channel.allowShare]
-	             <!-- bshare start -->
-	              [#include "inc_share.html"/]
-	             <!-- bshare分享 end -->
-	            [/#if]
-            </div>
-            <div class="support">
-                [#if channel.allowUpdown]
-                <div class="favour" onclick="Cms.up('${base}',${content.id},${content.ups});"><span id="ups">0</span><button>顶</button></div>
-                <div class="favour cut" onclick="Cms.down('${base}',${content.id},${content.downs});"><span id="downs">0</span><button>踩</button></div>
-                [/#if]
-                <div class="last">
-                    <div>上一篇：<span class="pages">[@cms_content id=content.id next='1' channelId=channel.id][#if tag_bean??]<a href="${tag_bean.url}">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]</span></div>
-                    <div>下一篇：<span class="pages">[@cms_content id=content.id next='0' channelId=channel.id][#if tag_bean??]<a href="${tag_bean.url}">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]</span></div>
+<section id="assistance">
+    <div id="assist_main_text" class="over_flow">
+        <div id="act_details">
+    		<div class="website">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a target="_blank" href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list] > 正文</div>
+            <div class="title"><span>房源详情</span></div>
+            <div class="view">
+                <h4>${content.title}</h4>
+                <div class="detail_man">
+                    <div>
+                    	<img class="detail_img" src="${content.typeImg!site.defImg}"  />
+                    </div>
+                    <div>
+                        <div>区域：<span class="initiator">${content.attr.quyu!}</span></div>
+                        <div>户型：<span class="star_time">${content.attr.huxing!}</span></div>
+                        <div>租期：<span class="end_time">${content.attr.zuqi!}</span></div>
+                        <div>租金：<span class="end_time">${content.attr.zujin!}</span>&nbsp;&nbsp;押金：<span class="end_time">${content.attr.yajin!}</span></div>
+                        <div>联系人：<span class="linkman">${content.author!}</span></div>
+                        <div>联系电话：<span class="site">${content.attr.phone!}</span></div>
+                        <div>配套设施：<span class="scale_num">${content.attr.peitao!}</span></div>
+                    </div>
+                </div>
+                <div class="detail_intro">
+                    <div class="detail_main">
+                        <div class="list_1">
+                            <h4>${content.title}</h4>
+                            <div class="text-center"><span>发布时间：<span>${content.releaseDate}&nbsp;&nbsp;</span>来源： ${content.origin!'本站原创'} &nbsp; 浏览次数：<span id="views"></span></span></div>
+                            <p>${content.txt}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="hundred100">
-	            <div class="rim06">
-	                <!--网友评论_Begin-->
-	                [#if channel.commentControl!=2]
-	                [#include "inc_comment_input.html"/]
-	                [#include "inc_comment_list.html"/]
-	                [/#if]
-	                <!--网友评论_End-->
-	            </div>
-	        </div>
+            <div class="view">
+	            <div class="user_comment">
+		            <div class="comment_ico">
+		                [#if channel.allowScore]
+			             <!-- 评分开始 -->
+			             <div class="score" style="clear:both;">
+			               [#include "inc_score.html"/]
+			             </div>
+			             <!-- 评分结束 -->
+			            [/#if]
+		            </div>
+		            <div class="share margin-top10px">
+		                [#if channel.allowShare]
+			             <!-- bshare start -->
+			              [#include "inc_share.html"/]
+			             <!-- bshare分享 end -->
+			            [/#if]
+		            </div>
+		            <div class="support">
+		                [#if channel.allowUpdown]
+		                <div class="favour" onclick="Cms.up('${base}',${content.id},${content.ups});"><span id="ups">0</span><button>顶</button></div>
+		                <div class="favour cut" onclick="Cms.down('${base}',${content.id},${content.downs});"><span id="downs">0</span><button>踩</button></div>
+		                [/#if]
+		                <div class="last">
+		                    <div>上一篇：<span class="pages">[@cms_content id=content.id next='1' channelId=channel.id][#if tag_bean??]<a href="${tag_bean.url}">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]</span></div>
+		                    <div>下一篇：<span class="pages">[@cms_content id=content.id next='0' channelId=channel.id][#if tag_bean??]<a href="${tag_bean.url}">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]</span></div>
+		                </div>
+		            </div>
+		            <div class="hundred100">
+			            <div class="rim06">
+			                <!--网友评论_Begin-->
+			                [#if channel.commentControl!=2]
+			                [#include "inc_comment_input.html"/]
+			                [#include "inc_comment_list.html"/]
+			                [/#if]
+			                <!--网友评论_End-->
+			            </div>
+			        </div>
+		        </div>
+		    </div>    
+        </div>
+        <div id="assist_right">
+            <div><span class="heading">顺风车消息</span></div>
+            <ul>
+                [@cms_content_list count='20' orderBy='4' titLen='15' channelId='100,101'  channelOption='1' dateFormat='MM-dd']
+                [#list tag_list as a]
+                  <li><a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /]</a><span class="date">${a.date?string(dateFormat)}</span></li>
+                [/#list]
+                [/@cms_content_list]
+            </ul>
         </div>
     </div>
+    <script>
+        $(".title_nav div").click(function(){
+            $(this).addClass("hover").siblings().removeClass("hover");
+            var n=$(this).data("id");
+            $(".detail_main .list_"+n).show().siblings().hide();
+        });
+    </script>
 </section>
 <!--end: 主题内容-->
 <!--begin: 尾部内容-->
 <div id="footer"><script class="" type="text/javascript" src="/${res}/djjs/footer.js"></script></div>
 <!--end: 尾部内容-->
+
 </body>
 </html>

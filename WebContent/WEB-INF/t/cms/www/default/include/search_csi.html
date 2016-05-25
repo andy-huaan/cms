@@ -26,9 +26,9 @@ function qkeypress(){
 <form action="${base}/search.jspx" target="_blank" id="searchForm">
     <div class="ui-widget">
         <div class="searchBg">
-        	<input name="q" value="${oldq!'请输入关键词'}" type="text" onfocus="if(this.value=='请输入关键词')this.value=''"  onkeypress="qkeypress()" onblur="if(this.value=='')this.value='请输入关键词'"  maxlength="50" autocomplete="off" style="width:520px;"/>
+        	<input name="q" value="${oldq!'请输入关键词'}" type="text" onfocus="if(this.value=='请输入关键词')this.value=''"  onkeypress="qkeypress()" onblur="if(this.value=='')this.value='请输入关键词'"  maxlength="50" autocomplete="off" style="width:520px;height: 42px;"/>
         </div>
     </div>
-    <button type="submit" class="submit">查询</button>
+    <button type="submit" class="submit" style="padding: 10px 20px;">查询</button>
     </form>
   <!-- 搜索_end -->
