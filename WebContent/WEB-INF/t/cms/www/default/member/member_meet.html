@@ -76,134 +76,65 @@
 [#include "../include/navi.html"/]
 <!--end: 导航条-->
 <!--begin: 主题内容-->
+[#if pagination.list?size gt 0]
+<form id="tableForm" action="member/member_meet.jspx" method="get">
 <section id="chat">
     <div class="chat_content">
         <ul class="over_flow chat_view">
-            <!--<li>-->
-                <!--<div class="chat_img"><div></div></div>-->
-                <!--<div class="chat_name"><span class="group_name">烫武林</span><a id="flower"></a><span class="meet_num">(14)</span><a id="like"></a></div>-->
-                <!--<div class="chat_intro">86年，女，1.70，未婚，96年加入共产党，计算机专业，有房，现住北京，善于交友!</div>-->
-                <!--<div class="chat_me"><span class="call">打招呼</span><span class="msg">发信息</span></div>-->
-            <!--</li>-->
+        	[#list pagination.list as c]
+            <li>
+                <div class="chat_img">
+                	<img src="" alt=""/>
+                </div>
+                <div class="chat_name"><span class="group_name">${c.realname!"匿名"}</span><span class="meet_num">党组织</span></div>
+                <div class="chat_name"><span>性别：[#if c.gender??]${c.gender?string('男','女')}[#else]保密[/#if]&nbsp;&nbsp;</span><span title="${c.comefrom!}">来自：[@text_cut s=c.comefrom!"未设置地区" len='7' append='......'/]</span></div>
+                <div class="chat_intro" style="height: 50px;padding: 10px 10px 10px;">
+                	[@text_cut s=c.intro!"暂无个人详细信息" len='35' append='......'/]
+                </div>
+                <div class="chat_me"><span class="call">[#if c.qq?? && c.qq!=""]<a href="http://wpa.qq.com/msgrd?v=3&uin=${c.qq}&site=qq&menu=yes">好友聊</a>[#else]未开放[/#if]</span><span class="msg"><a href="${base}/member/message_mng.jspx">发消息</a></span>
+                </div>
+            </li>
+            [/#list]
         </ul>
     </div>
     <div class="text-center">
-        <ul class="pagination">
-            <!--<li>-->
-                <!--<a href="#" aria-label="Previous">-->
-                    <!--<span aria-hidden="true">&lt;</span>-->
-                <!--</a>-->
-            <!--</li>-->
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-                <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&gt;</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div id="input_box" class="msg_box">
-        <div class="input_box">
-            <div class="msg_name">输入给<span class="meet_name">唐武林</span>的留言<span class="close_box">x</span></div>
-            <div>
-                <textarea placeholder="输入您的留言"></textarea>
-                <span class="wordwrap"><var class="word">100</var>/100</span>
-            </div>
-            <div class="text-center margin-top10px"><button id="sub_report" class="btn btn-danger">发送</button></div>
-        </div>
-    </div>
-    <div id="input_box" class="call_box">
-        <div class="input_box">
-            <div class="msg_name">打个招呼<span class="close_box">x</span></div>
-            <div>
-                <table>
-                    <tr>
-                        <td><input type="radio"/><img src="../djimages/call2.gif"/><span>大笑</span></td>
-                        <td><input type="radio"/><img src="../djimages/call3.gif"/><span>互赞</span></td>
-                        <td><input type="radio"/><img src="../djimages/call1.gif"/><span>害羞</span></td>
-                    </tr>
-                    <tr>
-                        <td><input type="radio"/><img src="../djimages/call2.gif"/><span>大笑</span></td>
-                        <td><input type="radio"/><img src="../djimages/call3.gif"/><span>互赞</span></td>
-                        <td><input type="radio"/><img src="../djimages/call1.gif"/><span>害羞</span></td>
-                    </tr>
-                    <tr>
-                        <td><input type="radio"/><img src="../djimages/call2.gif"/><span>大笑</span></td>
-                        <td><input type="radio"/><img src="../djimages/call3.gif"/><span>互赞</span></td>
-                        <td><input type="radio"/><img src="../djimages/call1.gif"/><span>害羞</span></td>
-                    </tr>
-                    <tr>
-                        <td><input type="radio"/><img src="../djimages/call2.gif"/><span>大笑</span></td>
-                        <td><input type="radio"/><img src="../djimages/call3.gif"/><span>互赞</span></td>
-                        <td><input type="radio"/><img src="../djimages/call1.gif"/><span>害羞</span></td>
-                    </tr>
-                </table>
-                <div>
-                </div>
-            </div>
-            <div>
-                <textarea placeholder=""></textarea>
-                <div class="margin-left10px">内容为可选，并且会覆盖之前的打招呼，最多10个字</div>
-            </div>
-            <div class="text-right margin-top10px"><button id="sub_call" class="btn btn-danger">发送</button></div>
-        </div>
+    	<input type="hidden" name="pageNo"/>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+	        <tr>
+		        <td align="center" class="pn-sp">
+					共 ${pagination.totalCount} 条&nbsp;
+					每页 ${pagination.pageSize} 条&nbsp;
+					<input type="button" value="首 页" onclick="_gotoPage('1');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+					<input type="button" value="上一页" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if]/>
+					<input type="button" value="下一页" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>
+					<input type="button" value="尾 页" onclick="_gotoPage('${pagination.totalPage}');"[#if pagination.lastPage] disabled="disabled"[/#if]/>&nbsp;
+					当前 ${pagination.pageNo}/${pagination.totalPage} 页 &nbsp;转到第<input type="text" id="_goPs" style="width:50px;border: 1px solid #CCC;" onfocus="this.select();" onkeypress="if(event.keyCode==13){$('#_goPage').click();return false;}"/>页
+					<input id="_goPage" type="button" value="转" onclick="_gotoPage($('#_goPs').val());"[#if pagination.totalPage==1] disabled="disabled"[/#if]/>
+				</td>
+			</tr>
+		</table>
+		<script type="text/javascript">
+		function _gotoPage(pageNo) {
+			try{
+				var tableForm = document.getElementById("tableForm");
+				$("input[name=pageNo]").val(pageNo);
+				tableForm.action="member/member_meet.jspx";
+				tableForm.onsubmit=null;
+				tableForm.submit();
+			} catch(e) {
+				alert('_gotoPage(pageNo)方法出错');
+			}
+		}
+		</script>
     </div>
 </section>
+</form>
+[#else]
+	<div style="height: 40px;line-height: 40px;width: 100%;text-align: center;">暂无用户开放信息</div>
+[/#if]
 <!--end: 主题内容-->
 <!--begin: 尾部内容-->
 <div id="footer"><script class="" type="text/javascript" src="/${res}/djjs/footer.js"></script></div>
 <!--end: 尾部内容-->
-<script>
-    for(var i= 0,html=[];i<12;i++){
-        var com='<li>'+
-                '<div class="chat_img"><div></div></div>'+
-                '<div class="chat_name"><span class="group_name">烫武林</span><a id="flower"></a><span class="meet_num">(14)</span><a id="like"></a></div>'+
-                '<div class="chat_intro">86年，女，1.70，未婚，96年加入共产党，计算机专业，有房，现住北京，善于交友!</div>'+
-                '<div class="chat_me"><span onclick="call(this)" class="call">打招呼</span><span onclick="send(this)" class="msg">发信息</span></div>'+
-                '</li>';
-        html.push(com);
-    }
-    $(".chat_view").html(html.join(""));
-//    打招呼
-    function call(){
-        $(".call_box").fadeIn(500);
-    }
-//    发信息
-    function send(){
-        $(".msg_box").fadeIn(500);
-    }
-    $(".close_box").click(function(){
-        $(".call_box").fadeOut(500);
-        $(".msg_box").fadeOut(500);
-    });
-    //先选出 textarea 和 统计字数 dom 节点
-    var wordCount = $("#input_box"),
-            textArea = wordCount.find("textarea"),
-            word = wordCount.find(".word");
-    statInputNum(textArea,word);
-
-    function statInputNum(textArea,numItem) {
-        var max = numItem.text(),
-                curLength;
-        textArea[0].setAttribute("maxlength", max);
-        curLength = textArea.val().length;
-        numItem.text(max - curLength);
-        textArea.on('input propertychange', function () {
-            numItem.text(max - $(this).val().length);
-        });
-    }
-
-//    打招呼聊天
-    $("td>input").click(function(){
-        var text=$(this).parent().find("span").html();
-        var arr=[];
-        arr.push(text);
-        $(".call_box textarea").val(arr.join(""));
-    });
-</script>
 </body>
 </html>

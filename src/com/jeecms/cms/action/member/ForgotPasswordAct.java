@@ -1,6 +1,8 @@
 package com.jeecms.cms.action.member;
 
 import static com.jeecms.cms.Constants.TPLDIR_MEMBER;
+import static com.jeecms.cms.Constants.TPLDIR_MESSAGE;
+import static com.jeecms.common.page.SimplePage.cpn;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jeecms.common.email.EmailSender;
 import com.jeecms.common.email.MessageTemplate;
+import com.jeecms.common.page.Pagination;
+import com.jeecms.common.web.CookieUtils;
 import com.jeecms.common.web.RequestUtils;
 import com.jeecms.common.web.session.SessionProvider;
 import com.jeecms.core.entity.CmsSite;
+import com.jeecms.core.entity.CmsUser;
+import com.jeecms.core.entity.MemberConfig;
 import com.jeecms.core.entity.UnifiedUser;
+import com.jeecms.core.manager.CmsUserMng;
 import com.jeecms.core.manager.ConfigMng;
 import com.jeecms.core.manager.UnifiedUserMng;
 import com.jeecms.core.web.WebErrors;
@@ -39,6 +46,8 @@ import com.octo.captcha.service.image.ImageCaptchaService;
 public class ForgotPasswordAct {
 	private static Logger log = LoggerFactory
 			.getLogger(ForgotPasswordAct.class);
+	@Autowired
+	private CmsUserMng manager;
 
 	public static final String FORGOT_PASSWORD_INPUT = "tpl.forgotPasswordInput";
 	public static final String FORGOT_PASSWORD_RESULT = "tpl.forgotPasswordResult";
@@ -46,13 +55,20 @@ public class ForgotPasswordAct {
 	public static final String MEMBER_MEET = "tpl.memberMeet";
 	
 	@RequestMapping(value = "/member/member_meet.jspx", method = RequestMethod.GET)
-	public String getUserList(HttpServletRequest request,ModelMap model){
-		
+	public String getUserList(String queryUsername, String queryEmail,Integer pageNo,
+			HttpServletRequest request,ModelMap model){
 		CmsSite site = CmsUtils.getSite(request);
-		
 		FrontUtils.frontData(request, model, site);
+		
+		Pagination pagination = manager.getPage(queryUsername, queryEmail,
+				null, null, null, false, null, cpn(pageNo),20);//CookieUtils.getPageSize(request)
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("pageNo", pageNo);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_MEMBER, MEMBER_MEET);
+		
+		
 	}
 
 	/**
