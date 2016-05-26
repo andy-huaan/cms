@@ -382,6 +382,8 @@ function SetHome(obj,vrl){
             }
             var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
             prefs.setCharPref('browser.startup.homepage',vrl);
+         }else{
+        	 alert("您的浏览器不支持自动设置首页，请手动添加");
          }
     }
 }
@@ -393,7 +395,7 @@ function AddFavorite(sURL, sTitle)
         try{
             window.sidebar.addPanel(sTitle, sURL, "");
         }catch (e){
-            alert("加入收藏失败，请使用Ctrl+D进行添加");
+            alert("您的浏览器不支持自动收藏，请使用Ctrl+D进行添加");
         }	
     }
 }
