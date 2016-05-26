@@ -50,7 +50,7 @@ public class CmsUserDaoImpl extends HibernateBaseDao<CmsUser, Integer>
 			f.append(" and bean.rank<=:rank");
 			f.setParam("rank", rank);
 		}
-		f.append(" order by bean.id desc");
+		f.append(" order by bean.grain desc, bean.id desc");
 		return find(f, pageNo, pageSize);
 	}
 	
