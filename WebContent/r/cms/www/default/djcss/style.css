@@ -1277,9 +1277,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
 .chat_img{
     padding: 10px;
 }
-.chat_img div{
+.chat_img img{
     height:270px;
-    border: 1px solid #ccc;
+    width:100%;
 }
 .chat_name{
     margin: 0 10px 5px;

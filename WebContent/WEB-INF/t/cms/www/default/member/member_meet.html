@@ -84,11 +84,17 @@
         	[#list pagination.list as c]
             <li>
                 <div class="chat_img">
-                	<img src="" alt=""/>
+                	<a href="${base}/member/member_detail.jspx?id=${c.id}">
+                	[#if c.userImg?? && c.userImg!=""]
+		         		<img src="${c.userImg!}" />
+		            [#else]
+		         		<img src="/${res}/img/member/member-phtot.gif"/>
+		         	[/#if]
+		         	</a>
                 </div>
-                <div class="chat_name"><span class="group_name">${c.realname!"匿名"}</span><span class="meet_num">党组织</span></div>
+                <div class="chat_name"><span class="group_name">${c.realname!"匿名"}</span><span class="meet_num">${c.group.name}</span></div>
                 <div class="chat_name"><span>性别：[#if c.gender??]${c.gender?string('男','女')}[#else]保密[/#if]&nbsp;&nbsp;</span><span title="${c.comefrom!}">来自：[@text_cut s=c.comefrom!"未设置地区" len='7' append='......'/]</span></div>
-                <div class="chat_intro" style="height: 50px;padding: 10px 10px 10px;">
+                <div class="chat_intro" style="height: 65px;padding: 10px 10px 10px;">
                 	[@text_cut s=c.intro!"暂无个人详细信息" len='35' append='......'/]
                 </div>
                 <div class="chat_me"><span class="call">[#if c.qq?? && c.qq!=""]<a href="http://wpa.qq.com/msgrd?v=3&uin=${c.qq}&site=qq&menu=yes">好友聊</a>[#else]未开放[/#if]</span><span class="msg"><a href="${base}/member/message_mng.jspx">发消息</a></span>
@@ -97,7 +103,7 @@
             [/#list]
         </ul>
     </div>
-    <div class="text-center">
+    <div class="text-center" style="padding-bottom: 15px;">
     	<input type="hidden" name="pageNo"/>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	        <tr>

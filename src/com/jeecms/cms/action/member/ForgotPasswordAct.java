@@ -1,7 +1,6 @@
 package com.jeecms.cms.action.member;
 
 import static com.jeecms.cms.Constants.TPLDIR_MEMBER;
-import static com.jeecms.cms.Constants.TPLDIR_MESSAGE;
 import static com.jeecms.common.page.SimplePage.cpn;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.jeecms.common.email.EmailSender;
 import com.jeecms.common.email.MessageTemplate;
 import com.jeecms.common.page.Pagination;
-import com.jeecms.common.web.CookieUtils;
 import com.jeecms.common.web.RequestUtils;
 import com.jeecms.common.web.session.SessionProvider;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.entity.CmsUser;
-import com.jeecms.core.entity.MemberConfig;
 import com.jeecms.core.entity.UnifiedUser;
 import com.jeecms.core.manager.CmsUserMng;
 import com.jeecms.core.manager.ConfigMng;
@@ -53,7 +50,9 @@ public class ForgotPasswordAct {
 	public static final String FORGOT_PASSWORD_RESULT = "tpl.forgotPasswordResult";
 	public static final String PASSWORD_RESET = "tpl.passwordReset";
 	public static final String MEMBER_MEET = "tpl.memberMeet";
+	public static final String MEMBER_DETAIL = "tpl.memberDetail";
 	
+	//进入好友聊列表页面
 	@RequestMapping(value = "/member/member_meet.jspx", method = RequestMethod.GET)
 	public String getUserList(String queryUsername, String queryEmail,Integer pageNo,
 			HttpServletRequest request,ModelMap model){
@@ -67,8 +66,25 @@ public class ForgotPasswordAct {
 		model.addAttribute("pageNo", pageNo);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_MEMBER, MEMBER_MEET);
+	}
+	
+	//用户详细信息页面
+	@RequestMapping(value = "/member/member_detail.jspx", method = RequestMethod.GET)
+	public String userDetail(Integer id, HttpServletRequest request, ModelMap model) {
 		
+		CmsSite site=CmsUtils.getSite(request);
+		FrontUtils.frontData(request, model, site);
+		CmsUser user=manager.findById(id);
 		
+		/*List<CmsConfigItem>registerItems=cmsConfigItemMng.getList(site.getConfig().getId(), CmsConfigItem.CATEGORY_REGISTER);
+		List<String>userAttrValues=new ArrayList<String>();
+		for(CmsConfigItem item:registerItems){
+			userAttrValues.add(user.getAttr().get(item.getField()));
+		}*/
+		model.addAttribute("user", user);
+		//model.addAttribute("userAttrValues", userAttrValues);
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_MEMBER, MEMBER_DETAIL);
 	}
 
 	/**
