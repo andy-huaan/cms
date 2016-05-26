@@ -26,6 +26,12 @@
     <script type="text/javascript" src="/${res}/djjs/index.js"></script>
     <link rel="stylesheet" type="text/css" href="../../${res}/css/member.css" />
     <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script type="text/javascript">
+	$(function() {
+		Cms.siteFlow("${base}", location.href, document.referrer, "${site.config.flowSwitch?string}");
+		$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
+	});
+	</script>
     <style type="text/css">
         form div {
             width: 300px;

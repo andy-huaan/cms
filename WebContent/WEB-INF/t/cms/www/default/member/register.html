@@ -19,6 +19,8 @@
 	    $(function() {
 	        $("#jvForm").validate();
 	        $("#guestbookCaptcha").click();
+	        Cms.siteFlow("${base}", location.href, document.referrer, "${site.config.flowSwitch?string}");
+			$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
 	    });
 	</script>
 </head>
