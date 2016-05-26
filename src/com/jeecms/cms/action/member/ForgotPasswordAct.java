@@ -43,6 +43,17 @@ public class ForgotPasswordAct {
 	public static final String FORGOT_PASSWORD_INPUT = "tpl.forgotPasswordInput";
 	public static final String FORGOT_PASSWORD_RESULT = "tpl.forgotPasswordResult";
 	public static final String PASSWORD_RESET = "tpl.passwordReset";
+	public static final String MEMBER_MEET = "tpl.memberMeet";
+	
+	@RequestMapping(value = "/member/member_meet.jspx", method = RequestMethod.GET)
+	public String getUserList(HttpServletRequest request,ModelMap model){
+		
+		CmsSite site = CmsUtils.getSite(request);
+		
+		FrontUtils.frontData(request, model, site);
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_MEMBER, MEMBER_MEET);
+	}
 
 	/**
 	 * 找回密码输入页

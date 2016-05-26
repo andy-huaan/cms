@@ -22,6 +22,7 @@
 				*.jspx = anon
 				*.jhtml = anon
 				/member/forgot_password.jspx = anon
+				/member/member_meet.jspx = anon
 				/member/password_reset.jspx = anon
 				/member/jobapply.jspx = anon
 				/login.jspx = authc
