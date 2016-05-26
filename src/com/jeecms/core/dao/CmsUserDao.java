@@ -14,6 +14,8 @@ public interface CmsUserDao{
 			Integer groupId, Boolean disabled, Boolean admin, Integer rank,
 			int pageNo, int pageSize);
 	
+	public List<CmsUser> getUserList(Integer mofan,int count);
+	
 	public List<CmsUser> getList(String username, String email, Integer siteId,
 			Integer groupId, Boolean disabled, Boolean admin, Integer rank);
 

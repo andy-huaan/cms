@@ -150,24 +150,30 @@
     <div id="rank">
         <div class="rank_view">
             <div class="title over_flow">
-                <div class="hover" data-id="1">党员积分排名</div>
-                <div data-id="2">党支部积分排名</div>
+                <div class="hover" data-id="1" style="width: 100%;">党员积分排名</div>
+                <!-- <div data-id="2">党支部积分排名</div> -->
             </div>
             <div class="main_view">
                 <ul>
                     <li class="service_1">
                         <ul>
-                            <li class="header"><span class="number">排名</span><span class="name">姓名</span><span class="rank">积分</span></li>
-                            <li class="content"><span class="rankBgColor1 number">1</span><span class="name">【酒仙桥】老王</span><span class="rankColor1 rank">30823分</span></li>
-                            <li class="content"><span class="rankBgColor2 number">2</span><span class="name">【酒仙桥】小张</span><span class="rankColor2 rank">30823分</span></li>
-                            <li class="content"><span class="rankBgColor3 number">3</span><span class="name">【酒仙桥】张无忌</span><span class="rankColor3 rank">30823分</span></li>
-                            <li class="content"><span class="number">4</span><span class="name">【酒仙桥】张三丰</span><span class="rank">30823分</span></li>
-                            <li class="content"><span class="number">5</span><span class="name">【酒仙桥】老王</span><span class="rank">30823分</span></li>
-                            <li class="content"><span class="number">6</span><span class="name">【酒仙桥】老王</span><span class="rank">30823分</span></li>
-                            <li class="content"><span class="number">7</span><span class="name">【酒仙桥】老王</span><span class="rank">30823分</span></li>
-                            <li class="content"><span class="number">8</span><span class="name">【酒仙桥】老王</span><span class="rank">30823分</span></li>
+                        	<li class="header"><span class="number">排名</span><span class="name">姓名</span><span class="rank">积分</span></li>
+                        	[@member_list count='9']
+			               	[#list tag_list as a]
+			                    [#if a_index=0]
+					         		<li class="content"><span class="rankBgColor1 number">${a_index+1}</span><a href="${base}/member/member_detail.jspx?id=${a.id}" target="_blank"><span class="name">【${a.attr.party_branch!}】${a.realname!"匿名"}</span></a><span class="rankColor1 rank">${a.grain!}分</span></li>
+					            [#elseif a_index=1]
+					         		<li class="content"><span class="rankBgColor2 number">${a_index+1}</span><a href="${base}/member/member_detail.jspx?id=${a.id}" target="_blank"><span class="name">【${a.attr.party_branch!}】${a.realname!"匿名"}</span></a><span class="rankColor2 rank">${a.grain!}分</span></li>
+					         	[#elseif a_index=2]
+					         		<li class="content"><span class="rankBgColor3 number">${a_index+1}</span><a href="${base}/member/member_detail.jspx?id=${a.id}" target="_blank"><span class="name">【${a.attr.party_branch!}】${a.realname!"匿名"}</span></a><span class="rankColor3 rank">${a.grain!}分</span></li>
+					         	[#else]
+					         		<li class="content"><span class="number">${a_index+1}</span><a href="${base}/member/member_detail.jspx?id=${a.id}" target="_blank"><span class="name">【${a.attr.party_branch!}】${a.realname!"匿名"}</span></a><span class="rank">${a.grain!}分</span></li>	
+					         	[/#if]
+			                [/#list]
+			               	[/@member_list]
                         </ul>
                     </li>
+                    <!-- 
                     <li class="service_2" style="display: none">
                         <ul>
                             <li class="header"><span class="number">排名</span><span class="name">姓名</span><span class="rank">积分</span></li>
@@ -181,6 +187,7 @@
                             <li class="content"><span class="number">8</span><span class="name">【酒仙桥】老王</span><span class="rank">30823分</span></li>
                         </ul>
                     </li>
+                     -->
                 </ul>
             </div>
         </div>
@@ -203,7 +210,7 @@
 <script type="text/javascript">
     $(function () {
         $(".div_bot .service_1").Scroll({line:1,speed:1000,timer:2000});
-        $(".div_bot .service_2").Scroll({line:1,speed:1000,timer:2000});
+        //$(".div_bot .service_2").Scroll({line:1,speed:1000,timer:2000});
     });
 </script>
 </body>

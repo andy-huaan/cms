@@ -1,5 +1,6 @@
 package com.jeecms.core.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -52,6 +53,29 @@ public class CmsUserDaoImpl extends HibernateBaseDao<CmsUser, Integer>
 		}
 		f.append(" order by bean.grain desc, bean.id desc");
 		return find(f, pageNo, pageSize);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<CmsUser> getUserList(Integer mofan,int count){
+		Finder f = Finder.create("select bean from CmsUser bean where 1=1");
+		
+		f.append(" and bean.admin=:admin");
+		f.setParam("admin", false);
+		f.append(" order by bean.grain desc");
+		if(mofan != null && mofan == 1){
+			List<CmsUser> list = find(f);
+			List<CmsUser> re = new ArrayList<CmsUser>();
+			for(CmsUser cu:list){
+				if(re.size() >= count)break;
+				if("是".equals(cu.getAttr().get("mofan"))){
+					re.add(cu);
+				}
+			}
+			return re;
+		}else{
+			f.setMaxResults(count);
+			return find(f);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

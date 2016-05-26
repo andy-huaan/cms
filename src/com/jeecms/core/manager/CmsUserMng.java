@@ -21,6 +21,8 @@ public interface CmsUserMng {
 	
 	public List<CmsUser> getList(String username, String email, Integer siteId,
 			Integer groupId, Boolean disabled, Boolean admin, Integer rank);
+	
+	public List<CmsUser> getUserList(Integer mofan,int count);
 
 	public List<CmsUser> getAdminList(Integer siteId, Boolean allChannel,
 			Boolean disabled, Integer rank);

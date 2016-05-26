@@ -150,27 +150,23 @@
                 <li>
                     <div class="organ_view">
                         <h3>先锋模范</h3>
-                        <a class="organ_intro">
-                            <div class="model over_flow">
-                                <div class="model_img pull-left"></div>
-                                <div class="model_name pull-left"><span class="organ_view_name">梁志辉</span><br/><span class="organ_view_site">朝阳区酒仙桥街道</span><br/><span class="organ_view_duty">党工委副书记</span></div>
-                            </div>
-                            <div class="model_text">针对街道当前项目拆迁任务频繁的情况，他创造性的提出“一个专业的指挥部外加各办线突击作战”的方式，白天着重街道中心工作</div>
-                        </a>
-                        <a class="organ_intro">
-                            <div class="model over_flow">
-                                <div class="model_img pull-left"></div>
-                                <div class="model_name pull-left"><span class="organ_view_name">梁志辉</span><br/><span class="organ_view_site">朝阳区酒仙桥街道</span><br/><span class="organ_view_duty">党工委副书记</span></div>
-                            </div>
-                            <div class="model_text">针对街道当前项目拆迁任务频繁的情况，他创造性的提出“一个专业的指挥部外加各办线突击作战”的方式，白天着重街道中心工作</div>
-                        </a>
-                        <a class="organ_intro">
-                            <div class="model over_flow">
-                                <div class="model_img pull-left"></div>
-                                <div class="model_name pull-left"><span class="organ_view_name">梁志辉</span><br/><span class="organ_view_site">朝阳区酒仙桥街道</span><br/><span class="organ_view_duty">党工委副书记</span></div>
-                            </div>
-                            <div class="model_text">针对街道当前项目拆迁任务频繁的情况，他创造性的提出“一个专业的指挥部外加各办线突击作战”的方式，白天着重街道中心工作</div>
-                        </a>
+                        [@member_list count='8' mofan='1']
+		               	[#list tag_list as a]
+		                    <a class="organ_intro" href="${base}/member/member_detail.jspx?id=${a.id}">
+	                            <div class="model over_flow">
+	                                <div class="model_img pull-left">
+	                                	[#if a.userImg?? && a.userImg!=""]
+							         		<img src="${a.userImg!}" style="width: 90px;height: 90px;" />
+							            [#else]
+							         		<img src="/${res}/img/member/member-phtot.gif" style="width: 90px;height: 90px;"/>
+							         	[/#if]
+	                                </div>
+	                                <div class="model_name pull-left"><span class="organ_view_name">${a.realname!"匿名"}</span><br/><span class="organ_view_site">${a.attr.party_branch!}</span><br/><span class="organ_view_duty">手机：${a.phone!"未公开"}</span></div>
+	                            </div>
+	                            <div class="model_text">[@text_cut s=a.intro!"暂无个人介绍" len=55 append='...' /]</div>
+	                        </a>
+		                [/#list]
+		               	[/@member_list]
                     </div>
                 </li>
             </ul>

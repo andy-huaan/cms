@@ -50,6 +50,17 @@ public class CmsUserMngImpl implements CmsUserMng {
 		return page;
 	}
 	
+	/**
+	 * 获取会员列表
+	 * @param mofan 是否是模范(1:是  空:所有)
+	 * @param count 查询条数
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public List<CmsUser> getUserList(Integer mofan,int count){
+		return dao.getUserList(mofan, count);
+	}
+	
 	@Transactional(readOnly = true)
 	public List<CmsUser> getList(String username, String email, Integer siteId,
 			Integer groupId, Boolean disabled, Boolean admin, Integer rank) {
