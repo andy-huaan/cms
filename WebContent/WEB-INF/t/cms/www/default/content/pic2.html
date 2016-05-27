@@ -20,9 +20,6 @@
 <link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="/${res}/css/responsiveslides.css">
 <link rel="stylesheet" href="/${res}/css/pic_content.css">
-<link rel="stylesheet" href="../djcss/bootstrap.css"/>
-<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
-
 <script type="text/javascript">
 $(function() {
   Cms.checkPerm("${base}","${content.id}");
@@ -181,6 +178,8 @@ var page= 1;
         </dl>
     </div>		
     [/#if]
+	[#include "../include/friend_link.html"/]
+	[#include "../include/footer.html"/]
 </div>
 </body>
 </html>
