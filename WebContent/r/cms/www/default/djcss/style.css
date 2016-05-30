@@ -500,7 +500,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
     border-radius: 50%;
     behavior: url(ie-css3.htc);
     background-color: #ccc;
-    font-size: 15px;
+    font-size: 12px;
     color:#fff;
 }
 #rank .main_view .header span.name{
@@ -637,6 +637,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
 #act_right h2{
     padding: 8px 30px;
     color:#f85556;
+    font-size:18px;
 }
 #act_right .search{
     padding: 10px 30px;
@@ -850,6 +851,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
     color:#f85a5b;
     padding: 12px 30px;
     border-bottom: 1px solid #ccc;
+    font-size:18px;
 }
 #ser_list_text ul{
     margin-left: 30px;
@@ -858,7 +860,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
     color:#000;
     padding-bottom: 10px;
     padding-top: 25px;
-    font-size: 16px;
+    font-size: 15px;
 }
 #ser_list_text li>p{
     padding-bottom: 20px;
@@ -1432,6 +1434,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
     padding: 10px 0 10px 30px;
     color:#FB6E52;
     border-bottom: 1px solid #ccc;
+    font-size:18px;
 }
 #organ_left .organ_text ul.apply{
     margin: 0 0 120px 60px;
