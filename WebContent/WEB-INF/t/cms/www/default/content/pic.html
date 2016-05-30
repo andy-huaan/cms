@@ -120,7 +120,6 @@
 <!--begin: 主题内容-->
 <section>
     <div id="act_main_text" class="margin-top10px over_flow">
-    	<div class="website">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a target="_blank" href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list] > 正文</div>
         <div class="party_details" id="detail1">
             <h3 class="text-center">${content.title}</h3>
             <p class="text-center"><span>发布时间：<span>${content.releaseDate}&nbsp;&nbsp;</span>来源： ${content.origin!'本站原创'} &nbsp; 浏览次数：<span id="views"></span></span></p>
