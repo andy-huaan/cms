@@ -44,6 +44,13 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="td_left"><span>*</span>姓名：</td>
+                    <td>
+                        <input class="form-control" id="realname"  vld="{required:true}" name="realname" type="text" />
+                        <div>请输入真实姓名。</div>
+                    </td>
+                </tr>
+                <tr>
                     <td class="td_left"><span>*</span>邮箱：</td>
                     <td>
                         <input class="input2 required email form-control" id="email" maxlength="30" vld="{remote:'email_unique.jspx',messages:{remote:'email已经被使用！'}}" name="email" type="text" />
@@ -52,13 +59,13 @@
                 </tr>
                 [#include "register_items.html"/]
                 <tr>
-                    <td class="td_left"><span>*</span>密码：</td>
+                    <td class="td_left"><span>*</span>初设密码：</td>
                     <td>
                         <input class="input2 required form-control" id="password" type="password" name="password" vld="{required:true,rangelength:[${site.passwordMinLen},20]}" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="td_left"><span>*</span>密码：</td>
+                    <td class="td_left"><span>*</span>确认密码：</td>
                     <td>
                         <input class="input2 form-control" type="password" equalto="#password" vld="{required:true,rangelength:[${site.passwordMinLen},20]}"/>
                     </td>
