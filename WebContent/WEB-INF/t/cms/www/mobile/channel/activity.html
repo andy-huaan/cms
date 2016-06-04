@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>同心桥</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="active">
+        <div class="active-header"><a class="back-home" href="${base}/index.jhtml"></a>活动树</div>
+         <div class="active-main">
+             <div class="title">文娱活动</div>
+             <div class="index-select active-select">
+                 [@cms_channel id='76']<a href="${tag_bean.url}"><span class="ico ico-active1"></span><br/>讲座培训</a>[/@cms_channel]
+                 [@cms_channel id='77']<a href="${tag_bean.url}"><span class="ico ico-active2"></span><br/>创业路演</a>[/@cms_channel]
+                 [@cms_channel id='78']<a href="${tag_bean.url}"><span class="ico ico-active3"></span><br/>文化娱乐</a>[/@cms_channel]
+                 [@cms_channel id='79']<a href="${tag_bean.url}"><span class="ico ico-active4"></span><br/>体育健身</a>[/@cms_channel]
+                 [@cms_channel id='80']<a href="${tag_bean.url}"><span class="ico ico-active5"></span><br/>美食体验</a>[/@cms_channel]
+             </div>
+             <div class="title">热心公益</div>
+             <div class="index-select active-select hot">
+                 [@cms_channel id='83']<a href="${tag_bean.url}"><span class="ico ico-active6"></span><br/>便民利民</a>[/@cms_channel]
+                 [@cms_channel id='84']<a href="${tag_bean.url}"><span class="ico ico-active7"></span><br/>环保公益</a>[/@cms_channel]
+                 [@cms_channel id='85']<a href="${tag_bean.url}"><span class="ico ico-active8"></span><br/>爱心捐赠</a>[/@cms_channel]
+                 [@cms_channel id='86']<a href="${tag_bean.url}"><span class="ico ico-active9"></span><br/>结对帮扶</a>[/@cms_channel]
+                 [@cms_channel id='87']<a href="${tag_bean.url}"><span class="ico ico-active10"></span><br/>捐资助学</a>[/@cms_channel]
+             </div>
+         </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

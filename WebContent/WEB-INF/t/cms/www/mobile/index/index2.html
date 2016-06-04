@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>首页 - ${site.name} - Powered by JEECMS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="keywords" content="${site.keywords!}"/>
+<meta http-equiv="description" content="${site.description!}"/>
+
+<link href="/${mobileRes!}/css/pic/public.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/share.css" rel="stylesheet" type="text/css"/>
+
+<script src="/${mobileRes!}/js/focus/jquery-1.9.1.min.js"></script>
+<script src="/${mobileRes!}/js/focus/TouchSlide.1.1.js"></script>
+
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	Cms.siteFlow("${base}", location.href, document.referrer, "${site.config.flowSwitch?string}");
+	$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
+});
+</script>
+<style>
+.i-title h2 a{display: block;float: right;font-size: 0.7em;color: #65BAF1;padding-right: 1.5em;}
+</style>
+</head>
+<body>
+<div id="wrap" class="clearfix overflow mg-auto">
+	[#include "../include/header.html"/]
+	<!--焦点图开始-->
+    <div id="slides" class="slider-focus">
+        <div class="bd">
+            <ul>
+            	[@cms_content_list count='5' orderBy='4' typeId='3' titLen='18' channelOption='1' channelId='1']
+                [#list tag_list as a]
+                <li><a href="${a.url}"><img src="${a.typeImg!site.defImg}" /></a></li>
+                [/#list]
+                [/@cms_content_list]
+            </ul>
+        </div>
+        <div class="hd">
+        	<ul></ul>
+        </div>
+    </div>
+	<!--焦点图结束-->
+    
+    <!--新闻开始-->
+    <div class="i-title clearfix area">
+        <h2>新闻[@cms_channel id='1']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>
+    </div>
+    <div class="clearfix">
+        <div class="clearfix tab-con2">
+            <ul class="clearfix">
+            	[@cms_content_list count='6' orderBy='4' channelId='1' channelOption='1' dateFormat='MM-dd']
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="tab-con-href2 clearfix">
+                        <h4 style="width:100%;">[@text_cut s=a.title /]</h4>
+                        <p style="width:100%;">
+                        	<span style="float:left;">
+                        		<img src="/${mobileRes!}/img/liulan.png" title="浏览次数" width="14" height="10" style="margin-right:5px;">${a.views!}
+                        	</span>
+                            <span style="float:left; margin-left:15px;">
+                        		<img src="/${mobileRes!}/img/zan.png" title="赞" width="14" height="10" style="margin-right:5px;">${a.ups!}
+                        	</span>
+                             <span style="float:left; margin-left:15px;">
+                        		<img src="/${mobileRes!}/img/cai.png" title="踩" width="14" height="10" style="margin-right:5px;">${a.downs!}
+                        	</span>
+                            <span style="float:left; margin-left:15px;">
+                        		<img src="/${mobileRes!}/img/pinglun.png" title="评论" width="14" height="10" style="margin-right:5px;">${a.commentsCheckedNum!}
+                        	</span>
+                        	<i style="float:right;">(${a.date?string(dateFormat)})</i>
+                        </p>
+                    </a>                   
+           		</li>
+            	[/#list]
+                [/@cms_content_list] 
+            </ul>
+        </div> 
+    </div>
+    <!--新闻结束-->
+    
+    <!--图库开始-->
+    <div class="i-title clearfix area border" style="margin-top:10px;">
+    	<h2>图库[@cms_channel id='42']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>
+    </div>
+    <div class="wallpaper-new-wrap clearfix area">
+        <div class="clearfix wallpaper-new-list">
+        	[@cms_content_list typeId='2' count='8' titLen='8' channelOption='1' channelId='42' orderBy='4']
+            [#list tag_list as a]
+            <div class="clearfix new-list-inner">
+                <div class="img-list">
+                	<a href="${a.mobileUrl}"><img src="${a.typeImg!site.defImg}" width="140" height="210"><span>[@text_cut s=a.stit len=titLen append=append/]</span></a>
+                </div>
+            </div>
+            [/#list]
+            [/@cms_content_list]
+        </div>
+    </div>
+    <!--图库结束-->
+    
+    <!--下载开始-->
+    <div class="i-title clearfix area border">
+        <h2>下载[@cms_channel id='9']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>
+    </div>
+    <div class="clearfix tab-con" style="display:block">
+		<ul class="clearfix">
+        	[@cms_content_list count='6' orderBy='4' titLen='8' channelId='9' channelOption='1']
+            [#list tag_list as a]
+            <li>
+               <a href="${a.mobileUrl}" class="tab-con-href">
+                 <div class="img">
+                 <img src="${a.titleImg!site.defImg}"><i class="hoticon"></i></div>
+                 <h4>[@text_cut s=a.title len=titLen /]</h4>
+                 <p style="height:auto; line-height:20px;">[@text_cut s=a.desc len=12 /]</p>
+               </a>  
+               <a href="${a.mobileUrl}" class="tab-con-download">下载</a>              
+            </li>
+            [/#list]
+            [/@cms_content_list]
+		</ul>
+     </div>
+    <!--下载结束-->
+    
+    <!--视频开始-->
+    <div class="i-title clearfix area border" style="margin-top:10px;">
+    	<h2>视频[@cms_channel id='46']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>
+    </div>
+    <div class="wallpaper-new-wrap clearfix area">
+        <div class="clearfix wallpaper-new-list">
+        	[@cms_content_list typeId='2' count='8' titLen='8' channelOption='1' channelId='49' orderBy='4']
+            [#list tag_list as a]
+            <div class="clearfix new-list-inner">
+                <div class="img-list">
+                	<a href="${a.mobileUrl}"><img src="${a.titleImg!site.defImg}" width="140" height="210"><p>[@text_cut s=a.stit len=titLen append=append/]</p></a>
+                </div>
+            </div>
+            [/#list]
+            [/@cms_content_list]
+        </div>
+    </div>
+    <!--视频结束-->
+    
+    <!--招聘开始-->
+    <div class="i-title clearfix area border">
+    	<h2>招聘[@cms_channel id='61']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>
+    </div>
+    <div id="content_list">
+        [@cms_content_list channelId='61' count='5' titLen='15' append='...' orderBy='4' channelOption='1']
+        [#list tag_list as a]
+        <dl class="joblist b_none pl15">
+            <dt class=" font16 pt15">
+                <a class="c92" href="${a.url}">[@text_cut s=a.title len=titLen append=append/]</a><span><a class="company" href="${a.url}">${a.companyName!}</a></span>
+            </dt>
+            <dd class="job_acticle mt3">
+                <span class="job_wage ">${a.attr.salary!}</span>|<span class="">${a.attr.workplace!}</span>|<span>${a.attr.education!}
+                </span>|<span>${a.releaseDate?string("yyyy-MM-dd")}</span>
+            </dd>
+        </dl>
+        [/#list]
+        [/@cms_content_list]
+    </div>
+    <!--招聘结束-->
+    
+    <!--网络调查开始-->
+    <div class="i-title clearfix area border">
+    	<h2>网络调查[@cms_channel id='60']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>
+    </div>
+    <div class="clearfix diaocha-con" style="display:block">
+		<ul class="clearfix">
+        	[@cms_vote_list siteId=site.id count='5']
+            [#list tag_list as vote]
+            <li style="background:url(/r/cms/www/mobile/img/red-icon.gif)1px 22px no-repeat; text-indent:10px;"><a href="${base}/vote.jspx?voteId=${vote.id}">${vote.title?html}</a>&nbsp;[#if vote.endTime??]${vote.endTime?string("yyyy-MM-dd")}[/#if]</li>
+            [/#list]
+            [/@cms_vote_list]
+		</ul>
+     </div>
+    <!--网络调查结束-->
+    
+    
+    <!--文库开始-->
+    <div class="i-title clearfix area">
+    	<h2>文库[@cms_channel id='64']<a href="${tag_bean.url}">更多></a>[/@cms_channel]</h2>
+    </div>
+    <div class="clearfix diaocha-con" style="display:block">
+		<ul class="clearfix">
+        	[@cms_content_list channelId='64' count='5' titLen='15' append='...' orderBy='4' channelOption='1']
+            [#list tag_list as a]
+            <li style="background:url(/r/cms/www/mobile/img/red-icon.gif)1px 22px no-repeat; text-indent:10px;"><a href="${a.url}">[@text_cut s=a.title len=titLen append=append/]</a></li>
+            [/#list]
+            [/@cms_content_list]
+		</ul>
+     </div>
+    <!--文库结束-->
+    [#include "../include/footer.html"/]
+</div>
+
+<script type="text/javascript">
+window.onload = function(){
+	var mySwiper = new Swiper('.swiper-container',{   
+		pagination: '.pagination',
+		loop:true,
+		autoplay:3000,	
+		paginationClickable: true,
+		onSlideChangeStart: function(){
+		   //回调函数
+		}
+	}); 
+	cTab("#tab1","#con1");  
+	cTab("#tab2","#con2");  
+};
+</script>
+<script src="/${mobileRes!}/js/focus/foot.js"></script>
+</body>
+</html>
