@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
+    <title>同心桥</title>
+    <link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script type="text/javascript">
+		$(function() {
+			Cms.checkPerm("${base}","${content.id}");
+			Cms.collectCsi("${base}","collectCsiDiv","collect_csi","${content.id}");
+			Cms.attachment("${base}","${content.id}","${content.attachments?size}","attach");
+			Cms.viewCount("${base}","${content.id}");
+			Cms.siteFlow("${base}", location.href, document.referrer,"${site.config.flowSwitch?string}");
+		});
+	</script>
+	<link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="chat">
+        <div class="active-header chat-header"><a class="back-home" href="${base}/grzf/index.jhtml"></a>[@text_cut s=content.title len=20 append='...'/]</div>
+        <div class="chat-details">
+            <div class="div-top border-none">
+                <div class="firend-photo active-detail-img"><img src="${content.typeImg!site.defImg}"/></div>
+                <div class="firand-msg">
+                    <div class="fontWeight">${content.title} </div>
+                    <div class="fontDefault">区域：<span>${content.attr.quyu!}</span></div>
+                    <div class="fontDefault">户型：<span>${content.attr.huxing!}</span></div>
+                </div>
+                <div class="fontDefault" style="margin-top: 10px;padding-left: 10px;">
+                	<span class="end_time">租期：${content.attr.zuqi!}</span>
+                	<span class="end_time">租金：${content.attr.zujin!}</span>&nbsp;&nbsp;押金：<span class="end_time">${content.attr.yajin!}</span>
+                	<span class="linkman">联系人：${content.author!}</span>
+                	<span class="site">联系电话：${content.attr.phone!}</span>
+                </div>
+                <div class="fontDefault" style="padding-left: 10px;">配套设施：<span class="scale_num">${content.attr.peitao!}</span></div>
+            </div>
+            <div class="application"><span>发布时间：<span>${content.releaseDate}&nbsp;&nbsp;</span>来源： ${content.origin!'本站原创'} &nbsp; 浏览次数：<span id="views"></span></span></div>
+            <div class="div-content detail margin-top0 border-none">
+                <div><span class="apply-title">【房屋详情】</span></div>
+                <div>${content.txt}</div>
+            </div>
+            <div class="user_comment">
+	             <div class="support">
+	                 <div class="last">
+	                    <div>上一篇：<span class="pages">[@cms_content id=content.id next='1' channelId=channel.id][#if tag_bean??]<a href="${tag_bean.url}">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]</span></div>
+	                    <div>下一篇：<span class="pages">[@cms_content id=content.id next='0' channelId=channel.id][#if tag_bean??]<a href="${tag_bean.url}">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]</span></div>
+	                </div>
+	             </div>
+	        </div>
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

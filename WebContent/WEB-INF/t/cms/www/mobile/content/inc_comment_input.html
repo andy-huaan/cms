@@ -5,7 +5,7 @@
     <table>
         <tr>
             <td class="text-right">评论内容：</td>
-            <td><textarea name="text" id="text" ></textarea></td>
+            <td><textarea name="text" id="text"></textarea></td>
         </tr>
         [#if user??&&user.group.needCaptcha||!user??]
         <tr>
@@ -20,10 +20,10 @@
     			<input type="hidden" name="sessionId" id="sessionId" />
                 <button type="submit" name="Submit" class="btn btn-warning">马上发表</button>
                 <br/>
-                <span>（网友评论仅供其表达个人看法，并不表明本站同意其观点或证实其描述。）</span>
             </td>
         </tr>
     </table>
+    <div style="height: 30px;line-height: 30px;text-align: center;">(网友评论仅供其表达个人看法，并不表明本站同意其观点或证实其描述。)</div>
     </form>
 	<script type="text/javascript">
     $(function() {
