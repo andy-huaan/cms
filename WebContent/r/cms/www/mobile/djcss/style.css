@@ -1641,3 +1641,10 @@ input {
     height: 70px;
     border:1px solid #c0c0c0;
 }
+.detail_nav{
+    margin-top: 52px;
+    border-top: 1px solid #d6d7dc;
+    background-color: #FFF;
+    height: 30px;
+    line-height: 30px;
+}

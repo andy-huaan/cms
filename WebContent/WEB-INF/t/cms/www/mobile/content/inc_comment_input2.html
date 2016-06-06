@@ -1,31 +1,39 @@
-<div class="comment_enter">
-	<h5>我来说两句</h5>
-  	[#if content.channel.commentControl==0 || (content.channel.commentControl==1 && user??)]
-    <form id="commentForm" action="${base}/comment.jspx" method="post">
-    <table>
-        <tr>
-            <td class="text-right">评论内容：</td>
-            <td><textarea name="text" id="text" ></textarea></td>
-        </tr>
-        [#if user??&&user.group.needCaptcha||!user??]
-        <tr>
-            <td class="text-right">验证码：</td>
-            <td><input class="code" type="text" id="captcha" name="captcha" vld="{required:true}"/> <img class="code_img" id="commentCaptcha" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()"/></td>
-        </tr>
-        [/#if]
-        <tr>
-            <td class="text-right"></td>
-            <td>
-                <input type="hidden" name="contentId" value="${content.id}"/>
-    			<input type="hidden" name="sessionId" id="sessionId" />
-                <button type="submit" name="Submit" class="btn btn-warning">马上发表</button>
-                <br/>
-                <span>（网友评论仅供其表达个人看法，并不表明本站同意其观点或证实其描述。）</span>
-            </td>
-        </tr>
+<div class="pinglun">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td colspan="2"><span style="color:#1a7eed; font-size:14px; font-weight:bold;">我来说两句</span>（网友评论仅供其表达个人看法，并不表明本站同意其观点或证实其描述。）</td>
+      </tr>
     </table>
+    [#if content.channel.commentControl==0 || (content.channel.commentControl==1 && user??)]
+    <form id="commentForm" action="${base}/comment.jspx" method="post">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="70" align="right">评论内容：</td>
+        <td colspan="2"><textarea name="text" class="cinput" cols="60" rows="5"></textarea></td>
+      </tr>
+      [#if user??&&user.group.needCaptcha||!user??]
+      <tr>
+        <td height="40" align="right">验证码：</td>
+        <td width="100"><input name="captcha" type="text" id="captcha" vld="{required:true}" class="plcode"/></td>
+        <td><img id="commentCaptcha" height="30" width="66" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()" style="margin-left:10px;"/></td>
+      </tr>
+      [/#if]
+      <tr>
+        <td height="50" align="right">
+        </td>
+        <td colspan="2">
+        <input type="hidden" name="contentId" value="${content.id}"/>
+        <input type="hidden" name="sessionId" id="sessionId" />
+        <input type="submit" name="Submit" value=" 马上发表 " class="published" />
+        </td>
+      </tr>
+      <tr>
+        <td height="30" colspan="3">&nbsp;</td>
+      </tr>
+  </table>
     </form>
-	<script type="text/javascript">
+  	
+  <script type="text/javascript">
     $(function() {
     /*
         $("#commentForm").validate( {
