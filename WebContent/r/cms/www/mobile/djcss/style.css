@@ -643,7 +643,7 @@ input {
     overflow: hidden;
     position: relative;
     padding: 15px 0;
-    border-bottom: 1px solid #e1e1e1;
+    border-bottom: 1px dashed #e1e1e1;
     color: #646464;
 }
 .notify-list>a .notify-ico1,.notify-list>a .notify-ico2{
@@ -1446,8 +1446,9 @@ input {
     left:10px;
 }
 .address1 .add-ico img{
-    width: 40px;
-    height:40px;
+    width: 30px;
+    height: 30px;
+    margin-top: 6px;
 }
 .address1 .user-select{
     padding-left: 55px!important;

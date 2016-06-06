@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>社区论坛</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="chat">
+        <div class="active-header chat-header"><a class="back-home" href="${base}/service/index.jhtml"></a>社区论坛</div>
+        <div class="chat-main">
+        	[@cms_content_list count='15' orderBy='4' channelId=126 channelOption='1' dateFormat='yyyy-MM-dd']
+	        [#list tag_list as a]
+            <div class="chat-list">
+                <div class="div-top">
+                    <div class="chat-img">
+                    	<a href="javascript:void(0);">
+                    	[#if a.titleImg??]
+                            <img class="img-rounded"  src="${a.titleImg!site.defImg}"  />
+                       [#else]
+                       		<img class="img-rounded"  src="${site.defImg}"  />
+                       [/#if]
+                    	</a>
+                    </div>
+                    <div class="chat-me">
+                        <div class="chat-name">[@text_cut s=a.title len=22 append='...' /]</div>
+                        <div class="chat-date">&nbsp;</div>
+                        <div class="chat-date">${a.date?string(dateFormat)}</div>
+                    </div>
+                </div>
+                <div class="chat-text">[@text_cut s=a.description len=100 append='...' /]</div>
+            </div>
+            [/#list]
+            [/@cms_content_list]
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

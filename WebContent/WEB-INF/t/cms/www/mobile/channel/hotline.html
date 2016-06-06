@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>同心桥</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="notify" class="search-friend">
+        <div class="active-header chat-header">便民电话<span class="save address"></span></div>
+        <div class="active-header chat-header"><a class="back-home" href="${base}/service/index.jhtml"></a>便民电话</div>
+
+        <div class="notify-list self-list address1">
+        	[@cms_content_list count='15' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+	        [#list tag_list as a]
+	        [#if a.url?ends_with('.jhtml')]
+            <a class="user-select" href="javascript:void(0);">
+                <div class="add-ico"><img src="/${mobileRes!}/djimages/phone.png"/></div>
+                <div class="user-detail">
+                    <div class="user-name">${a.title}<span style="float: right;">${a.description!"暂无"}</span></div>
+                </div>
+            </a>
+           	[#else]
+           	<a class="user-select" href="${a.url}">
+                <div class="add-ico"><img src="/${mobileRes!}/djimages/web.png"/></div>
+                <div class="user-detail">
+                    <div class="user-name">${a.title}<span style="float: right;">${a.description!"暂无"}</span></div>
+                </div>
+            </a>
+           	[/#if]
+            [/#list]
+            [/@cms_content_list]
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

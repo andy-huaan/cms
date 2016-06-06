@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>同心桥</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="index">
+         <div class="active-header chat-header"><a class="back-home" href="${base}/cooperation/index.jhtml"></a>${channel.title!channel.name}</div>
+         <!--热门活动-->
+         <div class="index-news" style="margin-top: 52px;">
+            <div class="title"><a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+             <ul class="news-main">
+             	 [@cms_content_list count='15' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+	             [#list tag_list as a]
+	             <li>
+                     <a href="${a.url}" style="padding-bottom: 3px;">
+                     	 [#if a.typeImg??]
+                         <div class="news-img"><img src="${a.typeImg!site.typeImg}" alt=""/></div>
+                         <div class="news-content">
+                             <div class="header">[@text_cut s=a.title len=25 append='...' /]</div>
+                             <div class="news-text">[@text_cut s=a.description len=60 append='...'/]</div>
+                             <div>
+                                 <span class="float-right"><a href="javascript:void(0);" class="news-ico3"></a>发布时间：${a.date?string(dateFormat)}&nbsp;联系人：${a.author!"匿名"}</span>
+                                 <span class="fontYellow" style="float: right;">${a.attr.phone!"暂无"}</span>
+                             </div>
+                         </div>
+                         [#else]
+                         <div class="news-other">
+                             <div class="header">[@text_cut s=a.title len=25 append='...' /]</div>
+                             <div class="news-text">[@text_cut s=a.description len=60 append='...'/]</div>
+                             <div>
+                                 <span class="float-right"><a href="javascript:void(0);" class="news-ico3"></a>发布时间：${a.date?string(dateFormat)}&nbsp;联系人：${a.author!"匿名"}</span>
+                                 <span class="fontYellow" style="float: right;">${a.attr.phone!"暂无"}</span>
+                             </div>
+                         </div>
+                         [/#if]
+                     </a>
+                 </li>     	
+	             [/#list]
+                 [/@cms_content_list]
+             </ul>
+         </div>
+
+         <!--底部导航-->
+         [#include "../include/footer.html"/]
+     </div>
+ </div>
+</body>
+</html>

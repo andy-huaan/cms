@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>同心桥</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="index">
+         <div class="active-header chat-header"><a class="back-home" href="${base}/service/index.jhtml"></a>${channel.title!channel.name}</div>
+         <iframe name="right" id="rightMain" src="http://ditu.amap.com/" frameborder="false" scrolling="auto" style="border:none;" width="100%" height="768px;" allowtransparency="true"></iframe>
+         <!--底部导航-->
+         [#include "../include/footer.html"/]
+     </div>
+ </div>
+</body>
+</html>

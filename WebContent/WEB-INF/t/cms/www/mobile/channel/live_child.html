@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>同心桥</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="notify">
+        <div class="active-header"><a class="back-home" href="${base}/zzsh/index.jhtml"></a>${channel.title!channel.name}</div>
+        <div class="index-news" style="margin: 8px 0px -12px 0px;">
+        	<div class="title"><a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+        </div>
+        <div class="notify-list self-list">
+        	[@cms_content_list count='15' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+	        [#list tag_list as a]
+            <a class="user-select margin-top10px border-top padding-left10px" href="${a.url}">
+                <div class="user-detail">
+                    <div class="user-name">[@text_cut s=a.title len=25 append='...' /]</div>
+                    <span class="icon"></span>
+                </div>
+            </a>
+            [/#list]
+            [/@cms_content_list]
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>
