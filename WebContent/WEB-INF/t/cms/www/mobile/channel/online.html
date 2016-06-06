@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>在线党组织</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="chat">
+        <div class="active-header"><a class="back-home" href="javascript:history.back(-1)"></a>在线党组织</div>
+        <div class="chat-main margin-top0">
+	        [@cms_content_list count='100' orderBy='4' channelId=109 channelOption='1']
+            <ul class="online-party">
+            	[#list tag_list as a]
+                <li><a href="${a.url}">[@text_cut s=a.title len=22 append='...' /]</a></li>
+                [/#list]
+            </ul>
+            [/@cms_content_list]
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

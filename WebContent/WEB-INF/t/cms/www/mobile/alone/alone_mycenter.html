@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="notify">
+        <div class="active-header">我的</div>
+        <div class="notify-list self-list">
+            <a class="user" href="self-detail.html">
+                <div class="user-photo"><img src="/${mobileRes!}/djimages/active-1.png" alt=""/></div>
+                <div class="user-detail">
+                    <div class="user-name">张XX</div>
+                    <div>酒仙桥党支部书记</div>
+                    <span class="icon"></span>
+                </div>
+            </a>
+            
+            <a class="user-select" href="my-active.html">
+                <div class="self-icon2"></div>
+                <div class="user-detail">
+                    <div class="user-name">我的动态</div>
+                    <span class="icon"></span>
+                </div>
+            </a>
+            <a class="user-select" href="#">
+                <div class="self-icon3"></div>
+                <div class="user-detail">
+                    <div class="user-name">我的评论</div>
+                    <span class="icon"></span>
+                </div>
+            </a>
+            <a class="user-select margin-bottom10px" href="#">
+                <div class="self-icon4"></div>
+                <div class="user-detail">
+                    <div class="user-name">我的留言</div>
+                    <span class="icon"></span>
+                </div>
+            </a>
+
+            <a class="user-select margin-top10px" href="${base}/about/index.jhtml">
+                <div class="self-icon5"></div>
+                <div class="user-detail">
+                    <div class="user-name">关于我们</div>
+                    <span class="icon"></span>
+                </div>
+            </a>
+            <a class="user-select" href="set.html">
+                <div class="self-icon6"></div>
+                <div class="user-detail">
+                    <div class="user-name">设置</div>
+                    <span class="icon"></span>
+                </div>
+            </a>
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>详细信息</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="chat">
+        <div class="active-header chat-header"><a class="back-home" href="${base}/member/member_meet.jspx"></a>${user.realname!"匿名"}详细资料</div>
+        <div class="chat-details">
+            <div class="div-top">
+                <div class="firend-photo">
+                	[#if user.userImg?? && user.userImg!=""]
+		         		<img src="${user.userImg!}" />
+		            [#else]
+		         		<img src="/${res}/img/member/member-phtot.gif"/>
+		         	[/#if]
+                </div>
+                <div class="firand-msg">
+                    <div class="fontWeight">${user.realname!"匿名"} <span class="chat-detail-ico1"></span></div>
+                    <div class="fontDefault">QQ号：<span>${user.qq!"未公开"}</span></div>
+                    <div class="fontDefault">邮箱：<span>${user.email!"未公开"}</span></div>
+                </div>
+            </div>
+            <div class="div-content">
+                <ul class="me-list overflow">
+                    <li>会员组：<span>${user.group.name} </span></li>
+                    <li>生日：<span>${(user.birthday?string('yyyy-MM-dd'))!"未公开"}</span></li>
+                    <li>手机：<span>${user.mobile!"未公开"}</span></li>
+                    <li>性别：<span>[#if user.gender??]${user.gender?string('男','女')}[#else]保密[/#if]</span></li>
+                    <li>MSN：<span>${user.msn!"未公开"}</span></li>
+                    <li>状态：<span>${user.disabled?string('禁用','启用')}</span></li>
+                    <li>来自：<span>${user.comefrom!"未公开"}</span></li>
+                    <li class="last">所属党支部：<span>${user.attr.party_branch!}</span></li>
+                    <li class="last margin-bottom10px">是否是模范党员：<span>${user.attr.mofan}</span></li>
+                </ul>
+                <div class="greet">
+                    <div class="greet-btn">
+                    	[#if user.qq?? && user.qq!=""]
+                        <a class="greet-1" href="http://wpa.qq.com/msgrd?v=3&uin=${user.qq}&site=qq&menu=yes">好友聊</a>
+                        [#else]
+                        <a class="greet-2" href="javascript:void(0);">未开放</a>
+                        [/#if]
+                    </div>
+                    <div class="greet-img">详细资料</div>
+                </div>
+                <div class="me-msg">${user.intro!"暂无个人详细信息"}</div>
+            </div>
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

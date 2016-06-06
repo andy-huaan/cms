@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>服务台</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$(function() {
+		Cms.siteFlow("${base}", location.href, document.referrer, "${site.config.flowSwitch?string}");
+		$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
+	});
+	</script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="active">
+        <div class="active-header"><a class="back-home" href="${base}/index.jhtml"></a>服务台</div>
+         <div class="active-main">
+             <div class="title">好友服务</div>
+             <div class="index-select active-select border-top">
+                 [@cms_channel id='110']<a href="${tag_bean.url}"><span class="ico ico-ser1"></span><br/>个人招聘</a>[/@cms_channel]
+                 [@cms_channel id='93']<a class="border-left-right" href="${tag_bean.url}"><span class="ico ico-ser2"></span><br/>闲置物品</a>[/@cms_channel]
+                 [@cms_channel id='111']<a href="${tag_bean.url}"><span class="ico ico-ser3"></span><br/>个人租房</a>[/@cms_channel]
+             </div>
+             <div class="title">组织服务</div>
+             <div class="index-select active-select hot border-top">
+                 [@cms_channel id='95']<a href="${tag_bean.url}"><span class="ico ico-ser4"></span><br/>代办服务</a>[/@cms_channel]
+                 [@cms_channel id='96']<a class="border-left-right" href="${tag_bean.url}"><span class="ico ico-ser5"></span><br/>企业招聘</a>[/@cms_channel]
+                 [@cms_channel id='97']<a href="${tag_bean.url}"><span class="ico ico-ser6"></span><br/>政策信息</a>[/@cms_channel]
+             </div>
+             <div class="title">z公共服务</div>
+             <div class="index-select active-select hot border-top">
+                 <a href="${base}/map/index.jhtml"><span class="ico ico-ser7"></span><br/>出行咨询</a>
+                 <a class="border-left-right" href="${base}/hotline/index.jhtml" style="padding: 25px 0 20px"><span class="ico ico-ser8"></span><br/>便民电话</a>
+                 <a href="${base}/bbs/index.jhtml"><span class="ico ico-ser9"></span><br/>社区论坛</a>
+             </div>
+         </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

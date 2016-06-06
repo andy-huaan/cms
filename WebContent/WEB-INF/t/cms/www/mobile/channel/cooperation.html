@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>互助桥</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="active">
+        <div class="active-header"><a class="back-home" href="${base}/index.jhtml"></a>互助桥</div>
+         <div class="active-main">
+             <div class="index-select active-select">
+                 [@cms_channel id='100']<a href="${tag_bean.url}"><span class="ico ico-car"></span><br/>顺风车</a>[/@cms_channel]
+                 [@cms_channel id='103']<a href="${tag_bean.url}"><span class="ico ico-question"></span><br/>帮我出招</a>[/@cms_channel]
+                 [@cms_channel id='106']<a href="${tag_bean.url}"><span class="ico ico-money"></span><br/>党内关爱扶助金</a>[/@cms_channel]
+                 [@cms_channel id='104']<a href="${tag_bean.url}"><span class="ico ico-love"></span><br/>爱心传递</a>[/@cms_channel]
+             </div>
+         </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

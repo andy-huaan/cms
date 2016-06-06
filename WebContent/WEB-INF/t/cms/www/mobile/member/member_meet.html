@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>好友聊</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="chat">
+        <div class="active-header chat-header">好友聊</div>
+        <div class="chat-main">
+        	[#if pagination.list?size gt 0]
+        	<form id="tableForm" action="member/member_meet.jspx" method="get">
+        	[#list pagination.list as c]
+            <div class="chat-list">
+                <div class="div-top">
+                    <div class="chat-img">
+                    	<a href="${base}/member/member_detail.jspx?id=${c.id}">
+                    		[#if c.userImg?? && c.userImg!=""]
+				         		<img src="${c.userImg!}" />
+				            [#else]
+				         		<img src="/${res}/img/member/member-phtot.gif"/>
+				         	[/#if]
+                    	</a>
+                    </div>
+                    <div class="chat-me">
+                        <div class="chat-name">${c.realname!"匿名"}</div>
+                        <div class="chat-date">${c.group.name}</div>
+                        <div class="chat-date">${c.email!"未设置"}</div>
+                    </div>
+                    <div class="chat-friend"><span>性别：[#if c.gender??]${c.gender?string('男','女')}[#else]保密[/#if]&nbsp;&nbsp;</span><span title="${c.comefrom!}">来自：[@text_cut s=c.comefrom!"未设置地区" len='7' append='......'/]</span></div>
+                </div>
+                <div class="chat-text">[@text_cut s=c.intro!"暂无个人详细信息" len='100' append='......'/]</div>
+                
+                <div class="chat-touch">
+                    [#if c.qq?? && c.qq!=""]<a href="http://wpa.qq.com/msgrd?v=3&uin=${c.qq}&site=qq&menu=yes" class="chat-ico2"></a>[#else]未开放[/#if]
+                </div>
+            </div>
+            [/#list]
+            <div class="text-center" style="padding-bottom: 15px;">
+		    	<input type="hidden" name="pageNo"/>
+		        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+			        <tr>
+				        <td align="center" class="pn-sp">
+							<input type="button" value="<<<" onclick="_gotoPage('${pagination.prePage}');"[#if pagination.firstPage] disabled="disabled"[/#if] style="padding: 5px 10px 0px 0px;font-size: 20px;"/>
+							<input type="button" value=">>>" onclick="_gotoPage('${pagination.nextPage}');"[#if pagination.lastPage] disabled="disabled"[/#if] style="padding: 5px 0px 0px 10px;font-size: 20px;"/>
+						</td>
+					</tr>
+				</table>
+				<script type="text/javascript">
+				function _gotoPage(pageNo) {
+					try{
+						var tableForm = document.getElementById("tableForm");
+						$("input[name=pageNo]").val(pageNo);
+						tableForm.action="member_meet.jspx";
+						tableForm.onsubmit=null;
+						tableForm.submit();
+					} catch(e) {
+						alert('_gotoPage(pageNo)方法出错');
+					}
+				}
+				</script>
+		    </div>
+		    </form>
+			[#else]
+			<div style="height: 40px;line-height: 40px;width: 100%;text-align: center;">暂无用户开放信息</div>
+			[/#if]
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

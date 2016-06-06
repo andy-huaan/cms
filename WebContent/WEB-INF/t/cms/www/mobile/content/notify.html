@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>通知</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script type="text/javascript">
+		$(function() {
+			Cms.viewCount("${base}","${content.id}");
+		});
+	</script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="chat">
+        <div class="active-header chat-header"><a class="back-home" href="${base}/notify/index.jhtml"></a>通知详情</div>
+        <div class="news margin-top52px">
+            <div class="news-detail">
+                <div class="title">${content.title!""}</div>
+                <div class="news-date">
+                    <div>来源：<span> ${content.origin!'本站原创'}</span></div>
+                    <div>浏览次数：<span id="views"></span></div>
+                    <div>发布时间时间：<span>${content.releaseDate}</span></div>
+                </div>
+                <div class="news-text">${txt!}</div>
+            </div>
+        </div>
+
+         <div class="user_comment">
+             <div class="support">
+                 <div class="last">
+                     <div>上一篇：<span class="pages">[@cms_content id=content.id next='1' channelId=channel.id][#if tag_bean??]<a href="${tag_bean.url}">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]</span></div>
+                     <div>下一篇：<span class="pages">[@cms_content id=content.id next='0' channelId=channel.id][#if tag_bean??]<a href="${tag_bean.url}">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]</span></div>
+                 </div>
+             </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

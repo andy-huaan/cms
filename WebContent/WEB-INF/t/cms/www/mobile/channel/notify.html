@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>通知公告</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="notify">
+        <div class="active-header">通知</div>
+        <div class="notify-list margin-top0">
+        	[@cms_content_list count='30' orderBy='4' channelId=123 channelOption='1' dateFormat='yyyy-MM-dd']
+        	[#list tag_list as a]
+            <a href="${a.url}">
+            	[#if a_index%2=0]
+                <div class="notify-ico1"></div>
+                [#else]
+                <div class="notify-ico2"></div>
+                [/#if]
+                <div class="notify-msg">
+                    <div class="title">
+                        <span class="headline">[@text_cut s=a.title len=12 append='...' /]</span>
+                        <span class="date">${a.date?string(dateFormat)}</span>
+                    </div>
+                    <div class="notify-text">[@text_cut s=a.description len=80 append='...' /]</div>
+                </div>
+            </a>
+            [/#list]
+            [/@cms_content_list]
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>
