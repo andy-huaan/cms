@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>设置</title>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
+    <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="/${mobileRes!}/djjavascript/main.js"></script>
+</head>
+<body>
+ <div id="wrap">
+     <div id="notify">
+        <div class="active-header"><a class="back-home" href="${base}/mycenter/index.jhtml"></a>设置</div>
+        <div class="notify-list self-list">
+            <a class="user-select padding-left10px" href="javascript:void(0);">
+                <div class="user-detail">
+                    <div class="user-name">当前版本 <span class="fontDefault"> 1.1.1.10</span></div>
+                </div>
+            </a>
+
+            <button type="button" class="set-cancel" onclick="window.location.href='/logout.jspx?returnUrl=/'">退出登录</button>
+        </div>
+     </div>
+     <!--底部导航-->
+     [#include "../include/footer.html"/]
+ </div>
+</body>
+</html>

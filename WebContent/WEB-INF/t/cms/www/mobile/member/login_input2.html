@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>会员登录 - ${site.name} - Powered by JEECMS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+
+<link href="/${mobileRes!}/css/pic/public.css" rel="stylesheet" type="text/css"/>
+<link href="/${mobileRes!}/css/pic/share.css" rel="stylesheet" type="text/css"/>
+
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+</head>
+
+<body>
+<div id="wrap" class="clearfix overflow mg-auto" style="background:#fff;"> 
+	<!--导航栏开始-->
+	<div class="apply-nav overflow mg-auto area" style="background:#fff;">
+        <div class="overflow clearfix apply-top border-bom">
+            <a href="${base!}/" class="apply-return">返回</a>
+            <h2>会员登录</h2>
+            <a href="${base}/search.jspx" class="apply-sou">搜索</a>
+            <a href="#" class="apply-pup">导航</a>
+        </div>
+        <div class="i-icon mg-auto overflow area clearfix" id="apply-pup-icon">
+            <nav id="menu2" class="nd-nav">
+                <ul class="first">
+                    <li class="menu1"><a href="${base}/">首页</a></li>
+                    <li class="menu2">[@cms_channel id='1']<a href="${tag_bean.url}">新闻</a>[/@cms_channel]</li>
+                    <li class="menu3">[@cms_channel id='42']<a href="${tag_bean.url}">图库</a>[/@cms_channel]</li>
+                    <li class="menu4">[@cms_channel id='46']<a href="${tag_bean.url}">视频</a>[/@cms_channel]</li>
+                    <li class="menu5">[@cms_channel id='9']<a href="${tag_bean.url}">下载</a>[/@cms_channel]</li>
+                </ul>
+                
+                <ul>
+                    <li class="menu1">[@cms_channel id='64']<a href="${tag_bean.url}">文库</a>[/@cms_channel]</li>
+                    <li class="menu2">[@cms_channel id='60']<a href="${tag_bean.url}">调查</a>[/@cms_channel]</li>
+                    <li class="menu3">[@cms_channel id='61']<a href="${tag_bean.url}">招聘</a>[/@cms_channel]</li>
+                    <li class="menu4"><a href="${base}/guestbook.jspx" target="blank">留言板</a></li>
+                    <li class="menu5"><a href="http://bbs.jeecms.com/" target="_blank">论坛</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <script type="text/javascript" src="/${mobileRes!}/js/navi/com.js"></script>
+    <!--导航栏结束-->
+    <div class="page-title">
+        <a href="${base}/member/forgot_password.jspx" class="return">找回密码</a><a href="${base}/register.jspx"style="color:#FFF;">注册<i></i></a>
+    </div>
+    <form id="jvForm" class="pxui-form-info" method="post" action="${base}/login.jspx">
+        <input type="hidden" name="rtnurl" value="index"/>
+        <p class="error-msg" id="js-error-msg"></p>
+        <div>
+        	<span>用户名：</span><p><span><input name="username" id="username" class="pxui-select required" type="text" value=""/></span></p>
+        </div>
+        <div>
+        	<span>密码：</span><p><span><input name="password" id="password" type="password" class="pxui-select required"/></span></p>
+        </div>
+        <div>
+        	<span>验证码：</span><p><span><input type="text" id="captcha" name="captcha" class="pxui-select required"/><img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1" width="100" height="35"/></span></p>
+        </div>
+        <div>
+        <span>&nbsp;</span>
+        <p>
+            <span><input type="submit" value="   登  录   " class="pxui-light-button"/></span>
+        </p>
+        </div>
+    
+    <!--<h3 class="pxui-color-blue">一键登录</h3>
+    <div class="pxui-form-info pxui-other-login">
+        <a href="" class="pxui-button"><i></i>QQ帐号登录</a>
+        <a href="" class="pxui-button"><i></i>新浪微博账号登录</a>
+        <a href="" class="pxui-button"><i></i>支付宝登录</a>
+    </div>
+    -->
+
+    
+	</form>
+    <div style="height:100px;"></div>
+	[#include "../include/footer.html"/]
+</div>
+</body>
+</html>

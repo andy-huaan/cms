@@ -105,7 +105,7 @@ function mapDialog(){
                                          <form action="index.do" target="_top" method="get">
 											<select name="${siteParam}" onchange="this.form.submit();">
 											  <#list siteList as s>
-								              <option value="${s.id}"<#if s.id==site.id> selected="selected"</#if>>${s.name}</option>
+								              <option value="${s.id}"[#if s.id==site.id] selected="selected"[/#if]>${s.name}</option>
 								              </#list>
 								            </select>
 							            </form>
