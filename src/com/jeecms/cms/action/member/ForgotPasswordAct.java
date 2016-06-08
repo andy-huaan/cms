@@ -64,6 +64,7 @@ public class ForgotPasswordAct {
 		
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("foucus", 1);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_MEMBER, MEMBER_MEET);
 	}

@@ -104,7 +104,7 @@
                 <div class="chat_intro" style="height: 65px;padding: 10px 10px 10px;">
                 	[@text_cut s=c.intro!"暂无个人详细信息" len='35' append='......'/]
                 </div>
-                <div class="chat_me"><span class="call">[#if c.qq?? && c.qq!=""]<a href="http://wpa.qq.com/msgrd?v=3&uin=${c.qq}&site=qq&menu=yes">好友聊</a>[#else]未开放[/#if]</span><span class="msg"><a href="${base}/member/message_mng.jspx">发消息</a></span>
+                <div class="chat_me"><span class="call">[#if c.qq?? && c.qq!=""]<a href="http://wpa.qq.com/msgrd?v=3&uin=${c.qq}&site=qq&menu=yes" target="_blank">好友聊</a>[#else]未开放[/#if]</span><span class="msg"><a href="${base}/member/message_mng.jspx">发消息</a></span>
                 </div>
             </li>
             [/#list]

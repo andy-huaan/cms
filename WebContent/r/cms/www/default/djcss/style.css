@@ -113,7 +113,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
 .li_nav{
     overflow: hidden;
     background-color: #f75555;
-    width: 1020px;
+    width: 1055px;
     height: 37px;
     margin: 0 auto;
 }
@@ -166,7 +166,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
     width:66px;
     height:81px;
     float: right;
-    margin-right: 140px;
+    margin-right: 20px;
     background: url(../djimages/footer2.png) no-repeat;
 }
 .footer>div ul{
@@ -1213,7 +1213,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
 #meet_right .meet_img{
     margin: 30px auto 10px;
     height:295px;
-    width:220px;
+    width:245px;
     border: 1px solid #ccc;
 }
 #meet_right .meet_name{
@@ -1747,3 +1747,19 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColors
     border-bottom: 1px dashed #ccc;
 
 }
+.visited_select{
+	background: rgba(208,40,24,.8);
+}
+.side-bar a,.chat-tips i {background: url('../djimages/right_bg.png') no-repeat;}
+.side-bar {width: 66px;position: fixed;bottom: 40px;right: 25px;font-size: 0;line-height: 0;z-index: 100;}
+.side-bar a {width: 66px;height: 66px;display: inline-block;background-color: #ddd;margin-bottom: 2px;}
+.side-bar a:hover {background-color: #f75555;}
+.side-bar .icon-qq {background-position: 0 -62px;}
+.side-bar .icon-chat {background-position: 0 -130px;position: relative;}
+.side-bar .icon-chat:hover .chat-tips {display: block;}
+.side-bar .icon-blog {background-position: 0 -198px;}
+.side-bar .icon-mail {background-position: 0 -266px;}
+.side-bar .icon-totop {background-position: 0 -334px;}
+.chat-tips {padding: 20px;border: 1px solid #d1d2d6;position: absolute;right: 78px;top: -55px;background-color: #fff;display: none;}
+.chat-tips i {width: 9px;height: 16px;display: inline-block;position: absolute;right: -9px;top: 80px;background-position:-88px -350px;}
+.chat-tips img {width: 138px;height: 138px;}

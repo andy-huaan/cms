@@ -212,6 +212,14 @@
                 <a class="tile num6" href="${base}/zxdzz/index.jhtml"><div class="wrap"><div><span class="icon_img"></span>入住支部<br/><span class="number_3">&nbsp;&nbsp;126个</span></div></div></a>
             </div>
         </div>
+        <div class="side-bar">
+            <a href="http://wpa.qq.com/msgrd?v=3&uin=154637585&site=qq&menu=yes" target="_blank" class="icon-qq">QQ在线咨询</a>
+            <a href="#" class="icon-chat">微信<div class="chat-tips"><i></i>
+                <img style="width:138px;height:138px;" src="/${res}/djimages/qrcode_for_gh_eccaf9557b49_430.jpg" alt="微信订阅号"></div>
+            </a>
+            <!--<a href="javascript:alert('暂未开通');" class="icon-blog">微博</a>-->
+            <a href="javascript:void(0);" onclick="pageScroll()" class="icon-mail">mail</a>
+        </div>
     </div>
 </div>
 <!--end: 主题内容-->
@@ -223,6 +231,16 @@
         $(".div_bot .service_1").Scroll({line:1,speed:1000,timer:2000});
         //$(".div_bot .service_2").Scroll({line:1,speed:1000,timer:2000});
     });
+    function pageScroll(){
+        //把内容滚动指定的像素数（第一个参数是向右滚动的像素数，第二个参数是向下滚动的像素数）
+        window.scrollBy(0,-100);
+        //延时递归调用，模拟滚动向上效果
+        scrolldelay = setTimeout('pageScroll()',100);
+        //获取scrollTop值，声明了DTD的标准网页取document.documentElement.scrollTop，否则取document.body.scrollTop；因为二者只有一个会生效，另一个就恒为0，所以取和值可以得到网页的真正的scrollTop值
+        var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+        //判断当页面到达顶部，取消延时代码（否则页面滚动到顶部会无法再向下正常浏览页面）
+        if(sTop==0) clearTimeout(scrolldelay);
+    }
 </script>
 </body>
 </html>

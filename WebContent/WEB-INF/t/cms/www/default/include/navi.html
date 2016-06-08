@@ -2,16 +2,16 @@
     <div id="nav">
         <div class="nav_img" style="display: none;"><div id="logo"><a class="logo_1" href="${base}/index.jhtml"></a><a class="logo_2" href="${base}/index.jhtml"></a></div></div>
         <div class="nav_select">
-            <ul class="li_nav">
-                <li class="li_top"><a href="${site.url!}" target="_self">首页</a></li>
+            <ul class="li_nav" id="nav_list">
+                <li class="li_top"><a href="${site.url!}" target="_self" [#if !channel?? && !foucus??]class="visited_select"[/#if] style="font-weight: bold;font-size: 15px;">首页</a></li>
                 [@cms_channel_list]
 			        [#list tag_list as c]
 				        [#if c_index<4]
-				          <li><a href="${c.url}" target="_self">${c.name}</a></li>
+				          <li><a href="${c.url}" style="font-weight: bold;font-size: 15px;" target="_self" [#if channel??&&channel.id==c.id] class="visited_select" [/#if]>${c.name}</a></li>
 				        [/#if]
 				        [#if c_index=4]
-				          <li><a href="${base}/member/member_meet.jspx">好友聊</a></li>
-				          <li><a href="${c.url}" target="_self">${c.name}</a></li>
+				          <li><a href="${base}/member/member_meet.jspx" style="font-weight: bold;font-size: 15px;" [#if !channel?? && foucus??]class="visited_select"[/#if]>好友聊</a></li>
+				          <li><a href="${c.url}" target="_self" style="font-weight: bold;font-size: 15px;" [#if channel??&&channel.id==c.id] class="visited_select" [/#if]>${c.name}</a></li>
 				        [/#if]
 			        [/#list]
 		        [/@cms_channel_list]

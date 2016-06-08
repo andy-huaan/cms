@@ -200,6 +200,10 @@ input {
     background: url(../djimages/question.png) no-repeat;
     background-size: cover;
 }
+.index-select .ico-empty{
+    background-size: cover;
+    opacity: 0;
+}
 .index-select .ico-love{
     background: url(../djimages/love.png) no-repeat;
     background-size: cover;
@@ -451,6 +455,13 @@ input {
     border-left: 1px solid #f2f2f2;
     border-right: 1px solid #f2f2f2;
 }
+.border-right2{
+    border-right: 1px solid #f2f2f2;
+}
+
+.border-bottom2{
+    border-bottom: 1px solid #f2f2f2!important;
+}
 .index-footer{
     width: 100%;
     position: fixed;
@@ -485,19 +496,32 @@ input {
     background: url(../djimages/self.png) no-repeat;
     background-size: cover;
 }
-.index-footer .home:hover .ico-home{
+.index-footer .home:hover .ico-home,.index-footer .home.hover .ico-home{
     background: url(../djimages/home-on.png) no-repeat;
     background-size: cover;
 }
-.index-footer .address:hover .ico-address{
+
+.index-footer .home.hover,.index-footer .home:hover{
+    color: #186AE6 !important;
+}
+.index-footer .address.hover,.index-footer .address:hover{
+    color: #186AE6 !important;
+}
+.index-footer .tell.hover,.index-footer .tell:hover{
+    color: #186AE6 !important;
+}
+.index-footer .self.hover,.index-footer .self:hover{
+    color: #186AE6 !important;
+}
+.index-footer .address:hover .ico-address,.index-footer .address.hover .ico-address{
     background: url(../djimages/address-on.png) no-repeat;
     background-size: cover;
 }
-.index-footer .tell:hover .ico-tell{
+.index-footer .tell:hover .ico-tell,.index-footer .tell.hover .ico-tell{
     background: url(../djimages/tell-on.png) no-repeat;
     background-size: cover;
 }
-.index-footer .self:hover .ico-self{
+.index-footer .self:hover .ico-self,.index-footer .self.hover .ico-self{
     background: url(../djimages/self-on.png) no-repeat;
     background-size: cover;
 }
@@ -1532,20 +1556,30 @@ input {
 }
 .online-party{
     overflow: hidden;
-    margin: 30px 15px;
+    margin: 10px 15px;
     background-color: #fff;
-    /*border-top: 1px solid #d6d7dc;*/
-    /*border-right: 1px solid #d6d7dc;*/
+    border: 1px solid #d6d7dc;
 }
 .online-party li{
     text-align: center;
+    font-size: 14px;
     float: left;
     width: 50%;
-    padding: 10px 0;
+    height: 36px;
+    line-height: 36px;
     /*border-left: 1px solid #d6d7dc;*/
-    /*border-bottom: 1px solid #d6d7dc;*/
+    border-bottom: 1px solid #f2f2f2;
 }
 
+.online-party li a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.online-party li:nth-child(2n+1) a{
+    border-right: 1px solid #f2f2f2;
+}
 /*新闻详情页底部评论区域*/
 .user_comment{
     padding: 5px;
