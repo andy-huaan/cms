@@ -26,8 +26,10 @@
          <!--头部搜索栏-->
          <div class="index-header">
              <div class="search">
-                 <input type="text" placeholder="活动 好友 服务 帮助"/>
-                 <span class="index-search"></span>
+             	 <form action="${base}/search.jspx" id="searchForm">
+	                 <input type="text" name="q" value="${oldq!'请输入关键词'}" type="text" onfocus="if(this.value=='请输入关键词')this.value=''"  onkeypress="qkeypress()"  maxlength="50" autocomplete="off"/>
+	                 <span class="index-search"></span>
+                 </form>
              </div>
          </div>
          <!--图片广告-->
