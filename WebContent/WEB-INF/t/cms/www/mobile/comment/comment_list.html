@@ -6,8 +6,6 @@
     <title>个人动态</title>
     <link rel="stylesheet" href="/${mobileRes!}/djcss/reset.css"/>
     <link rel="stylesheet" href="/${mobileRes!}/djcss/style.css"/>
-    <script src="${resSys}/jquery.js" type="text/javascript"></script>
-	<script src="${resSys}/front.js" type="text/javascript"></script>
 </head>
 <body>
  <div id="wrap">
@@ -67,7 +65,15 @@
         </div>
      </div>
      <!--底部导航-->
-     [#include "../include/footer.html"/]
+     <!-- [#include "../include/footer.html"/]-->
+         <div class="index-footer">
+		    <a class="home" href="${base}/index.jhtml"><span class="ico ico-home"></span><br/>首页</a>
+		    <a class="address" href="${base}/member/member_meet.jspx"><span class="ico ico-address"></span><br/>好友聊</a>
+		    <a class="tell" href="${base}/notify/index.jhtml"><span class="ico ico-tell"></span><br/>通知</a>
+		    <a class="self" href="${base}/mycenter/index.jhtml"><span class="ico ico-self"></span><br/>我的</a>
+		</div>
  </div>
 </body>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
 </html>
