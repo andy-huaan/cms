@@ -11,7 +11,7 @@
 <body>
  <div id="wrap">
      <div id="chat">
-        <div class="active-header chat-header"><a class="back-home" href="javascript:history.back(-1)"></a>[@text_cut s=content.title len=12 append='...'/]</div>
+        <div class="active-header chat-header"><a class="back-home" href="javascript:location.href=document.referrer;"></a>[@text_cut s=content.title len=12 append='...'/]</div>
         <div class="detail_nav"><a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list] > 正文</div>
         <div class="news">
             <div class="news-detail" style="margin-top: 0px;">

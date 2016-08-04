@@ -23,7 +23,7 @@
 <body>
  <div id="wrap">
      <div id="chat">
-        <div class="active-header chat-header"><a class="back-home" href="javascript:history.back(-1)"></a>[@text_cut s=content.title len=15 append='...'/]</div>
+        <div class="active-header chat-header"><a class="back-home" href="javascript:location.href=document.referrer;"></a>[@text_cut s=content.title len=15 append='...'/]</div>
         <div class="newsTex" style="margin-top: 50px;">
 	        <div class="msgbar">发布时间： ${content.releaseDate} &nbsp; 作者：${content.author!'本站编辑'} &nbsp; 来源： ${content.origin!'本站原创'} &nbsp; 浏览次数：<span id="views"></span>次
 	        <span id="collectCsiDiv"></span>
